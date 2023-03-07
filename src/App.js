@@ -6,6 +6,8 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Welcome to Project 2!</h1>
+        {/* Test comment please ignore! */}
+        {/* This is a test branch */}
       </header>
     </div>
   );
