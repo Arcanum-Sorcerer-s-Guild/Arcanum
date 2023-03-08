@@ -20,7 +20,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/Search" element={<Search />} />
+        <Route path="/Search/:value" element={<Search />} />
         <Route path="/DetailView/:id" element={<DetailView />} />
         <Route path="/MyDeck" element={<MyDeck />} />
         <Route path="/FeatureDecks" element={<FeatureDecks />} />
