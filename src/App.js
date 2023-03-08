@@ -11,12 +11,12 @@ import MyDeck from "./MyDeck/MyDeck.js";
 import FeatureDecks from "./FeaturedDecks/FeaturedDecks.js";
 import NotFound from "./NotFound/NotFound.js";
 
-const mtgContext = React.createContext([]);
+const mtgContext = React.createContext();
 
 
 function App() {
   return (
-    <mtgContext.Provider>
+    <mtgContext.Provider value={{}}>
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
