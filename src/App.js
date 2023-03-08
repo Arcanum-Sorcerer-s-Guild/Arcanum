@@ -21,7 +21,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Search" element={<Search />} />
-        <Route path="/DetailView" element={<DetailView />} />
+        <Route path="/DetailView/:id" element={<DetailView />} />
         <Route path="/MyDeck" element={<MyDeck />} />
         <Route path="/FeatureDecks" element={<FeatureDecks />} />
         <Route path="/*" element={<NotFound />} />
