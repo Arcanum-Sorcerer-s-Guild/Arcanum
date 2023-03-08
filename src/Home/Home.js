@@ -19,7 +19,7 @@ const Home = () => {
     <div>
     {/*    {JSON.stringify(currCard.border_crop)}
        {console.log(JSON.stringify(currCard.border_crop))} */}
-      <img src={currCard.border_crop} />
+      <img src={currCard.normal} />
       {/* {currCard.image_uris.large ? (
         <img src={currCard.image_uris.large} />
       ) : (
