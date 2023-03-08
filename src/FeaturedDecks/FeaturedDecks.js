@@ -1,5 +1,7 @@
 import React from "react";
-const FeatureDecks = () => {
+
+const FeaturedDecks = () => {
     return(<></>)
 }
-export default FeatureDecks;
+
+export default FeaturedDecks;

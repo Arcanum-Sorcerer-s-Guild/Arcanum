@@ -8,7 +8,7 @@ import Home from "./Home/Home.js";
 import Search from "./Search/Search.js";
 import DetailView from "./DetailView/DetailView.js";
 import MyDeck from "./MyDeck/MyDeck.js";
-import FeatureDecks from "./FeaturedDecks/FeaturedDecks.js";
+import FeaturedDecks from "./FeaturedDecks/FeaturedDecks.js";
 import NotFound from "./NotFound/NotFound.js";
 
 const mtgContext = React.createContext();
@@ -23,7 +23,7 @@ function App() {
         <Route path="/Search" element={<Search />} />
         <Route path="/DetailView" element={<DetailView />} />
         <Route path="/MyDeck" element={<MyDeck />} />
-        <Route path="/FeatureDecks" element={<FeatureDecks />} />
+        <Route path="/featureddecks" element={<FeaturedDecks />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
     </mtgContext.Provider>
