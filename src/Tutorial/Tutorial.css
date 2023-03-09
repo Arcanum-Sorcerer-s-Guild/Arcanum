@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .wrapper {
-  margin-top: 40px;
+  margin-top: 50px;
   height: 45vw;
   background-image: url("battlefield.webp");
   background-position: center;
