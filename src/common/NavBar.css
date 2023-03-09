@@ -9,12 +9,13 @@
 .nav-wrapper {
   background-color: #191919;
   color: whitesmoke;
-  border: none;
-  
+  border: none; 
 }
 
 .nav-bar {
     background-color: #393939;
+    position: fixed;
+    
 }
 
 i {

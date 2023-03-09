@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.deck-list,
+.deck-img {
+  background-color: #fff;
+  border-bottom: inset 0.3em;
+}
+
+li:hover {
+  color: #be630e;
+}
+
+h1 {
+  position: relative;
+  color: #be630e;
+  padding: 1em 1.5em;
+  margin: 2em auto;
+  background: #fff;
+  border-bottom-color: #be630e;
+  border-bottom: solid 0.3em;
+  overflow: hidden;
+}
+
