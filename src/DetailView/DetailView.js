@@ -1,6 +1,7 @@
 import React, {useEffect,useState} from "react";
-import {useParams} from 'react-router-dom'
+import {useParams,useNavigate} from 'react-router-dom'
 import './DetailView.css'
+import "../App.css"
 
 const DetailView = () => {
   const [currCard,setCurrCard] = useState({
@@ -29,10 +30,14 @@ const DetailView = () => {
 
   const [cardRulings,setCardRulings] = useState([])
   let params = useParams();
+  const navigate = useNavigate();
 
   useEffect(()=>{
     fetch(`https://api.scryfall.com/cards/${params.id}`)
-    .then(res=>res.json())
+    .then((res)=> {
+      if (!res.ok) throw new Error(res.statusText)
+      return res.json()
+    })
     .then(data=> {
       setCurrCard({
         name: data.name,
@@ -51,12 +56,16 @@ const DetailView = () => {
         priceUSD: data.prices.usd,
         priceUSDFoil: data.prices.usd_foil,
         priceTIX: data.prices.tix,
-        tcgplayerLink: data.purchase_uris.tcgplayer,
+        tcgplayerLink: data.purchase_uris ? data.purchase_uris.tcgplayer : undefined,
         gathererLink: data.related_uris.gatherer,
         edhrecLink: data.related_uris.edhrec,
         scryfallLink: data.scryfall_uri,
         oracleText: data.oracle_text
       })
+    })
+    .catch(err => {
+      alert(`${err}: Unable to locate card with id:\n${params.id}\n\nReturning to main page...`)
+      navigate('/');
     })
   },[])
 
@@ -64,7 +73,7 @@ const DetailView = () => {
     fetch(`https://api.scryfall.com/cards/${params.id}/rulings`)
     .then(res=>res.json())
     .then(data=> {
-      setCardRulings(...cardRulings,data)
+      setCardRulings(data)
     })
   },[currCard])
 
@@ -75,9 +84,7 @@ const DetailView = () => {
 
   return (
   <>
-  {Object.keys(currCard).length === 0 ?
-    <h1>Loading...</h1>
-    :
+  {Object.keys(currCard).length !== 0 ?
     <>
     <div className="cardDetailContainer">
       <div>
@@ -116,8 +123,8 @@ const DetailView = () => {
           </ul>
         <h3>External Links</h3>
           <ul>
-            <li><a href={currCard.tcgplayerLink}>Purchase at TCG Player</a></li>
-            <li><a href={currCard.gathererLink}>View in Gatherer</a></li>
+            {currCard.tcgplayerLink ? <li><a href={currCard.tcgplayerLink}>Purchase at TCG Player</a></li> : <></>}
+            {currCard.gathererLink ? <li><a href={currCard.gathererLink}>View in Gatherer</a></li> : <></>}
             <li><a href={currCard.scryfallLink}>View in Scryfall</a></li>
             <li><a href={currCard.edhrecLink}>Read about at EDHREC</a></li>
           </ul>
@@ -128,11 +135,15 @@ const DetailView = () => {
         <h3>Oracle Text</h3>
         <p>{currCard.oracleText}</p>
 
-        <h3>Rulings</h3>
-        {Object.keys(cardRulings).length > 0 ?
-          cardRulings.data.map(ruling => <p key={Math.random()}>{`${ruling.published_at} ${ruling.comment}`}</p>)
-          : <div>Loading...</div>}
+        {cardRulings.data ?
+          <>
+          {cardRulings.data.length === 0 ? "" : <h3>Rulings</h3>  }
+          {cardRulings.data.map(ruling => <p key={Math.random()}>{`${ruling.published_at} ${ruling.comment}`}</p>)}
+          </>
+          : <div className="spinner" />}
     </>
+        :
+        <div className="spinner" />
 }
   </>
   )
