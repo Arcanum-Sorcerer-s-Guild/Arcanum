@@ -32,23 +32,30 @@ https://api.scryfall.com/cards/named?fuzzy=
 Returns multiple card objects:
 https://api.scryfall.com/cards/search?fuzzy=
 */
+// & is used between search parameters like order and q (query)
+// + is used inbetween q parameters
+//
 const Search = ({}) => {
   const [cards, setCards] = useState([]);
   const params = useParams();
+  // const [filters, setFileters] = useState([]);
   useEffect(()=>{
     fetch('https://api.scryfall.com/cards/search?q='+ params.value.split(' ').join('+'))
     .then(res=>res.json())
     .then(cardData=>setCards(cardData.data))
   }, [])
   return (
-  <>
-    {(cards).map(card => {
-      return (
-        <>
-          <img src={card.image_uris.small} alt={""}/>
-        </>
-      )
-    })}
-  </>);
+    <>
+
+      {(cards).map(card => {
+        return (
+          <div>
+            <img src={card.image_uris.small} alt={""}/>
+          </div>
+        )
+      })}
+    </>
+  );
 };
+
 export default Search;
