@@ -1,5 +1,5 @@
 import React, {useEffect,useState} from "react";
-import {useParams} from 'react-router-dom'
+import {useParams,useNavigate} from 'react-router-dom'
 import './DetailView.css'
 
 const DetailView = () => {
@@ -29,10 +29,14 @@ const DetailView = () => {
 
   const [cardRulings,setCardRulings] = useState([])
   let params = useParams();
+  const navigate = useNavigate();
 
   useEffect(()=>{
     fetch(`https://api.scryfall.com/cards/${params.id}`)
-    .then(res=>res.json())
+    .then((res)=> {
+      if (!res.ok) throw new Error(res.statusText)
+      return res.json()
+    })
     .then(data=> {
       setCurrCard({
         name: data.name,
@@ -57,6 +61,10 @@ const DetailView = () => {
         scryfallLink: data.scryfall_uri,
         oracleText: data.oracle_text
       })
+    })
+    .catch(err => {
+      alert(`${err}: Unable to locate card with id:\n${params.id}\n\nReturning to main page...`)
+      navigate('/');
     })
   },[])
 
