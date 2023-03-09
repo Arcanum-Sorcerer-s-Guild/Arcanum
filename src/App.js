@@ -4,6 +4,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import NavBar from "./common/NavBar.js";
+import Footer from "./common/Footer.js"
 import Home from "./Home/Home.js";
 import Search from "./Search/Search.js";
 import DetailView from "./DetailView/DetailView.js";
@@ -16,8 +17,8 @@ export const mtgContext = React.createContext();
 
 function App() {
   const [decks, setDecks] = useState([{
-    deckName: "My Deck",
-    deckList: [],
+    name: "myDeck",
+    deckItems: [],
   }]);
 
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/Tutorial" element={<Tutorial />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
+      <Footer />
     </mtgContext.Provider>
   );
 }
