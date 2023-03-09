@@ -14,6 +14,10 @@ const Home = () => {
       });
   }, []);
 
+  useEffect(()=> {
+    document.title = 'Arcanum: Home'
+  },[])
+
   if (currCard === false) {
     return <>test</>;
   }
