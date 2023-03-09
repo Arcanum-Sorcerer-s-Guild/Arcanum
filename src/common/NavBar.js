@@ -1,9 +1,21 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import "./NavBar.css";
+
+
 
 const NavBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+
+  const onClick = () => {
+      fetch(`https://api.scryfall.com/cards/random`)
+        .then((res) => res.json())
+        .then((data) => {
+          navigate(`detailview/${data.id}`)
+          navigate(0)
+        });
+  }
 
   return (
     <div className="nav-wrapper relative w-full h-full overflow-auto flex flex-wrap items-center justify-center shadow-lg">
@@ -28,12 +40,15 @@ const NavBar = () => {
             <Link className="link p-3" to="/Tutorial">
               <i className="deck-icon ss ss-atq p-1"/><span> Tutorial</span>
             </Link>
+            |
+            <button onClick={()=>onClick()}> Random Card</button>
           </div>
           <div className="search-bundle flex-shrink-0">
             <input
               className="search-input text-black italic"
               type="search"
               placeholder="Search..."
+              onKeyPress={(e) => { if (e.key === "Enter") {navigate(`Search/${searchTerm}`)}}}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
             <Link className="text-black p-1" to={`/Search/${searchTerm}`}>

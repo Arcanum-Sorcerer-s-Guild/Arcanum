@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
+import "../App.css"
 
 const Home = () => {
   const [currCard, setCurrCard] = useState([]);
@@ -37,7 +38,8 @@ const Home = () => {
               />
             </div>
           ) : (
-            <div className="loading-text text-center text-5xl text-white font-bold drop-shadow-lg">Loading...</div>
+            // <div className="loading-text text-center text-5xl text-white font-bold drop-shadow-lg">Loading...</div>
+            <div className="spinner" />
           )}
         </div>
       </div>

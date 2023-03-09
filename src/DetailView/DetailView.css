@@ -4,10 +4,8 @@
 
 body {
   background-image: url("background-1.jpg");
-  
+  color: white;
 }
-
-
 
 .cardDetailContainer {
   display:flex;
