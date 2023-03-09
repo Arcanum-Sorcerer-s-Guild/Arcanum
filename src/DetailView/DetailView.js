@@ -1,6 +1,7 @@
 import React, {useEffect,useState} from "react";
 import {useParams,useNavigate} from 'react-router-dom'
 import './DetailView.css'
+import "../App.css"
 
 const DetailView = () => {
   const [currCard,setCurrCard] = useState({
@@ -83,9 +84,7 @@ const DetailView = () => {
 
   return (
   <>
-  {Object.keys(currCard).length === 0 ?
-    <h1>Loading...</h1>
-    :
+  {Object.keys(currCard).length !== 0 ?
     <>
     <div className="cardDetailContainer">
       <div>
@@ -141,8 +140,10 @@ const DetailView = () => {
           {cardRulings.data.length === 0 ? "" : <h3>Rulings</h3>  }
           {cardRulings.data.map(ruling => <p key={Math.random()}>{`${ruling.published_at} ${ruling.comment}`}</p>)}
           </>
-          : <div>Loading...</div>}
+          : <div className="spinner" />}
     </>
+        :
+        <div className="spinner" />
 }
   </>
   )
