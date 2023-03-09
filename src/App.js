@@ -9,7 +9,7 @@ import Home from "./Home/Home.js";
 import Search from "./Search/Search.js";
 import DetailView from "./DetailView/DetailView.js";
 import MyDeck from "./MyDeck/MyDeck.js";
-import FeatureDecks from "./FeaturedDecks/FeaturedDecks.js";
+import FeaturedDecks from "./FeaturedDecks/FeaturedDecks.js";
 import NotFound from "./NotFound/NotFound.js";
 import Tutorial from "./Tutorial/Tutorial";
 
@@ -29,7 +29,7 @@ function App() {
         <Route path="/Search/:value" element={<Search />} />
         <Route path="/DetailView/:id" element={<DetailView />} />
         <Route path="/MyDeck" element={<MyDeck />} />
-        <Route path="/FeatureDecks" element={<FeatureDecks />} />
+        <Route path="/FeaturedDecks" element={<FeaturedDecks />} />
         <Route path="/Tutorial" element={<Tutorial />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
