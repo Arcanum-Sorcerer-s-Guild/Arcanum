@@ -15,13 +15,13 @@ import Tutorial from "./Tutorial/Tutorial";
 export const mtgContext = React.createContext();
 
 function App() {
-  const [deck, setDeck] = useState({
-    name: "myDeckString",
+  const [decks, setDecks] = useState([{
+    name: "myDeck",
     deckItems: [],
-  });
+  }]);
 
   return (
-    <mtgContext.Provider value={{ deck, setDeck }}>
+    <mtgContext.Provider value={{ decks, setDecks }}>
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
