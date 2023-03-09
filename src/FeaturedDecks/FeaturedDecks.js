@@ -77,7 +77,7 @@ const FeaturedDecks = () => {
     Promise.all(promises)
       .then(result => {
         let deckList = result.map((card) => ({...card, id: card.cardObj.id, name: card.cardObj.name}))
-        setDecks([...decks, {deckName: file.name.split('.').slice(0, -1).join('.'), deckList: deckList}])
+        setDecks([...decks, {name: file.name.split('.').slice(0, -1).join('.'), deckItems: deckList}])
       })
   }
 
@@ -88,8 +88,8 @@ const FeaturedDecks = () => {
     const deckName = document.getElementById('DecksDropdown').value
     let deckList = '';
     for (let deck of decks) {
-      if (deck.deckName === deckName) {
-        deckList = deck.deckList;
+      if (deck.name === deckName) {
+        deckList = deck.deckItems;
       }
     }
     const file = new Blob(encode(deckList), {type: 'text/plain'});
@@ -111,7 +111,7 @@ const FeaturedDecks = () => {
   }
 
   useEffect(() => {
-    let deckNames = decks.map((deck) => deck.deckName);
+    let deckNames = decks.map((deck) => deck.name);
     let decksDropdownElement = document.getElementById('DecksDropdown');
     while (decksDropdownElement.options.length > 0) {
       decksDropdownElement.remove(0);
@@ -142,7 +142,7 @@ const FeaturedDecks = () => {
       </div>
       <h1>Decklists</h1>
       <h1>These are some Featured Decks</h1>
-      {decks.map(deck => <Decklist key={deck.deckName} deck={deck} />)}
+      {decks.map(deck => <Decklist key={deck.name} deck={deck} />)}
     </>
   );
 };

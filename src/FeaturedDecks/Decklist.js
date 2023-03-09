@@ -1,12 +1,12 @@
 import React from "react";
 
 const Decklist = ({ deck }) => {
-  const { deckName, deckList } = deck;
+  const { name, deckItems } = deck;
 
   return (
     <div>
-      <h2>{deckName}</h2>
-        {deckList.map((card) => (<p>{`${card.count} ${card.cardObj.name}`}</p>))}
+      <h2>{name}</h2>
+        {deckItems.map((card) => (<p>{`${card.count} ${card.cardObj.name}`}</p>))}
     </div>
   );
 };
