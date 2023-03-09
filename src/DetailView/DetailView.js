@@ -68,6 +68,11 @@ const DetailView = () => {
     })
   },[currCard])
 
+  useEffect(()=> {
+    document.title = currCard.name
+  },[currCard])
+
+
   return (
   <>
   {Object.keys(currCard).length === 0 ?
