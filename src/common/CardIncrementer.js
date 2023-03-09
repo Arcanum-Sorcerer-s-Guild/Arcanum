@@ -46,7 +46,7 @@ const DeckDropDownCreator = ({ selectedDeck }) => {
       </select>
     </div>
   );
-};
+}
 
 const CardIncrementer = (props) => {
   const { decks, setDecks } = React.useContext(mtgContext);
