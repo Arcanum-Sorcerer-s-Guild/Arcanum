@@ -7,6 +7,12 @@
  * https://api.scryfall.com/cards/named?fuzzy=aust+com&color=black
  * https://api.scryfall.com/cards/search?order=cmc&q=c%3Ared+pow%3D3
  *
+ *
+ * SAMPLE SEARCHES:
+ * "aust com" returns "Austere Command"
+ * "kamahl pit" returns "Kamahl, Pit Fighter"
+ * "kamahl" returns the 404 error 'Too many cards match ambiguous name "Kamahl". Add more words to refine your search.'
+ * "testtesttest" returns the 404 error 'No cards found matching "testtesttest'
 **/
 /**
  * TODO:
@@ -14,56 +20,35 @@
  *
  */
 
-// my component is updated /search/:id for a value passed, and that'll be what is loaded when searched from the nav bar
-
-import React, { useEffect, useState, createContext } from "react";
-import SearchGrid from './SearchGrid.js';
-// import './App.css';
 
 
-export const MagicDataContext = createContext();
+import React, {useEffect, useState} from "react";
+import {useParams} from 'react-router-dom'
 
-const Search = () => {
-  // States to represent the list of results and if the page is loading
-  const [searchList, setSearchList] = useState([]);
-  const [loaded, setLoaded] = useState(false);
 
-  // When the query is performed, load the list of search results
-  const loadList = () => {
-    var promises = [];
-    promises.push(fetch(`https://api.scryfall.com/cards/named?fuzzy=aust+com&color=black`)
-      .then(response => response.json()));
-
-    Promise.all(promises)
-      .then(result => {
-        setSearchList(result);
-        console.log('promise all fetch json:', result);
-        setLoaded(true);
-      })
-  };
-
-  useEffect(() => {
-    loadList();
-  }, []);
-
-  // // helper function to add to a query
-  // function AddQuery(currentQuery) {
-  //   return currentQuery;
-  // }
-
-  // Returns a
+/*
+Returns only a single object card:
+https://api.scryfall.com/cards/named?fuzzy=
+Returns multiple card objects:
+https://api.scryfall.com/cards/search?fuzzy=
+*/
+const Search = ({}) => {
+  const [cards, setCards] = useState([]);
+  const params = useParams();
+  useEffect(()=>{
+    fetch('https://api.scryfall.com/cards/search?q='+ params.value.split(' ').join('+'))
+    .then(res=>res.json())
+    .then(cardData=>setCards(cardData.data))
+  }, [])
   return (
   <>
-    <h1>Search Results</h1>
-    Test
-    <button type="button" onClick={() => loadList()}>Search!</button>
-    <MagicDataContext.Provider value={ {searchList, setSearchList} }>
-      {(loaded !== true)
-        ? <div className="spinnerDiv"><div className="spinner"></div></div>
-        : (<SearchGrid/>)
-      }
-    </MagicDataContext.Provider>
+    {(cards).map(card => {
+      return (
+        <>
+          <img src={card.image_uris.small} alt={""}/>
+        </>
+      )
+    })}
   </>);
 };
-
 export default Search;
