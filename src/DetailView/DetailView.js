@@ -51,7 +51,7 @@ const DetailView = () => {
         priceUSD: data.prices.usd,
         priceUSDFoil: data.prices.usd_foil,
         priceTIX: data.prices.tix,
-        tcgplayerLink: data.purchase_uris.tcgplayer,
+        tcgplayerLink: data.purchase_uris ? data.purchase_uris.tcgplayer : undefined,
         gathererLink: data.related_uris.gatherer,
         edhrecLink: data.related_uris.edhrec,
         scryfallLink: data.scryfall_uri,
@@ -64,7 +64,7 @@ const DetailView = () => {
     fetch(`https://api.scryfall.com/cards/${params.id}/rulings`)
     .then(res=>res.json())
     .then(data=> {
-      setCardRulings(...cardRulings,data)
+      setCardRulings(data)
     })
   },[currCard])
 
@@ -116,8 +116,8 @@ const DetailView = () => {
           </ul>
         <h3>External Links</h3>
           <ul>
-            <li><a href={currCard.tcgplayerLink}>Purchase at TCG Player</a></li>
-            <li><a href={currCard.gathererLink}>View in Gatherer</a></li>
+            {currCard.tcgplayerLink ? <li><a href={currCard.tcgplayerLink}>Purchase at TCG Player</a></li> : <></>}
+            {currCard.gathererLink ? <li><a href={currCard.gathererLink}>View in Gatherer</a></li> : <></>}
             <li><a href={currCard.scryfallLink}>View in Scryfall</a></li>
             <li><a href={currCard.edhrecLink}>Read about at EDHREC</a></li>
           </ul>
@@ -128,9 +128,11 @@ const DetailView = () => {
         <h3>Oracle Text</h3>
         <p>{currCard.oracleText}</p>
 
-        <h3>Rulings</h3>
-        {Object.keys(cardRulings).length > 0 ?
-          cardRulings.data.map(ruling => <p key={Math.random()}>{`${ruling.published_at} ${ruling.comment}`}</p>)
+        {cardRulings.data ?
+          <>
+          {cardRulings.data.length === 0 ? "" : <h3>Rulings</h3>  }
+          {cardRulings.data.map(ruling => <p key={Math.random()}>{`${ruling.published_at} ${ruling.comment}`}</p>)}
+          </>
           : <div>Loading...</div>}
     </>
 }
