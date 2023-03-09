@@ -18,7 +18,7 @@ const NavBar = () => {
   }
 
   return (
-    <div className="nav-wrapper relative w-full h-full overflow-auto flex flex-wrap items-center justify-center shadow-lg">
+    <div className="nav-wrapper relative w-full flex flex-wrap items-center justify-center shadow-lg">
       <div className="brand-ribbon py-1">
         <Link className="link p-3 text-5xl" to="/">
           <i className="brand-logo ss ss-parl3 p-3">
@@ -29,7 +29,7 @@ const NavBar = () => {
       <nav className="nav-bar relative w-full flex items-center justify-around shadow-lg px-3">
           <div className="links relative inline-flex items-center">
             <Link className="relative inline-flex items-center p-3" to="/MyDeck">
-              <i className="deck-icon ss ss-s00 p-1"/><span> My Deck</span>
+              <i className="deck-icon ss ss-s00 p-1"/><span> Decklist</span>
               <div className="absolute inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-500 rounded-full top-2 -right-0">4</div>
             </Link>
             |

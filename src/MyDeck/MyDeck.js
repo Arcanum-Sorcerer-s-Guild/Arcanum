@@ -1,236 +1,151 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "./MyDeck.css";
+import React, {useContext, useEffect, useState} from "react";
+import Decklist from "./Decklist";
+import {mtgContext} from "../App";
 
 const MyDeck = () => {
-  const [decks, setDecks] = useState([]);
-  const [image, setImage] = useState("");
+  const {decks, setDecks} = useContext(mtgContext);
+  
+  useEffect(()=> {
+    document.title = 'Arcanum: Featured Decks'
+  },[])
 
-  const navigate = useNavigate();
+  const [file, setFile] = useState('');
+
+  const handleFileChange = (e) => {
+    console.log('handleFileChange called with:', e.target.files[0]);
+    e.preventDefault()
+    if (! e.target.files) {
+      return;
+    }
+    setFile(e.target.files[0]);
+  };
 
   useEffect(() => {
-    fetch("http://localhost:8000/DeckArray")
-      .then((res) => res.json())
-      .then((data) => {
-        setDecks(data);
-      });
-  }, []);
+    if (file) {
+      if (file.name) {
 
-  const countArr = [];
+      }
+      const currentFile = file;
+      importFile(currentFile);
+    }
+  }, [file])
 
-  let artifactCards = 0;
-  let creatureCards = 0;
-  let enchantmentCards = 0;
-  let instantCards = 0;
-  let landCards = 0;
-  let planeswalkerCards = 0;
-  let sorceryCards = 0;
 
-  for (let i = 0; i < decks.length; i++) {
-    if (decks[i].cardObj.type_line === "Artifact") {
-      artifactCards++;
-    }
+  const importFile = async (file) => {
+    const reader = new FileReader()
+    reader.onload = async (e) => { 
+      const text = (e.target.result)
+      parse(text)
+    };
+    reader.readAsText(file)
+  }
 
-    if (decks[i].cardObj.type_line === "Creature") {
-      creatureCards++;
-    }
-    if (decks[i].cardObj.type_line === "Enchantment") {
-      enchantmentCards++;
-    }
-    if (decks[i].cardObj.type_line === "Instant") {
-      instantCards++;
-    }
-    if (decks[i].cardObj.type_line === "Land") {
-      landCards++;
-    }
-    if (decks[i].cardObj.type_line === "Planeswalker") {
-      planeswalkerCards++;
-    }
-    if (decks[i].cardObj.type_line === "Sorcery") {
-      sorceryCards++;
+  const parse = (text) => {
+    const lines = text.split('\n')
+    let cards = [];
+    for (let line of lines) {
+      // Stop at the first blank line (skips the sideboard)
+      if (! line.match(/^\d/)) {
+        pullCards(cards);
+        break;
+      }
+
+      let parts = line.trim().split(' ');
+      let card = {
+        count: parts[0],
+        name: parts.slice(1).join(' '),
+      };
+      cards.push(card);
     }
   }
 
-  countArr.push(
-    artifactCards,
-    creatureCards,
-    enchantmentCards,
-    instantCards,
-    landCards,
-    planeswalkerCards,
-    sorceryCards
-  );
-  console.log(countArr);
+  const pullCards = (cards) => {
+    console.log('pulling cards:', cards)
+
+    let promises = [];
+    for (let card of cards) {
+      let cleanName = card.name.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '').replace(/ /g, '+').toLowerCase();
+      promises.push(
+        fetch(`https://api.scryfall.com/cards/named?exact=${cleanName}`)
+          .then((res) => res.json())
+          .then((data) => {
+            return ({count: card.count, cardObj: data})
+          })
+      )
+    }
+
+    Promise.all(promises)
+      .then(result => {
+        let deckList = result.map((card) => ({...card, id: card.cardObj.id, name: card.cardObj.name}))
+        setDecks([...decks, {name: file.name.split('.').slice(0, -1).join('.'), deckItems: deckList}])
+      })
+  }
+
+  
+  const exportFile = () => {
+
+    const element = document.createElement("a");
+    const deckName = document.getElementById('DecksDropdown').value
+    let deckList = '';
+    for (let deck of decks) {
+      if (deck.name === deckName) {
+        deckList = deck.deckItems;
+      }
+    }
+    const file = new Blob(encode(deckList), {type: 'text/plain'});
+    element.href = URL.createObjectURL(file);
+    element.download = `${deckName}.txt`;
+    document.body.appendChild(element); // Required for this to work in FireFox
+    element.click();
+  }
+
+  const encode = (deck) => {
+    let encoded = [];
+    for (let o of deck) {
+      encoded.push(o.count)
+      encoded.push(' ')
+      encoded.push(o.cardObj.name)
+      encoded.push('\n')
+    }
+    return encoded;
+  }
+
+  useEffect(() => {
+    let deckNames = decks.map((deck) => deck.name);
+    let decksDropdownElement = document.getElementById('DecksDropdown');
+    while (decksDropdownElement.options.length > 0) {
+      decksDropdownElement.remove(0);
+    }
+    deckNames.forEach(deckName => {
+      if (deckName === 'My Deck') {
+        decksDropdownElement.add(
+          new Option(deckName, deckName, true)
+        )
+      } else {
+        decksDropdownElement.add(
+          new Option(deckName, deckName, false)
+        )
+      }
+    });
+  }, [decks])
 
   return (
-    <div className="mt-10 mx-24">
-      <h1 className="text-2xl font-bold p-3"> Decklist</h1>
-
-      <div className="relative grid grid-rows-2 grid-cols-2 mt-1">
-        <div className="deck-list text-sm">
-          <div className="grid grid-cols-2">
-            <div className="col-1 p-5">
-              <div className="font-bold italic">
-                Artifacts ({countArr[0] === 0 ? 0 : countArr[0]})
-              </div>
-              <ul className="list-inside">
-                {decks.map((card) =>
-                  card.cardObj.type_line === "Artifact" ? (
-                    <li key={card.cardId}>
-                      {card.count}{" "}
-                      <a
-                        href="#1"
-                        target="test"
-                        onMouseOver={(e) => setImage(e.currentTarget.target)}
-                        onClick={() => navigate(`/DetailView/${card.cardId}`)}
-                      >
-                        {card.cardObj.name}
-                      </a>
-                    </li>
-                  ) : (
-                    ""
-                  )
-                )}
-              </ul>
-              <div className="font-bold italic mt-5">
-                Creature ({countArr[1]})
-              </div>
-              <ul className="list-inside">
-                {decks.map((card) =>
-                  card.cardObj.type_line === "Creature" ? (
-                    <li key={card.cardId}>
-                      {card.count}{" "}
-                      <a
-                        href="#2"
-                        target="test2"
-                        onMouseOver={(e) => setImage(e.currentTarget.target)}
-                        onClick={() => navigate(`/DetailView/${card.cardId}`)}
-                      >
-                        {card.cardObj.name}
-                      </a>
-                    </li>
-                  ) : (
-                    ""
-                  )
-                )}
-              </ul>
-              <div className="font-bold italic mt-5">
-                Enchantment ({countArr[2]})
-              </div>
-              <ul className="list-inside">
-                {decks.map((card) =>
-                  card.cardObj.type_line === "Enchantment" ? (
-                    <li key={card.cardId}>
-                      {card.count}{" "}
-                      <a
-                        href="#3"
-                        target="test3"
-                        onMouseOver={(e) => setImage(e.currentTarget.target)}
-                        onClick={() => navigate(`/DetailView/${card.cardId}`)}
-                      >
-                        {card.cardObj.name}
-                      </a>
-                    </li>
-                  ) : (
-                    ""
-                  )
-                )}
-              </ul>
-              <div className="font-bold italic mt-5">
-                Instant ({countArr[3]})
-              </div>
-              <ul className="list-inside">
-                {decks.map((card) =>
-                  card.cardObj.type_line === "Instant" ? (
-                    <li key={card.cardId}>
-                      {card.count}{" "}
-                      <a
-                        href="#4"
-                        target="test4"
-                        onMouseOver={(e) => setImage(e.currentTarget.target)}
-                        onClick={() => navigate(`/DetailView/${card.cardId}`)}
-                      >
-                        {card.cardObj.name}
-                      </a>
-                    </li>
-                  ) : (
-                    ""
-                  )
-                )}
-              </ul>
-            </div>
-            <div className="col-1 p-5">
-              <div className="font-bold italic">Land ({countArr[4]})</div>
-              <ul className="list-inside">
-                {decks.map((card) =>
-                  card.cardObj.type_line === "Land" ? (
-                    <li key={card.cardId}>
-                      {card.count}{" "}
-                      <a
-                        href="#5"
-                        target="test5"
-                        onMouseOver={(e) => setImage(e.currentTarget.target)}
-                        onClick={() => navigate(`/DetailView/${card.cardId}`)}
-                      >
-                        {card.cardObj.name}
-                      </a>
-                    </li>
-                  ) : (
-                    ""
-                  )
-                )}
-              </ul>
-              <div className="font-bold italic mt-5">
-                Planeswalker ({countArr[5]})
-              </div>
-              <ul className="list-inside">
-                {decks.map((card) =>
-                  card.cardObj.type_line === "Planeswalker" ? (
-                    <li key={card.cardId}>
-                      {card.count}{" "}
-                      <a
-                        href="#6"
-                        target="test6"
-                        onMouseOver={(e) => setImage(e.currentTarget.target)}
-                        onClick={() => navigate(`/DetailView/${card.cardId}`)}
-                      >
-                        {card.cardObj.name}
-                      </a>
-                    </li>
-                  ) : (
-                    ""
-                  )
-                )}
-              </ul>
-              <div className="font-bold italic mt-5">
-                Sorcery ({countArr[6]})
-              </div>
-              <ul className="list-inside">
-                {decks.map((card) =>
-                  card.cardObj.type_line === "Sorcery" ? (
-                    <li key={card.cardId}>
-                      {card.count}{" "}
-                      <a
-                        href="#7"
-                        target="test7"
-                        onMouseOver={(e) => setImage(e.currentTarget.target)}
-                        onClick={() => navigate(`/DetailView/${card.cardId}`)}
-                      >
-                        {card.cardObj.name}
-                      </a>
-                    </li>
-                  ) : (
-                    ""
-                  )
-                )}
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div className="deck-img">{image}</div>
+    <>
+      <div>
+        Import:
+        <input type="file" onChange={handleFileChange} />
       </div>
-    </div>
+
+      <div>
+        <select id="DecksDropdown" />
+        <button onClick={() => exportFile()}>Export</button>
+      </div>
+      <h1>Decklists</h1>
+      <h1>These are some Featured Decks</h1>
+      {decks.map(deck => <Decklist key={deck.name} deck={deck} />)}
+    </>
   );
 };
+
 
 export default MyDeck;
