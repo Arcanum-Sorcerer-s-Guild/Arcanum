@@ -2,10 +2,20 @@ import React, {useEffect,useState} from "react";
 import {useParams,useNavigate} from 'react-router-dom'
 import './DetailView.css'
 import "../App.css"
+import CardIncrementer from '../common/CardIncrementer.js'
+import { mtgContext } from "../App";
+
+
 
 const DetailView = () => {
+
+  
+  const { decks, setDecks } = React.useContext(mtgContext);
+
+
   const [currCard,setCurrCard] = useState({
     name: '',
+    id: '',
     set_name: '',
     image: '',
     rarity: '',
@@ -41,6 +51,7 @@ const DetailView = () => {
     .then(data=> {
       setCurrCard({
         name: data.name,
+        id: data.id,
         set_name: data.set_name,
         image: data.image_uris.normal,
         rarity: data.rarity,
@@ -67,7 +78,7 @@ const DetailView = () => {
       alert(`${err}: Unable to locate card with id:\n${params.id}\n\nReturning to main page...`)
       navigate('/');
     })
-  },[])
+  },[params.id])
 
   useEffect(()=>{
     fetch(`https://api.scryfall.com/cards/${params.id}/rulings`)
@@ -93,7 +104,7 @@ const DetailView = () => {
 
       <div className="text-gray-600">
           <button>Add to deck</button>
-          <span> # in deck</span>
+          <span> <CardIncrementer data={currCard} deckListDropdownOption={false} deckSet={decks[0].name}/></span>
         <div>
           <h1>{currCard.name}</h1>
           <ul>
