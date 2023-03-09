@@ -10,7 +10,7 @@
   background-color: #191919;
   color: whitesmoke;
   border: none;
-  
+
 }
 
 .nav-bar {
@@ -47,7 +47,7 @@ span {
   padding-left: 10px;
   cursor: text;
   border-radius: 2px;
-  
+
 }
 
 .search-input:focus {
@@ -69,5 +69,5 @@ span {
   border-radius: 2px;
   position: relative;
   top: -2px;
-  
+
 }
