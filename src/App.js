@@ -12,6 +12,7 @@ import MyDeck from "./MyDeck/MyDeck.js";
 import FeaturedDecks from "./FeaturedDecks/FeaturedDecks.js";
 import NotFound from "./NotFound/NotFound.js";
 import Tutorial from "./Tutorial/Tutorial";
+import AdvancedSearch from "./AdvancedSearch/AdvancedSearch.js"
 
 export const mtgContext = React.createContext();
 
@@ -32,6 +33,7 @@ function App() {
         <Route path="/FeaturedDecks" element={<FeaturedDecks />} />
         <Route path="/Tutorial" element={<Tutorial />} />
         <Route path="/*" element={<NotFound />} />
+        <Route path="/AdvancedSearch" element={<AdvancedSearch/>}/>
       </Routes>
       <Footer />
     </mtgContext.Provider>
