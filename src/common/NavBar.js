@@ -21,7 +21,7 @@ const NavBar = () => {
     <div className="nav-wrapper relative flex w-full flex-wrap items-center justify-center shadow-lg">
       <div className="brand-ribbon py-1">
         <Link className="link p-3 text-5xl" to="/">
-          <i class="brand-logo ss ss-parl3 p-3">
+          <i className="brand-logo ss ss-parl3 p-3">
             <span>rcanum</span>
           </i>
         </Link>
