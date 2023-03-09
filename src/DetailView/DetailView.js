@@ -84,7 +84,7 @@ const DetailView = () => {
 
   return (
   <>
-  {Object.keys(currCard).length !== 0 ?
+  {currCard.image !== '' ?
     <>
     <div className="cardDetailContainer">
       <div>
