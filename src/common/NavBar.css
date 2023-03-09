@@ -1,18 +1,73 @@
-.navBar {
-  background-color: grey;
-  padding: 10px;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  font-family: 'Open Sans', sans-serif;
 }
 
-.searchBar, .searchBtn {
+.nav-wrapper {
+  background-color: #191919;
+  color: whitesmoke;
+  border: none;
+  
+}
+
+.nav-bar {
+    background-color: #393939;
+}
+
+i {
+  color: #b93b0d;
+}
+
+.deck-icon {
+  color: white;
+}
+
+span {
+  color: whitesmoke;
+  vertical-align:text-top;
+}
+
+.brand-logo:hover {
+  color: #ea3601;
+  text-shadow: 0 0 10px rgba(253, 108, 4, 0.9);
+}
+
+.links {
+  margin-right: 600px;
+}
+
+.search-input {
+  background-color: #c2c2c2;
+  border: none;
+  font-size: 1em;
+  width: 300px;
+  padding-left: 10px;
+  cursor: text;
+  border-radius: 2px;
+  
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+.search-input::placeholder {
+  color: #4c4c4c
+}
+
+.search-btn {
+  font-size: 10pt;
+  width: 88px;
+  height: 26px;
+  border: 1px solid #191919;
+  font-weight: bold;
+  color: #ffffff;
+  background-color:#191919;
+  border-radius: 2px;
   position: relative;
-  top: -10px;
-  float: right;
-  border-radius: 5px;
-  padding: 5px;
-  margin: 5px
+  top: -2px;
+  
 }
-
-.link {
-  padding-right: 10px;
-}
-
