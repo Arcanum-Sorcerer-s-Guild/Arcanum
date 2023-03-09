@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.hero-section {
+  height: 45vw;
+  background-image: url("hero.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.loading-text {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 500px;
+  width: auto;
+  text-shadow: 0 0 20px rgb(3, 150, 190);
+}
+
+.random-card {
+  height: auto;
+  width: 15em;
+  position: absolute;
+  top: 35%;
+  left: 42%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.939);
+}
+
+.random-card:hover {
+  box-shadow: 0 0 20px rgb(122, 3, 219);
+}
+
+.pulse{
+  height: 5em;
+  width: 5em;
+  background: linear-gradient(
+      #04cbf8,
+      #0178a7
+  );
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 20%;
+  display: grid;
+  place-items: center;
+  font-size: 50px;
+  color: #ffffff;
+}

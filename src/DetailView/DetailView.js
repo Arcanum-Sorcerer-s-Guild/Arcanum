@@ -79,7 +79,7 @@ const DetailView = () => {
         <img src={currCard.image}/>
       </div>
 
-      <div>
+      <div className="text-gray-600">
           <button>Add to deck</button>
           <span> # in deck</span>
         <div>

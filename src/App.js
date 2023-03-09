@@ -10,6 +10,7 @@ import DetailView from "./DetailView/DetailView.js";
 import MyDeck from "./MyDeck/MyDeck.js";
 import FeatureDecks from "./FeaturedDecks/FeaturedDecks.js";
 import NotFound from "./NotFound/NotFound.js";
+import Tutorial from "./Tutorial/Tutorial";
 
 const mtgContext = React.createContext();
 
@@ -24,6 +25,7 @@ function App() {
         <Route path="/DetailView/:id" element={<DetailView />} />
         <Route path="/MyDeck" element={<MyDeck />} />
         <Route path="/FeatureDecks" element={<FeatureDecks />} />
+        <Route path="/Tutorial" element={<Tutorial />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
     </mtgContext.Provider>
