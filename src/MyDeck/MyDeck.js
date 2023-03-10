@@ -21,6 +21,10 @@ let deckLists = [
     deckName: 'ThaisM (5-0)',
     deckPath: 'decklists/ThaisM (5-0).txt'
   },
+  {
+    deckName: 'Daize (5-0)',
+    deckPath: 'decklists/Daize (5-0).txt'
+  },
 ]
 
 const MyDeck = () => {
