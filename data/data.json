@@ -1,0 +1,164 @@
+{
+    "DeckArray": [
+        {
+            "cardId": "0001",
+            "count": 1,
+            "cardObj": {
+                "name": "Reckoner Bankbuster",
+                "type_line": "Artifact"
+            }
+        },
+        {
+            "cardId": "0401",
+            "count": 1,
+            "cardObj": {
+                "name": "Bloodtithe Harvester",
+                "type_line": "Creature"
+            }
+        },
+        {
+            "cardId": "0461",
+            "count": 1,
+            "cardObj": {
+                "name": "Sheoldred, the Apocalypse",
+                "type_line": "Creature"
+            }
+        },
+        {
+            "cardId": "0501",
+            "count": 1,
+            "cardObj": {
+                "name": "Atraxa, Grand Unifier",
+                "type_line": "Creature"
+            }
+        },
+        {
+            "cardId": "0809",
+            "count": 1,
+            "cardObj": {
+                "name": "Fable of the Mirror-Breaker",
+                "type_line": "Enchantment"
+            }
+        },
+        {
+            "cardId": "0089",
+            "count": 1,
+            "cardObj": {
+                "name": "The Cruelty of Gix",
+                "type_line": "Enchantment"
+            }
+        },
+        {
+            "cardId": "0289",
+            "count": 1,
+            "cardObj": {
+                "name": "Abrade",
+                "type_line": "Instant"
+            }
+        },
+        {
+            "cardId": "1089",
+            "count": 1,
+            "cardObj": {
+                "name": "Go for the Throat",
+                "type_line": "Instant"
+            }
+        },
+        {
+            "cardId": "3454",
+            "count": 1,
+            "cardObj": {
+                "name": "Sulfurous Springs",
+                "type_line": "Land"
+            }
+        },
+        {
+            "cardId": "0947",
+            "count": 1,
+            "cardObj": {
+                "name": "Swamp",
+                "type_line": "Land"
+            }
+        },
+        {
+            "cardId": "2649",
+            "count": 1,
+            "cardObj": {
+                "name": "Mountain",
+                "type_line": "Land"
+            }
+        },
+        {
+            "cardId": "3332",
+            "count": 1,
+            "cardObj": {
+                "name": "Haunted Ridge",
+                "type_line": "Land"
+            }
+        },
+        {
+            "cardId": "9832",
+            "count": 1,
+            "cardObj": {
+                "name": "Takenuma, Abandoned Mire",
+                "type_line": "Land"
+            }
+        },
+        {
+            "cardId": "2165",
+            "count": 1,
+            "cardObj": {
+                "name": "Sokenzan, Crucible of Defiance",
+                "type_line": "Land"
+            }
+        },
+        {
+            "cardId": "0329",
+            "count": 1,
+            "cardObj": {
+                "name": "Xander's Lounge",
+                "type_line": "Land"
+            }
+        },
+        {
+            "cardId": "4508",
+            "count": 1,
+            "cardObj": {
+                "name": "Ziatora's Proving Ground",
+                "type_line": "Land"
+            }
+        },
+        {
+            "cardId": "3586",
+            "count": 1,
+            "cardObj": {
+                "name": "Blackcleave Cliffs",
+                "type_line": "Land"
+            }
+        },
+        {
+            "cardId": "33613",
+            "count": 1,
+            "cardObj": {
+                "name": "Liliana of the Veil",
+                "type_line": "Planeswalker"
+            }
+        },
+        {
+            "cardId": "33553",
+            "count": 1,
+            "cardObj": {
+                "name": "Soul Transfer",
+                "type_line": "Sorcery"
+            }
+        },
+        {
+            "cardId": "336813",
+            "count": 1,
+            "cardObj": {
+                "name": "Brothehood's End",
+                "type_line": "Sorcery"
+            }
+        }
+    ]
+}

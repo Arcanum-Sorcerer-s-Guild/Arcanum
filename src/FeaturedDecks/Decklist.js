@@ -4,9 +4,13 @@ const Decklist = ({ deck }) => {
   const { name, deckItems } = deck;
 
   return (
-    <div>
-      <h2>{name}</h2>
-        {deckItems.map((card) => (<p>{`${card.count} ${card.cardObj.name}`}</p>))}
+    <div className="grid grid-cols-1">
+      <h2 className="text-md font-bold">{name}</h2>
+      <ul className="list-inside">
+        {deckItems.map((card) => (
+          <li>{`${card.count} ${card.cardObj.name}`}</li>
+        ))}
+      </ul>
     </div>
   );
 };
