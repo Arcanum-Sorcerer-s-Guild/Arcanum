@@ -68,28 +68,39 @@ const Advanced = () => {
   }
 
   return(
-    <>
-    <h1>Advanced Search:</h1><br/>
-    <form className="advancedForm" onSubmit={handleSubmit}>
+    <div className="flex flex-col justify-center items-center">
+    <form className="bg-zinc-500/25 shadow-md rounded px-20 pt-6 pb-8 mb-4 mt-5" onSubmit={handleSubmit}>
+      <h1>Advanced Search</h1><br/>
 
-      <label>
-        Card Name <input className="textBox" name="cardName" value={inputs.name} type="text" onChange={handleChange} />
-      </label>
+      <div>Card Name:</div>
+      <input placeholder="Choose something scary..." className="search-input text-black italic" name="cardName" value={inputs.name} type="text" onChange={handleChange} />
       <br/><br/>
 
-      <label>
-        Converted Mana Cost <input className="textBox" name="cardCMC" value={inputs.name} type="text" onChange={handleChange} />
-      </label>
+      <div>Converted Mana Cost</div>
+      <input placeholder="Choose a number" className="search-input text-black italic" name="cardCMC" value={inputs.name} type="text" onChange={handleChange} />
       <br/><br/>
 
-      <label>
-        Card Text<input className="textBox" name="cardText" value={inputs.name} type="text" onChange={handleChange}/>
-      </label>
+      <div>Inner Card Text</div>
+      <input placeholder="Choose the word win" className="search-input text-black italic" name="cardText" value={inputs.name} type="text" onChange={handleChange}/>
       <br/><br/>
 
-      <label>
-        Card Type
-        <select className="textBox" name="cardType" value={inputs.name} onChange={handleChange}>
+      <div>Artist</div>
+      <input placeholder="Artist name here" className="search-input text-black italic" name="cardArtist" value={inputs.name} type="text" onChange={handleChange} />
+      <br/><br/>
+
+      <div>Card Rarity</div>
+      <select className="search-input text-black italic" name="cardRarity" value={inputs.name} onChange={handleChange}>
+        <option value=""></option>
+        <option value="c">Common</option>
+        <option value="u">Uncommon</option>
+        <option value="r">Rare</option>
+        <option value="m">Mythic Rare</option>
+      </select>
+      <br/><br/>
+
+
+        <div>Card Type</div>
+        <select className="search-input text-black italic" name="cardType" value={inputs.name} onChange={handleChange}>
           <option value=""></option>
           <option value="Artifact">Artifact</option>
           <option value="Land">Land</option>
@@ -100,41 +111,21 @@ const Advanced = () => {
           <option value="Planeswalker">Planeswalker</option>
           <option value="Instant">Instant</option>
         </select>
-      </label>
       <br/><br/>
 
-      <label>
-        Card Color:
-        <div>Searches all colors when none are checked</div>
-        White<input type="checkbox" name="colorWhite" value='w' defaultChecked={false} onChange={()=>updateColors('w')}/>
-        Blue<input type="checkbox" name="colorBlue" value='u' defaultChecked={false} onChange={()=>updateColors('u')}/>
-        Black<input type="checkbox" name="colorBlack" value='b' defaultChecked={false} onChange={()=>updateColors('b')}/>
-        Red<input type="checkbox" name="colorGreen" value='r' defaultChecked={false} onChange={()=>updateColors('r')}/>
-        Green<input type="checkbox" name="colorRed" value='g' defaultChecked={false} onChange={()=>updateColors('g')} />
-        Colorless<input type="checkbox" name="colorLess" value='c' defaultChecked={false} onChange={()=>updateColors('c')}/>
-      </label>
-      <br/><br/>
 
-      <label>
-      Card Rarity
-      <select className="textBox" name="cardRarity" value={inputs.name} onChange={handleChange}>
-        <option value=""></option>
-        <option value="c">Common</option>
-        <option value="u">Uncommon</option>
-        <option value="r">Rare</option>
-        <option value="m">Mythic Rare</option>
-      </select>
-      </label>
-      <br/><br/>
+      <div className="checkBoxDiv">Card Color: (Unless checked searches all colors)</div>
+        <input type="checkbox" name="colorWhite" value='w' defaultChecked={false} onChange={()=>updateColors('w')}/>White<br/>
+        <input type="checkbox" name="colorBlue" value='u' defaultChecked={false} onChange={()=>updateColors('u')}/>Blue<br/>
+        <input type="checkbox" name="colorBlack" value='b' defaultChecked={false} onChange={()=>updateColors('b')}/>Black<br/>
+        <input type="checkbox" name="colorGreen" value='r' defaultChecked={false} onChange={()=>updateColors('r')}/>Red<br/>
+        <input type="checkbox" name="colorRed" value='g' defaultChecked={false} onChange={()=>updateColors('g')} />Green<br/>
+        <input type="checkbox" name="colorLess" value='c' defaultChecked={false} onChange={()=>updateColors('c')}/>Colorless<br/>
+      <br/>
 
-      <label>
-        Artist <input className="textBox" name="cardArtist" value={inputs.name} type="text" onChange={handleChange} />
-      </label>
-      <br/><br/>
 
-      <label>
-        Order of search results:
-        <select className="textBox" name="orderShown" value={inputs.name} onChange={handleChange}>
+        <div>Order of search results:</div>
+        <select className="search-input text-black italic" name="orderShown" value={inputs.name} onChange={handleChange}>
           <option value=""></option>
           <option value="name">Name</option>
           <option value="set">Set</option>
@@ -148,12 +139,13 @@ const Advanced = () => {
           <option value="edhrec">EDHREC</option>
           <option value="artist">Artist</option>
         </select>
-      </label>
+
       <br/><br/>
 
-      <input type="submit" />
+      <input type="submit" className="submit-btn hover:bg-gray-700 transition-color duration-70" />
     </form>
-    </>
+    </div>
+
   )
 }
 
