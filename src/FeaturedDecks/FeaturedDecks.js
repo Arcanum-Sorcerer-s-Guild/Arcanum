@@ -135,24 +135,22 @@ const FeaturedDecks = () => {
   }, [decks]);
 
   return (
-    <div className="mt-10 mx-24">
-      <div className="import-bar relative w-full flex flex-wrap items-center justify-end shadow-lg px-4"> 
+    <div className="main-wrapper mt-10 mx-24">
+      <div className="import-bar relative w-full flex flex-wrap items-center justify-around shadow-lg px-4"> 
         <div className="import">
-          <label className="label p-3" htmlFor="import-btn">Import</label>
+          <label className="import-btn p-3" htmlFor="import-btn">Import</label>
           <input className="import-btn p-3" id="import-btn" type="file" onChange={handleFileChange} />
         </div>
-        <div className="select">
-          <label className="label p-3" htmlFor="import-dropdown">Select a Deck</label>
-          <select className="import-select"id="DecksDropdown" />
-        </div>
         <div className="export">
-          <button className="p-3" onClick={() => exportFile()}>Export</button>
+            <label className="label p-3" htmlFor="import-dropdown">Select a Deck</label>
+            <select className="import-select"id="DecksDropdown" />
+            <button className="p-3" onClick={() => exportFile()}>Export</button>
         </div>
       </div>
       <div className="import-display">
         <div className="import-header">
-          <h1 className="text-2xl font-bold"> Decklist</h1>
-          <h2 className="text-md p-3">These are some Featured Decks</h2>
+          <h1 className="deck-header text-2xl font-bold"> Decklist</h1>
+          <h2 className="deck-sub text-md p-3">These are some Featured Decks</h2>
         </div>
         <div className="deck-details relative grid grid-cols-1 mt-1">
           <div className="grid grid-cols-1">

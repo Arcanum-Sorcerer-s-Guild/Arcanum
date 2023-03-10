@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
-  font-family: 'Open Sans', sans-serif;
-}
-
 .nav-wrapper {
   background-color: #191919;
   color: whitesmoke;

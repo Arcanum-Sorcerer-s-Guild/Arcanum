@@ -6,20 +6,33 @@
 .deck-img {
   background-color: #fff;
   border-bottom: inset 0.3em;
+  color: #333;
 }
 
 li:hover {
   color: #be630e;
 }
 
-h1 {
+.deck-header {
   position: relative;
   color: #be630e;
-  padding: 1em 1.5em;
-  margin: 2em auto;
   background: #fff;
   border-bottom-color: #be630e;
   border-bottom: solid 0.3em;
-  overflow: hidden;
 }
+
+input[type="file"] {
+  display: none;
+}
+
+.import-btn-label {
+  color: #be630e;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.import-select, .import-select-label {
+  color: #333;
+}
+
 

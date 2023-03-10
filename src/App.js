@@ -1,6 +1,5 @@
-import logo from "./logo.svg";
 import "./App.css";
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./common/NavBar.js";
 import Footer from "./common/Footer.js"
@@ -17,7 +16,7 @@ export const mtgContext = React.createContext();
 
 function App() {
   const [decks, setDecks] = useState([{
-    name: "myDeck",
+    name: "My Deck",
     deckItems: [],
   }]);
 

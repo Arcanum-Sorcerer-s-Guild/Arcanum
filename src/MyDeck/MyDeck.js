@@ -1,6 +1,7 @@
 import React, {useContext, useEffect, useState} from "react";
 import MyDecklist from "./MyDecklist";
 import {mtgContext} from "../App";
+import "./Deck.css"
 
 const MyDeck = () => {
   const {decks, setDecks} = useContext(mtgContext);
@@ -130,18 +131,19 @@ const MyDeck = () => {
   }, [decks])
 
   return (
-    <div className="mt-5 mx-24">
+    <div className="import-export-bar relative flex-1">
     <div className="import-bar relative w-full flex flex-wrap items-center justify-end shadow-lg px-4"> 
       <div className="import">
-        <label className="label p-3" htmlFor="import-btn">Import</label>
+        <label className="import-btn-label p-3" htmlFor="import-btn">Import</label>
         <input className="import-btn p-3" id="import-btn" type="file" onChange={handleFileChange} />
       </div>
-      <div className="select">
-        <label className="label p-3" htmlFor="import-dropdown">Select a Deck</label>
-        <select className="import-select"id="DecksDropdown" />
-      </div>
+      |
+      |
       <div className="export">
-        <button className="p-3" onClick={() => exportFile()}>Export</button>
+        <button className="p-3" onClick={() => exportFile()}>Export</button> 
+        <i className="ss ss-jmp"/>
+        <label className="import-select-label text-sm p-3" htmlFor="import-dropdown">Select a Deck:</label>
+        <select className="import-select text-sm" id="DecksDropdown" />
       </div>
     </div>
         {decks.map(deck => <MyDecklist key={deck.name} deck={deck}/>)}

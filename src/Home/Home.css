@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .hero-section {
   height: 50rem;
   background-image: url("hero.jpg");
