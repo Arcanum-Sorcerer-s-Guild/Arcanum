@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .textBox {
   color:black
 }
@@ -5,4 +9,53 @@
 .flexResults {
   display:flex;
   flex-wrap: wrap;
+}
+
+#page-btn {
+  width: 100px;
+  margin-left: 10px;
+  background-color:#191919;
+}
+
+.submit-btn {
+  font-size: 10pt;
+  width: 88px;
+  height: 26px;
+  border: 1px solid #191919;
+  font-weight: bold;
+  color: #ffffff;
+  background-color:#191919;
+  border-radius: 2px;
+  position: relative;
+  top: -2px;
+
+}
+
+.search-input {
+  background-color: #c2c2c2;
+  border: none;
+  font-size: 1em;
+  width: 200px;
+  padding-left: 10px;
+  border-radius: 2px;
+  height: 23px;
+}
+
+
+h1 {
+  font-size: x-large;
+  text-align: center;
+}
+
+
+.card-image {
+
+  margin: 5px;
+  top: 40%;
+  left: 43%;
+
+}
+
+.card-image:hover {
+  box-shadow: 0 0 20px rgb(122, 3, 219);
 }

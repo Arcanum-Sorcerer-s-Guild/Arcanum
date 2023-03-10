@@ -39,13 +39,13 @@ const NavBar = () => {
             </Link>
             |
             <button className="p-3" onClick={()=>onClick()}>  <i className="deck-icon ss ss-gn3 p-1"/> <span>Random Card</span></button>
-          
+            |
             <Link className="link p-3" to="/Advanced">
               <i className="deck-icon ss ss-v10 p-1"/><span> Advanced</span>
             </Link>
-          
+
           </div>
-          
+
           <div className="search-bundle flex-shrink-0">
             <input
               className="search-input text-black italic"
