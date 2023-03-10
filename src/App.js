@@ -24,7 +24,7 @@ function App() {
     <mtgContext.Provider value={{ decks, setDecks }}>
       <NavBar />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route exact path="/" element={<Home />} />
         <Route path="/Search/:value" element={<Search />} />
         <Route path="/DetailView/:id" element={<DetailView />} />
         <Route path="/MyDeck" element={<MyDeck />} />
