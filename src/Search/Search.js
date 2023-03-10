@@ -23,6 +23,7 @@ const Search = ({}) => {
           <h1> No Cards Found </h1>
           <h4> Your search didn’t match any cards. Please try again by adjusting your terms.</h4>
         </div>:
+
         cards.map(card => {
           return (
             <div key={card.id}>

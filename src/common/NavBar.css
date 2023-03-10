@@ -5,7 +5,7 @@
 .nav-wrapper {
   background-color: #191919;
   color: whitesmoke;
-  border: none; 
+  border: none;
 }
 
 .nav-bar {
@@ -32,7 +32,7 @@ span {
 }
 
 .links {
-  margin-right: 300px;
+  margin-right: 100px;
 }
 
 .search-input {
