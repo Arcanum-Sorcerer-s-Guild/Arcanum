@@ -6,25 +6,25 @@ const cssLargeButton = {
   height: "30px",
   padding: "auto",
   margin: "5px",
-  textAlign: "center",
+  "text-align": "center",
   "background-color": "#b93b0d",
   "border-radius": "5px",
 };
 const cssSmallButton = {
-  textAlign: "center",
+  "text-align": "center",
   width: "30px",
   height: "30px",
   padding: "auto",
   margin: "5px",
 };
 const currentItemText = {
-  textAlign: "center",
-  fontSize: "30px",
-  fontFamily: "fantasy",
+  "text-align": "center",
+  "font-size": "30px",
+  "font-family": "fantasy",
 };
 
 const incrementContainer = {
-  textAlign: "center",
+  "text-align": "center",
   top: "50%",
 };
 
@@ -59,7 +59,7 @@ const CardIncrementer = (props) => {
         });
       }
     });
-  }, [selectedDeck, passedData]);
+  }, [selectedDeck, decks, passedData]);
 
   useEffect(() => {
     if (userUpdatedState === false) {

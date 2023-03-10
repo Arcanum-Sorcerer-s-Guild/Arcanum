@@ -37,6 +37,10 @@ th {
   font-weight: 400;
   color: #e07511;
 }
+.textColor {
+  text-align: top;
+  color: #e07511;
+}
 
 td {
   font-weight: 400;
