@@ -35,7 +35,7 @@ function App() {
         <Route path="/Tutorial" element={<Tutorial />} />
         <Route path="/*" element={<NotFound />} />
         <Route path="/Advanced" element={<Advanced/>}/>
-        <Route path="/AdvResults/:value" element={<AdvResults/>}/>
+        <Route path="/AdvResults/:page/:value" element={<AdvResults/>}/>
       </Routes>
       <Footer />
     </mtgContext.Provider>

@@ -11,6 +11,7 @@ const Advanced = () => {
 
   const navigate = useNavigate();
   let searchTerm = [];
+  let pageValue = 1;
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -49,7 +50,7 @@ const Advanced = () => {
       searchTerm = `q=${searchTerm}`
     }
 
-    navigate(`/AdvResults/${searchTerm}`)
+    navigate(`/AdvResults/${pageValue}/${searchTerm}`)
   }
 
 
