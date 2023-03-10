@@ -17,34 +17,34 @@ const Search = ({}) => {
   }, [params.value])
 
   return (
-    <div>
+    <div className='flexResults justify-center'>
       {(cards === undefined) ?
         <div>
           <h1> No Cards Found </h1>
           <h4> Your search didn’t match any cards. Please try again by adjusting your terms.</h4>
         </div>:
+
         cards.map(card => {
           return (
             <div key={card.id}>
               {console.log(card)}
               {card.image_uris === undefined ?
-                <div>
-                  <div class="card-image">
+                <div className='cardDiv'>
+                  <div class="card-image rounded-2xl transform hover:scale-125 transition-all">
                     <div class="card-image-front">
                       <img src={card.card_faces[0].image_uris.small} alt={""}/>
                     </div>
-                    <div class="card-image-back">
-                      <img src={card.card_faces[1].image_uris.small} alt={""}/>
-                    </div>
                   </div>
-                  <button className="search-btn hover:bg-gray-700 transition-color duration-700">Transforming</button>
                 </div>:
                 <Link to={`/DetailView/${card.id}`}>
-                  <img src={card.image_uris.small} alt={""}/>
+                <div className='cardDiv'>
+                  <img src={card.image_uris.small} className='card-image  rounded-2xl transform hover:scale-125 transition-all' alt={card.image_uris.small}/>
+                  </div>
                 </Link>
               }
               <br/>
             </div>
+
           )
         })
       }
