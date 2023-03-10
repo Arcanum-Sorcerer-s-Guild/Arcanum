@@ -1,0 +1,8 @@
+.textBox {
+  color:black
+}
+
+.flexResults {
+  display:flex;
+  flex-wrap: wrap;
+}
