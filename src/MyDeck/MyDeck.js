@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from "react";
-import Decklist from "./Decklist";
+import MyDecklist from "./MyDecklist";
 import {mtgContext} from "../App";
 
 const MyDeck = () => {
@@ -130,22 +130,37 @@ const MyDeck = () => {
   }, [decks])
 
   return (
-    <>
-      <div>
-        Import:
-        <input type="file" onChange={handleFileChange} />
+    <div className="mt-5 mx-24">
+    <div className="import-bar relative w-full flex flex-wrap items-center justify-end shadow-lg px-4"> 
+      <div className="import">
+        <label className="label p-3" htmlFor="import-btn">Import</label>
+        <input className="import-btn p-3" id="import-btn" type="file" onChange={handleFileChange} />
       </div>
-
-      <div>
-        <select id="DecksDropdown" />
-        <button onClick={() => exportFile()}>Export</button>
+      <div className="select">
+        <label className="label p-3" htmlFor="import-dropdown">Select a Deck</label>
+        <select className="import-select"id="DecksDropdown" />
       </div>
-      <h1>Decklists</h1>
-      <h1>These are some Featured Decks</h1>
-      {decks.map(deck => <Decklist key={deck.name} deck={deck} />)}
-    </>
+      <div className="export">
+        <button className="p-3" onClick={() => exportFile()}>Export</button>
+      </div>
+    </div>
+        {decks.map(deck => <MyDecklist key={deck.name} deck={deck}/>)}
+    </div>
   );
 };
 
 
 export default MyDeck;
+
+    // {/* <>
+    //   <div>
+    //     Import:
+    //     <input type="file" onChange={handleFileChange} />
+    //   </div>
+
+    //   <div>
+    //     <select id="DecksDropdown" />
+    //     <button onClick={() => exportFile()}>Export</button>
+    //   </div>
+    //   {decks.map(deck => <Decklist key={deck.name} deck={deck} />)}
+    // </> */}

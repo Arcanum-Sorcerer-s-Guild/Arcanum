@@ -2,7 +2,6 @@ import logo from "./logo.svg";
 import "./App.css";
 import React, { useContext, useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-
 import NavBar from "./common/NavBar.js";
 import Footer from "./common/Footer.js"
 import Home from "./Home/Home.js";

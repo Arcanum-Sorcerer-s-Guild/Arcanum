@@ -18,7 +18,7 @@ const NavBar = () => {
   }
 
   return (
-    <div className="nav-wrapper relative w-full flex flex-wrap items-center justify-center shadow-lg">
+    <div className="nav-wrapper relative flex w-full flex-wrap items-center justify-center shadow-lg">
       <div className="brand-ribbon py-1">
         <Link className="link p-3 text-5xl" to="/">
           <i className="brand-logo ss ss-parl3 p-3">
@@ -41,7 +41,7 @@ const NavBar = () => {
               <i className="deck-icon ss ss-atq p-1"/><span> Tutorial</span>
             </Link>
             |
-            <button onClick={()=>onClick()}> Random Card</button>
+            <button className="p-3" onClick={()=>onClick()}>  <i className="deck-icon ss ss-gn3 p-1"/> <span>Random Card</span></button>
           </div>
           <div className="search-bundle flex-shrink-0">
             <input

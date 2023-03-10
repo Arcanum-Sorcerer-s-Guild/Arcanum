@@ -136,7 +136,7 @@ const CardIncrementer = (props) => {
           }
         >
           <i
-            class="large ss ss-2x ss-ulg  "
+            className="large ss ss-2x ss-ulg  "
             style={{ transform: "rotate(0deg)" }}
           ></i>
         </button>
@@ -151,7 +151,7 @@ const CardIncrementer = (props) => {
           }}
         >
           <i
-            class="large ss ss-2x ss-ulg"
+            className="large ss ss-2x ss-ulg"
             style={{ transform: "scaleX(-1)" }}
           ></i>
         </button>

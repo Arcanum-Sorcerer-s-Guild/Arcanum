@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-.wrapper {
-  margin-top: 50px;
+.tutorial-wrapper {
+  margin-top: 20px;
   height: 45vw;
   background-image: url("battlefield.webp");
   background-position: center;

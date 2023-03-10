@@ -2,13 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+
 .hero-section {
-  height: 45vw;
+  height: 50rem;
   background-image: url("hero.jpg");
-  background-position: center;
+  background-position: center center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size:cover;
   position: relative;
+  background-attachment: scroll;
 }
 
 .loading-text {
@@ -23,10 +25,10 @@
 
 .random-card {
   height: auto;
-  width: 15em;
+  width: 15rem;
   position: absolute;
-  top: 35%;
-  left: 42%;
+  top: 40%;
+  left: 43%;
   transform: translate(-50%, -50%);
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.939);
 }
