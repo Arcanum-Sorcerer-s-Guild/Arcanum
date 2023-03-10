@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
 import "./NavBar.css";
-
+import { mtgContext } from "../App";
 
 
 const NavBar = () => {
+
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
@@ -13,7 +14,7 @@ const NavBar = () => {
         .then((res) => res.json())
         .then((data) => {
           navigate(`detailview/${data.id}`)
-          navigate(0)
+          
         });
   }
 
