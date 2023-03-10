@@ -1,55 +1,76 @@
+# Arcanum
 
+Arcanum is a Magic: the Gathering website that utilizes the Scryfall API and React to provide a seamless deck building and card searching application at your fingertips.
 
-# Project 2 Scaffold
+To install fork this scaffold repository in Github and clone it locally onto your machine.
 
-We have created a basic scaffold for you to start working on right away.
-
-Fork this scaffold repository in Github and clone it locally onto your machine. 
-
-Once cloned: 
+Once cloned:
 * open this repo with VSCode
 * run `npm install` to install all necessary dependencies
-* run `npm start` to start up the application 
+* run `npm start` to start up the application
+* Navigate to localhost:3000/ in your local browser and behold!
 
 
-We have already set up the project with *Cypress* and *React Testing Library*. 
-We have also created some sample tests, so you can practice the Red-Green-Refactor strategy right away. 
+## The Home Page
 
-## Cypress tests
+The home page showcases many of the features that can be found throughout Arcanum.
 
-To run the Cypress tests, you will need to enter `$ npx cypress open` in the command line within your project.  
+- Front and center is the Random Card of the Moment.  Clicking this card (and every other card in Arcanum) will display additional details and statistics it.
+- Next is the navbar, which helpfully lists all of the major components of the application each of which are explained in further detail below.
+- As well, the navbar features a search bar capable of finding any Magic: the Gathering card from name. Simply type in the name and press the enter key or click the search button.
+- If you enjoy the Random Card of the Moment and want another you can press the random card link in the navbar to go to a random card's summary page.
+- Finally, the footer provides many useful links to the Magic community that are definitely worth checking out.  Some of these include the Official Magic: the Gathering website, a learn to play guide, and detailed documentation for the Scryfall API which was used to develop this application.
 
-The Cypress desktop interface will pop up. 
+## The Card Detail Page
+The card details page displays many useful statistics and tools for your specified card.  This information is presented in various tabs that can be clicked through.  As well, this screen provides an option to add or remove the selected card from your deck.
 
-In the first screen select `E2E Testing`, in the second - select Chrome. This will open a testing browser.
+### These tabs include:
+* Info: The card's specific set, rarity, CMC, Types, Color,etc...
+* Legalities: What tournament formats that the card is legal.
+* Prices: The current price in USD or TIX from the last 24 hours
+* External links: For purchasing the card online or viewing popular deck strategies.
 
-In that testing browser, under `E2E Specs`, click on the `App.cy.js` file link.
+### Adding and removing cards to your deck:
+* Before adding or removing cards, ensure your deck is selected in the MyDeck dropdown box.
+* Following this, press the hammer icons to add or remove cards from your selected deck.
+* The total number will automatically update to show you how many are in the deck.
 
-The test should run automatically and fail with an error message:
+## The My Deck Page
+This page showcases a curated selection of top decks.  As well, it supports a robust import/export feature for adding and viewing your own decks.
 
-> AssertionError: Timed out retrying after 4000ms: Unable to find an accessible element with the role "heading".
+### To import
+ 1. Press import
+ 1. Select file to import
+ 1. Click open to confirm selection
+ 1. Have fun!
 
-Next go into the file `src/App.js` and include an `<h1>` element with the content `Project 2` in the return of the App component.
+### To export
+ 1. Select deck to export from dropdown menu
+ 1. Press export
+ 1. Select location for save file
+ 1. Click save to confirm selection
+ 1. Be sure to come back!
 
-Refresh the test. The test should now pass. 
+## The Tutorial Page
+Under construction!
 
+## The Advanced Search Page
+When the regular search bar won't cut it, the advanced search will help you find your perfect card!
 
-## React Testing Library test
+### Search and Sort Results by:
+* Name
+* Converted Mana Cost
+* Inner Card Text
+* Color
+* Card Type
+* Rarity
+* Artist
 
-To run React Testing Library in this project, you just need to enter `$ npm run test` in the command line within the project.
+## Contributors
+ - Joseph Hartsfield
+ - Jacob Steward
+ - David Bonilla (The Destroyer)
+ - Kyle Hackett
+ - Michael Blumberg
+ - Jason Martin
 
-If your Cypress test was passing, this RTL test should pass as well.
-
-Go ahead and remove from your `src/App.js` file the code that looks similar to this: `<h1>Project 2</h1>`.
-
-Now run `$ npm run test` in your command line again. 
-
-Does the test fail? If it does, your RTL test is working. 
-
-You can make it pass again by returning the heading back into the code. 
-
-
-- - - 
-
-
-> **_NOTE:_** You will not need these two particular tests for successfully completing Project 2 - they are only meant as examples of the setup for testing with Cypress and RTL. Once you have observed them, feel free to remove them along with the `<h1>Project 2</h1>` heading from your code.   

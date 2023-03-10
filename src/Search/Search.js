@@ -1,60 +1,54 @@
-/**
- * SEARCH CAPABILITIES:
- * - name
- * - id
- *
- * SAMPLE QUERIES:
- * https://api.scryfall.com/cards/named?fuzzy=aust+com&color=black
- * https://api.scryfall.com/cards/search?order=cmc&q=c%3Ared+pow%3D3
- *
- *
- * SAMPLE SEARCHES:
- * "aust com" returns "Austere Command"
- * "kamahl pit" returns "Kamahl, Pit Fighter"
- * "kamahl" returns the 404 error 'Too many cards match ambiguous name "Kamahl". Add more words to refine your search.'
- * "testtesttest" returns the 404 error 'No cards found matching "testtesttest'
-**/
-/**
- * TODO:
- * - Get the page to display all searches
- *
- */
+import React, {useEffect, useState, useNavigate} from "react";
+import {useParams, Link} from 'react-router-dom'
+import "./Search.css";
+import CardIncrementer from "../common/CardIncrementer.js";
+import DetailView from "../DetailView/DetailView.js";
+import './Search.css'
 
-
-
-import React, {useEffect, useState} from "react";
-import {useParams} from 'react-router-dom'
-
-
-/*
-Returns only a single object card:
-https://api.scryfall.com/cards/named?fuzzy=
-Returns multiple card objects:
-https://api.scryfall.com/cards/search?fuzzy=
-*/
-// & is used between search parameters like order and q (query)
-// + is used inbetween q parameters
-//
 const Search = ({}) => {
   const [cards, setCards] = useState([]);
   const params = useParams();
-  // const [filters, setFileters] = useState([]);
+
   useEffect(()=>{
     fetch('https://api.scryfall.com/cards/search?q='+ params.value.split(' ').join('+'))
     .then(res=>res.json())
     .then(cardData=>setCards(cardData.data))
-  }, [])
-  return (
-    <>
+    .catch(error=>console.log("Your search didn’t match any cards. Please try again by adjusting your terms."))
+  }, [params.value])
 
-      {(cards).map(card => {
-        return (
-          <div>
-            <img src={card.image_uris.small} alt={""}/>
-          </div>
-        )
-      })}
-    </>
+  return (
+    <div>
+      {(cards === undefined) ?
+        <div>
+          <h1> No Cards Found </h1>
+          <h4> Your search didn’t match any cards. Please try again by adjusting your terms.</h4>
+        </div>:
+        cards.map(card => {
+          return (
+            <div key={card.id}>
+              {console.log(card)}
+              {card.image_uris === undefined ?
+                <div>
+                  <div class="card-image">
+                    <div class="card-image-front">
+                      <img src={card.card_faces[0].image_uris.small} alt={""}/>
+                    </div>
+                    <div class="card-image-back">
+                      <img src={card.card_faces[1].image_uris.small} alt={""}/>
+                    </div>
+                  </div>
+                  <button className="search-btn hover:bg-gray-700 transition-color duration-700">Transforming</button>
+                </div>:
+                <Link to={`/DetailView/${card.id}`}>
+                  <img src={card.image_uris.small} alt={""}/>
+                </Link>
+              }
+              <br/>
+            </div>
+          )
+        })
+      }
+    </div>
   );
 };
 
