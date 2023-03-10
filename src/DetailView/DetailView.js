@@ -5,7 +5,7 @@ import "../App.css";
 
 import { mtgContext } from "../App.js";
 import CardIncrementer from "../common/CardIncrementer";
-import flowbite, { Tabs, Card } from "flowbite-react";
+import { Tabs, Card } from "flowbite-react";
 
 const DetailView = () => {
   const { decks, setDecks } = React.useContext(mtgContext);

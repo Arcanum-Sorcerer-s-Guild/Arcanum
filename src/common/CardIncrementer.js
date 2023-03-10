@@ -1,33 +1,32 @@
 import React, { useEffect, useContext, useState } from "react";
 import { mtgContext } from "../App";
-import DeckDropDownCreator from "./DeckDropDownCreator.js"
+import DeckDropDownCreator from "./DeckDropDownCreator.js";
 const cssLargeButton = {
   width: "100px",
   height: "30px",
   padding: "auto",
   margin: "5px",
-  "text-align": "center",
-  "background-color": "#b93b0d",
-  "border-radius": "5px",
+  textAlign: "center",
+  backgroundColor: "#b93b0d",
+  borderRadius: "5px",
 };
 const cssSmallButton = {
-  "text-align": "center",
+  textAlign: "center",
   width: "30px",
   height: "30px",
   padding: "auto",
   margin: "5px",
 };
 const currentItemText = {
-  "text-align": "center",
-  "font-size": "30px",
-  "font-family": "fantasy",
+  textAlign: "center",
+  fontSize: "30px",
+  fontFamily: "fantasy",
 };
 
 const incrementContainer = {
-  "text-align": "center",
+  textAlign: "center",
   top: "50%",
 };
-
 
 const CardIncrementer = (props) => {
   const { decks, setDecks } = React.useContext(mtgContext);
