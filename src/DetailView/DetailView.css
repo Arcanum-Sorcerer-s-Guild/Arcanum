@@ -7,7 +7,7 @@ body {
   color: white;
 }
 
-.cardDetailContainer {
+/* .cardDetailContainer {
   display:flex;
   flex-direction: row;
   justify-content: left;
@@ -16,7 +16,33 @@ body {
   background-color: #161414;
   width: 600px;
   height: 850px;
+} */
+
+.card-detail-img {
+  height: 400px;
 }
 
+.detail-header {
+  background: none;
+  border: none
+}
 
+.detail-col {
+  background-color: #191919;
+}
 
+th {
+  width: 25%;
+  text-align: end;
+  font-weight: 400;
+  color: #e07511;
+}
+
+td {
+  font-weight: 400;
+  color:  #c2c2c2;
+}
+
+th, td {
+  padding: 5px;
+}

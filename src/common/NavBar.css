@@ -2,19 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
-  font-family: 'Open Sans', sans-serif;
-}
-
 .nav-wrapper {
   background-color: #191919;
   color: whitesmoke;
-  border: none;
-
+  border: none; 
 }
 
 .nav-bar {
     background-color: #393939;
+    position: fixed;
 }
 
 i {
@@ -47,6 +43,7 @@ span {
   padding-left: 10px;
   cursor: text;
   border-radius: 2px;
+  height: 23px;
 
 }
 
