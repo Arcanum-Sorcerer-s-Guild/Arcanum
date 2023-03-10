@@ -59,7 +59,7 @@ const CardIncrementer = (props) => {
         });
       }
     });
-  }, [selectedDeck, decks]);
+  }, [selectedDeck, decks, passedData]);
 
   useEffect(() => {
     if (userUpdatedState === false) {
