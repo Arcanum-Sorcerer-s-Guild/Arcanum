@@ -2,12 +2,111 @@
 @tailwind components;
 @tailwind utilities;
 
-.tutorial-wrapper {
-  margin-top: 20px;
+.wrapper  {
+  margin-top: 50px;
   height: 45vw;
-  background-image: url("battlefield.webp");
+  background-image: url(battlefield.webp);
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
+  background-size:cover;
+  /* position: relative; */
+}
+
+
+.playerField {
+  display: grid;
+  padding-left: 2%;
+}
+
+.info {
+  background: #42484c;
+  grid-row: 1;
+  grid-column: 1 / span 3;
+  height: fit-content;
+
+}
+
+.life {
+  float: right;
+  margin: auto;
+  padding:1%;
+  
+}
+.deckName {
+  float: right;
+  display: flex;
+  margin: auto;
+  padding:1%;
+}
+
+.battleField {
+  grid-row: 2;
+  grid-column: 1;
+  display: flex;
+}
+
+.lands {
+  grid-row: 3;
+  grid-column: 1;
+  display: flex;
+}
+
+
+.commandZone {
+  grid-row: 2;
+  grid-column: 2;
+}
+.exile {
+  grid-row: 2;
+  grid-column: 3;
+
+}
+.library {
+  grid-row: 3;
+  grid-column: 2;
+
+}
+
+.gaveyard {
+  grid-row: 3;
+  grid-column: 3;
+
+}
+
+.deckCard {
+  height: 150px;
+  border: 2px black;
+}
+
+.deckCardTurned {
+  height: 125px;
+  transform: rotate(45deg);
+  border: 8px;
+  border-style: solid;
+  border-color: red;
+}
+
+.deckHand{
+  grid-row: 4 / span 6;
+  grid-column: 1 / span 3;
+  height: fit-content;
+  display: flex;
+}
+
+.deckCardHand{
+  height: 150px;
+  border: 2px black;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  grid-auto-rows: 100px;
+
+}
+
+ .deckCardHand:hover{
+  height: 250px;
+ }
+
+.modalPopUp {
+  color: black;
 }

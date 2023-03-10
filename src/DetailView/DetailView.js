@@ -3,9 +3,16 @@ import { useParams, useNavigate } from "react-router-dom";
 import "./DetailView.css";
 import "../App.css";
 
+import { mtgContext } from "../App.js";
+import CardIncrementer from "../common/CardIncrementer";
+import { Tooltip } from 'flowbite-react';
+
+
 const DetailView = () => {
+  const { decks, setDecks } = React.useContext(mtgContext);
   const [currCard, setCurrCard] = useState({
     name: "",
+    id: "",
     set_name: "",
     image: "",
     rarity: "",
@@ -42,8 +49,9 @@ const DetailView = () => {
       .then((data) => {
         setCurrCard({
           name: data.name,
+          id: data.id,
           set_name: data.set_name,
-          image: data.image_uris.normal,
+          image: Object.keys(data).includes('image_uris') ? data.image_uris.normal : data.card_faces[0].image_uris.normal,
           rarity: data.rarity,
           mana_cost: data.mana_cost,
           type_line: data.type_line,
@@ -72,8 +80,7 @@ const DetailView = () => {
         );
         navigate("/");
       });
-  }, []);
-
+  }, [params.id]);
 
   useEffect(() => {
     fetch(`https://api.scryfall.com/cards/${params.id}/rulings`)
@@ -98,10 +105,16 @@ const DetailView = () => {
                 src={currCard.image}
                 alt={currCard.name}
               />
+
+
             </div>
             <div className="detail-col col-span-3 px-5 py-2 rounded-md">
-              <button>Add to deck</button>
-              <span> # in deck</span>
+ 
+              <CardIncrementer
+                data={currCard}
+                deckListDropdownOption={true}
+                deckSet={decks[0].name}
+              />
               <div className="mb-2 border-b border-gray-200 dark:border-gray-700">
                 <ul
                   className="flex flex-wrap -mb-px text-sm font-medium text-center"
@@ -165,7 +178,7 @@ const DetailView = () => {
               </div>
               <div id="myTabContent">
                 <div
-                  className="hidden"
+                  className=""
                   id="info"
                   role="tabpanel"
                   aria-labelledby="info-tab"
