@@ -18,6 +18,7 @@ const DetailView = () => {
     modern_legal: "",
     vintage_legal: "",
     commander_legal: "",
+
     priceUSD: null,
     priceUSDFoil: null,
     priceTIX: null,
@@ -72,6 +73,7 @@ const DetailView = () => {
         navigate("/");
       });
   }, []);
+
 
   useEffect(() => {
     fetch(`https://api.scryfall.com/cards/${params.id}/rulings`)
