@@ -34,10 +34,6 @@ const NavBar = () => {
               <div className="absolute inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-500 rounded-full top-2 -right-0">4</div>
             </Link>
             |
-            <Link className="link p-3" to="/FeaturedDecks">
-              <i className="deck-icon ss ss-ss3 p-1"/> <span> Featured Decks</span>
-            </Link>
-            |
             <Link className="link p-3" to="/Tutorial">
               <i className="deck-icon ss ss-atq p-1"/><span> Tutorial</span>
             </Link>

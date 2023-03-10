@@ -134,6 +134,7 @@ const MyDeck = () => {
     <div className="import-export-bar relative flex-1">
     <div className="import-bar relative w-full flex flex-wrap items-center justify-end shadow-lg px-4"> 
       <div className="import">
+        {file.name}
         <label className="import-btn-label p-3" htmlFor="import-btn">Import</label>
         <input className="import-btn p-3" id="import-btn" type="file" onChange={handleFileChange} />
       </div>
