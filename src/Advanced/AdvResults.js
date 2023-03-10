@@ -40,10 +40,10 @@ const AdvResults = () => {
     fetch(`${url}${params.value}`)
     .then(res=>res.json())
     .then(data=> {
+      console.log(data.total_cards)
       setResults(data.data)
-      setNextPage(data.next_page)
+      {data.next_page ? setNextPage(data.next_page) : setNextPage('')}
       setTotalCards(data.total_cards)
-      document.title = `Advanced Results: ${totalCards}`
       data.has_more ? setPageString(data.next_page.replace(`page=2`,`page=1`)) : setPageString(null)
     })
   },[])
@@ -51,6 +51,10 @@ const AdvResults = () => {
   const onClick = (cardID) => {
     navigate(`/detailview/${cardID}`)
   }
+
+  useEffect(()=>{
+    document.title = `Results: ${totalCards} Cards`
+  },[totalCards])
 
   return (
     <>
