@@ -7,7 +7,6 @@ import Home from "./Home/Home.js";
 import Search from "./Search/Search.js";
 import DetailView from "./DetailView/DetailView.js";
 import MyDeck from "./MyDeck/MyDeck.js";
-import FeaturedDecks from "./FeaturedDecks/FeaturedDecks.js";
 import NotFound from "./NotFound/NotFound.js";
 import Tutorial from "./Tutorial/Tutorial";
 import Advanced from "./Advanced/Advanced.js"
@@ -15,6 +14,7 @@ import AdvResults from "./Advanced/AdvResults.js"
 
 
 export const mtgContext = React.createContext();
+
 
 function App() {
   const [decks, setDecks] = useState([{
@@ -30,7 +30,6 @@ function App() {
         <Route path="/Search/:value" element={<Search />} />
         <Route path="/DetailView/:id" element={<DetailView />} />
         <Route path="/MyDeck" element={<MyDeck />} />
-        <Route path="/FeaturedDecks" element={<FeaturedDecks />} />
         <Route path="/Tutorial" element={<Tutorial />} />
         <Route path="/*" element={<NotFound />} />
         <Route path="/Advanced" element={<Advanced/>}/>

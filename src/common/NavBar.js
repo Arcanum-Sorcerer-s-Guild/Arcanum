@@ -34,22 +34,18 @@ const NavBar = () => {
               <div className="absolute inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-500 rounded-full top-2 -right-0">4</div>
             </Link>
             |
-            <Link className="link p-3" to="/FeaturedDecks">
-              <i className="deck-icon ss ss-ss3 p-1"/> <span> Featured Decks</span>
-            </Link>
-            |
             <Link className="link p-3" to="/Tutorial">
               <i className="deck-icon ss ss-atq p-1"/><span> Tutorial</span>
             </Link>
             |
             <button className="p-3" onClick={()=>onClick()}>  <i className="deck-icon ss ss-gn3 p-1"/> <span>Random Card</span></button>
-          
+            |
             <Link className="link p-3" to="/Advanced">
               <i className="deck-icon ss ss-v10 p-1"/><span> Advanced</span>
             </Link>
-          
+
           </div>
-          
+
           <div className="search-bundle flex-shrink-0">
             <input
               className="search-input text-black italic"
