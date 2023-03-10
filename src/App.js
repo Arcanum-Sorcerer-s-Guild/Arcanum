@@ -7,7 +7,6 @@ import Home from "./Home/Home.js";
 import Search from "./Search/Search.js";
 import DetailView from "./DetailView/DetailView.js";
 import MyDeck from "./MyDeck/MyDeck.js";
-import FeaturedDecks from "./FeaturedDecks/FeaturedDecks.js";
 import NotFound from "./NotFound/NotFound.js";
 import Tutorial from "./Tutorial/Tutorial";
 import Advanced from "./Advanced/Advanced.js"

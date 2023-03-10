@@ -28,8 +28,6 @@ const Decklist = ({ deck }) => {
   }
 
 
-  console.log(cardsByType);
-
   return (
     <div className="deck-wrapper mt-10 mx-24">
       <h1 className="deck-header text-2xl font-bold p-3">{name}</h1>
@@ -45,7 +43,7 @@ const Decklist = ({ deck }) => {
                         <li key={index}>
                           <span
                             onMouseOver={() => {
-                              console.log("mouseover card.cardObj:", card.cardObj);
+                              // console.log("mouseover card.cardObj:", card.cardObj);
                               if (Object.keys(card.cardObj).includes("image_uris")) {
                                 setimageFrontURI(card.cardObj.image_uris.normal);
                                 setimageBackURI(

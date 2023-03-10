@@ -13,7 +13,7 @@ const MyDeck = () => {
   const [file, setFile] = useState('');
 
   const handleFileChange = (e) => {
-    console.log('handleFileChange called with:', e.target.files[0]);
+    // console.log('handleFileChange called with:', e.target.files[0]);
     e.preventDefault()
     if (! e.target.files) {
       return;
@@ -61,7 +61,7 @@ const MyDeck = () => {
   }
 
   const pullCards = (cards) => {
-    console.log('pulling cards:', cards)
+    // console.log('pulling cards:', cards)
 
     let promises = [];
     for (let card of cards) {
