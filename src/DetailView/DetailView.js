@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./DetailView.css";
 import "../App.css";
 
 import { mtgContext } from "../App.js";
 import CardIncrementer from "../common/CardIncrementer";
-import { Tooltip } from 'flowbite-react';
-
+import flowbite, { Tabs, Card } from "flowbite-react";
 
 const DetailView = () => {
   const { decks, setDecks } = React.useContext(mtgContext);
+
+  const [activeTab, setActiveTab] = useState(0);
+  const tabsRef = useRef(null);
+
   const [currCard, setCurrCard] = useState({
     name: "",
     id: "",
@@ -34,6 +37,7 @@ const DetailView = () => {
     edhrecLink: "",
     scryfallLink: "",
     oracleText: "",
+    flavorText: "",
   });
 
   const [cardRulings, setCardRulings] = useState([]);
@@ -51,7 +55,9 @@ const DetailView = () => {
           name: data.name,
           id: data.id,
           set_name: data.set_name,
-          image: Object.keys(data).includes('image_uris') ? data.image_uris.normal : data.card_faces[0].image_uris.normal,
+          image: Object.keys(data).includes("image_uris")
+            ? data.image_uris.normal
+            : data.card_faces[0].image_uris.normal,
           rarity: data.rarity,
           mana_cost: data.mana_cost,
           type_line: data.type_line,
@@ -72,6 +78,7 @@ const DetailView = () => {
           edhrecLink: data.related_uris.edhrec,
           scryfallLink: data.scryfall_uri,
           oracleText: data.oracle_text,
+          flavorText: data.flavor_text,
         });
       })
       .catch((err) => {
@@ -98,91 +105,28 @@ const DetailView = () => {
     <>
       {currCard.image !== "" ? (
         <div className="relative flex justify-center mt-20">
-          <div className="relative grid grid-cols-5 gap-5">
-            <div className="img-col col-span-2 p-1">
+          <div className="relative grid grid-cols-2 gap-5">
+            <div className="img-col p-1">
               <img
-                className="card-detail-img rounded-2xl transform hover:scale-125 transition-all"
+                className="relative rounded-3xl max-w-sm transition-all duration-300 cursor-pointer filter hover:grayscale"
                 src={currCard.image}
                 alt={currCard.name}
               />
-
-
             </div>
-            <div className="detail-col col-span-3 px-5 py-2 rounded-md">
- 
+            <div className="detail-col px-5 py-2 rounded-md">
               <CardIncrementer
                 data={currCard}
                 deckListDropdownOption={true}
                 deckSet={decks[0].name}
               />
-              <div className="mb-2 border-b border-gray-200 dark:border-gray-700">
-                <ul
-                  className="flex flex-wrap -mb-px text-sm font-medium text-center"
-                  id="myTab"
-                  data-tabs-toggle="#myTabContent"
-                  role="tablist"
-                >
-                  <li className="mr-2" role="presentation">
-                    <button
-                      className="inline-block p-4 border-b-2 rounded-t-lg"
-                      id="info-tab"
-                      data-tabs-target="#info"
-                      type="button"
-                      role="tab"
-                      aria-controls="info"
-                      aria-selected="false"
-                    >
-                      Info
-                    </button>
-                  </li>
-                  <li className="mr-2" role="presentation">
-                    <button
-                      className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                      id="legalities-tab"
-                      data-tabs-target="#legalities"
-                      type="button"
-                      role="tab"
-                      aria-controls="dashboard"
-                      aria-selected="false"
-                    >
-                      Legalities
-                    </button>
-                  </li>
-                  <li className="mr-2" role="presentation">
-                    <button
-                      className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                      id="prices-tab"
-                      data-tabs-target="#prices"
-                      type="button"
-                      role="tab"
-                      aria-controls="settings"
-                      aria-selected="false"
-                    >
-                      Prices
-                    </button>
-                  </li>
-                  <li role="presentation">
-                    <button
-                      className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                      id="external-tab"
-                      data-tabs-target="#external"
-                      type="button"
-                      role="tab"
-                      aria-controls="contacts"
-                      aria-selected="false"
-                    >
-                      External Links
-                    </button>
-                  </li>
-                </ul>
-              </div>
-              <div id="myTabContent">
-                <div
-                  className=""
-                  id="info"
-                  role="tabpanel"
-                  aria-labelledby="info-tab"
-                >
+
+              <Tabs.Group
+                aria-label="Default tabs"
+                style="default"
+                ref={tabsRef}
+                onActiveTabChange={(tab) => setActiveTab(tab)}
+              >
+                <Tabs.Item active title="Info">
                   <div className="card-details mt-2">
                     <table className="auto">
                       <tbody>
@@ -221,13 +165,8 @@ const DetailView = () => {
                       </tbody>
                     </table>
                   </div>
-                </div>
-                <div
-                  className="hidden"
-                  id="legalities"
-                  role="tabpanel"
-                  aria-labelledby="legalities-tab"
-                >
+                </Tabs.Item>
+                <Tabs.Item title="Legalities">
                   <div className="card-details mt-2">
                     <table className="auto">
                       <tbody>
@@ -274,13 +213,8 @@ const DetailView = () => {
                       </tbody>
                     </table>
                   </div>
-                </div>
-                <div
-                  className="hidden"
-                  id="prices"
-                  role="tabpanel"
-                  aria-labelledby="prices-tab"
-                >
+                </Tabs.Item>
+                <Tabs.Item title="Prices">
                   <div className="card-details mt-2">
                     <table className="auto">
                       <tbody>
@@ -311,13 +245,8 @@ const DetailView = () => {
                       </tbody>
                     </table>
                   </div>
-                </div>
-                <div
-                  className="hidden"
-                  id="external"
-                  role="tabpanel"
-                  aria-labelledby="external-tab"
-                >
+                </Tabs.Item>
+                <Tabs.Item title="External Links">
                   <div className="card-details mt-2">
                     <ul className="list-inside">
                       {currCard.tcgplayerLink ? (
@@ -344,25 +273,36 @@ const DetailView = () => {
                       </li>
                     </ul>
                   </div>
-                </div>
-              </div>
+                </Tabs.Item>
+                <Tabs.Item title="Oracle Text">
+                  <p>{currCard.oracleText}</p>
+
+                  <p style={{ fontStyle: "italic" }}>{currCard.flavorText}</p>
+                </Tabs.Item>
+              </Tabs.Group>
             </div>
-            {/* <div className="mt-4 mb-2 border-b border-gray-200 dark:border-gray-700">
-              <h3>Oracle Text</h3>
-              <p>{currCard.oracleText}</p>
-              {cardRulings.data ? (
-                <div>
+
+            {cardRulings.data ? (
+              <>
+                <div className="w-250 gap-2 col-span-4">
                   {cardRulings.data.length === 0 ? "" : <h3>Rulings</h3>}
-                  {cardRulings.data.map((ruling) => (
-                    <p
-                      key={Math.random()}
-                    >{`${ruling.published_at} ${ruling.comment}`}</p>
+                </div>
+                <div className="grid grid-cols-4 align-top p-6 gap-4 flex w-250 gap-2 col-span-3">
+                  {cardRulings.data.map((ruling, index) => (
+                    <Card>
+                      <h5 className=" textColor inline-block text-2xl m-auto text-center font-bold tracking-tight text-orange-500">
+                        {ruling.published_at}
+                      </h5>
+                      <p className=" textColor inline-blockfont-normal text-justify text-gray-700 dark:text-orange-500 b-40 ">
+                        {ruling.comment}
+                      </p>
+                    </Card>
                   ))}
                 </div>
-              ) : (
-                <div className="spinner" />
-              )}
-            </div> */}
+              </>
+            ) : (
+              <div className="spinner" />
+            )}
           </div>
         </div>
       ) : (
@@ -373,68 +313,3 @@ const DetailView = () => {
 };
 
 export default DetailView;
-
-// {/* <>
-//   {currCard.image !== '' ?
-//     <>
-//     <div className="cardDetailContainer">
-//       <div>
-//         <img src={currCard.image}/>
-//       </div>
-
-//       <div className="text-gray-600">
-//           <button>Add to deck</button>
-//           <span> # in deck</span>
-//         <div>
-//           <h1>{currCard.name}</h1>
-//           <ul>
-//             <li><div>Set: {currCard.set_name}</div></li>
-//             <li><div>Rarity: {currCard.rarity}</div></li>
-//             <li><div>CMC: {currCard.mana_cost}</div></li>
-//             <li><div>Card Type: {currCard.type_line}</div></li>
-//             <li><div>Colors: {currCard.color_identity.length === 0 ? currCard.color_identity = "None" : currCard.color_identity}</div></li>
-//             <li><div>Artist: {currCard.artist}</div></li>
-//           </ul>
-//         </div>
-
-//         <h3>Legalities</h3>
-//           <ul>
-//             <li><div>{`Standard: ${currCard.standard_legal === 'legal' ? "\u2705" : "\u274C"}`}</div></li>
-//             <li><div>{`Modern: ${currCard.modern_legal === 'legal' ? "\u2705" : "\u274C"}`}</div></li>
-//             <li><div>{`Legacy: ${currCard.legacy_legal === 'legal' ? "\u2705" : "\u274C"}`}</div></li>
-//             <li><div>{`Vintage: ${currCard.vintage_legal === 'legal' ? "\u2705" : "\u274C"}`}</div></li>
-//             <li><div>{`Commander: ${currCard.commander_legal === 'legal' ? "\u2705" : "\u274C"}`}</div></li>
-//           </ul>
-
-//         <h3>Prices</h3>
-//           <ul>
-//             <li><div>{currCard.priceUSD ? `USD: $${currCard.priceUSD}` : "USD: No price available"}</div></li>
-//             <li><div>{currCard.priceUSDFoil ? `USD Foil: $${currCard.priceUSDFoil}` : "USD Foil: No price available"}</div></li>
-//             <li><div>{currCard.priceTIX ? `TIX: $${currCard.priceTIX}` : "TIX: No price available"}</div></li>
-//           </ul>
-//         <h3>External Links</h3>
-//           <ul>
-//             {currCard.tcgplayerLink ? <li><a href={currCard.tcgplayerLink}>Purchase at TCG Player</a></li> : <></>}
-//             {currCard.gathererLink ? <li><a href={currCard.gathererLink}>View in Gatherer</a></li> : <></>}
-//             <li><a href={currCard.scryfallLink}>View in Scryfall</a></li>
-//             <li><a href={currCard.edhrecLink}>Read about at EDHREC</a></li>
-//           </ul>
-
-//       </div>
-
-//     </div>
-//         <h3>Oracle Text</h3>
-//         <p>{currCard.oracleText}</p>
-
-//         {cardRulings.data ?
-//           <>
-//           {cardRulings.data.length === 0 ? "" : <h3>Rulings</h3>  }
-//           {cardRulings.data.map(ruling => <p key={Math.random()}>{`${ruling.published_at} ${ruling.comment}`}</p>)}
-//           </>
-//           : <div className="spinner" />}
-//     </>
-//         :
-//         <div className="spinner" />
-// }
-//   </>
-//   ) */}
