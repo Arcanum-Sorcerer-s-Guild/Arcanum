@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Deck.css";
-import { mtgContext } from "../App";
-
 
 const Decklist = ({ deck }) => {
   const { name, deckItems } = deck;
@@ -16,10 +14,10 @@ const Decklist = ({ deck }) => {
   const navigate = useNavigate();
 
   let cardsByType = {};
-  let deckCount = 0;
+
   for (let item of deckItems) {
-    deckCount++;
     let cardType = item.cardObj.type_line.split("—")[0].trim(); // Clean "Legendary Creature — Phryxian Drake" to "Legendary Creature"
+
     if (!Object.keys(cardsByType).includes(cardType)) {
       cardsByType[cardType] = {};
       cardsByType[cardType]["count"] = Number(item.count);
@@ -29,7 +27,6 @@ const Decklist = ({ deck }) => {
       cardsByType[cardType]["cards"].push(item);
     }
   }
-
 
   console.log(cardsByType);
 
