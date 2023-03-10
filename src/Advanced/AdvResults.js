@@ -3,7 +3,6 @@ import {useParams, useNavigate} from 'react-router-dom'
 import '../App.css'
 import './Advanced.css'
 
-
 const AdvResults = () => {
   let params = useParams();
   const [results,setResults] = useState();
@@ -13,9 +12,6 @@ const AdvResults = () => {
 
   let url = "https://api.scryfall.com/cards/search?"
   const navigate = useNavigate();
-
-
-
 
   const nextPageFunc = () => {
     setPageString(pageString.replace(`page=${Number(params.page)}`,`page=${Number(params.page)+1}`))
@@ -79,12 +75,9 @@ const AdvResults = () => {
       {nextPage ? <button id="page-btn" className="submit-btn" onClick={()=>nextPageFunc()}>Next Page</button> : <></>}
     <br/>
     </>
-  )
+    )
   }
 
 
 
 export default AdvResults
-
-
-

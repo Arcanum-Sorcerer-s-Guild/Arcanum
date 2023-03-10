@@ -7,17 +7,6 @@ body {
   color: white;
 }
 
-/* .cardDetailContainer {
-  display:flex;
-  flex-direction: row;
-  justify-content: left;
-  margin: 20px 15vw;
-  gap: 15px;
-  background-color: #161414;
-  width: 600px;
-  height: 850px;
-} */
-
 .card-detail-img {
   height: 400px;
 }
@@ -35,7 +24,7 @@ th {
   width: 25%;
   text-align: end;
   font-weight: 400;
-  color: #e07511;
+  color: #d5a981;
 }
 
 td {

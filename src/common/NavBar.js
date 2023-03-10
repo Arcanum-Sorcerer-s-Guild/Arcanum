@@ -46,7 +46,7 @@ const NavBar = () => {
 
           </div>
 
-          <div className="search-bundle flex-shrink-0">
+          <div className="search-bundle flex">
             <input
               className="search-input text-black italic"
               type="search"

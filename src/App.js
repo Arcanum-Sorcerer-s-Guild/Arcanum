@@ -12,9 +12,7 @@ import Tutorial from "./Tutorial/Tutorial";
 import Advanced from "./Advanced/Advanced.js"
 import AdvResults from "./Advanced/AdvResults.js"
 
-
 export const mtgContext = React.createContext();
-
 
 function App() {
   const [decks, setDecks] = useState([{

@@ -68,7 +68,7 @@ const Advanced = () => {
   }
 
   return(
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center mt-10">
     <form className="bg-zinc-500/25 shadow-md rounded px-20 pt-6 pb-8 mb-4 mt-5" onSubmit={handleSubmit}>
       <h1>Advanced Search</h1><br/>
 
