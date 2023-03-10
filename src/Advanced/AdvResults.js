@@ -15,6 +15,8 @@ const AdvResults = () => {
   const navigate = useNavigate();
 
 
+
+
   const nextPageFunc = () => {
     setPageString(pageString.replace(`page=${Number(params.page)}`,`page=${Number(params.page)+1}`))
     navigate(`/AdvResults/${Number(params.page)+1}/${params.value}`)
@@ -41,6 +43,7 @@ const AdvResults = () => {
       setResults(data.data)
       setNextPage(data.next_page)
       setTotalCards(data.total_cards)
+      document.title = `Advanced Results: ${totalCards}`
       data.has_more ? setPageString(data.next_page.replace(`page=2`,`page=1`)) : setPageString(null)
     })
   },[])

@@ -1,11 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
 
 import './Advanced.css'
 
 const Advanced = () => {
-
-
   const [inputs,setInputs] = useState({})
   const [chosenColors] = useState([])
 
@@ -44,6 +42,11 @@ const Advanced = () => {
 
     searchTerm = searchTerm.join("+")
 
+    if(searchTerm === '') {
+      alert('Please enter in search terms before submitting.')
+      return
+    }
+
     if(inputs.hasOwnProperty('orderShown')) {
       searchTerm = `order=${inputs.orderShown}&q=${searchTerm}`
     } else {
@@ -53,6 +56,7 @@ const Advanced = () => {
     navigate(`/AdvResults/${pageValue}/${searchTerm}`)
   }
 
+  useEffect(()=> {document.title = 'Advanced Search'},[])
 
   const updateColors = (color) => {
     if (chosenColors.includes(color)) {
