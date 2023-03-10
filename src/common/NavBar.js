@@ -14,7 +14,7 @@ const NavBar = () => {
         .then((res) => res.json())
         .then((data) => {
           navigate(`detailview/${data.id}`)
-          
+
         });
   }
 
