@@ -1,8 +1,6 @@
-import logo from "./logo.svg";
 import "./App.css";
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-
 import NavBar from "./common/NavBar.js";
 import Footer from "./common/Footer.js"
 import Home from "./Home/Home.js";
@@ -15,11 +13,12 @@ import Tutorial from "./Tutorial/Tutorial";
 import Advanced from "./Advanced/Advanced.js"
 import AdvResults from "./Advanced/AdvResults.js"
 
+
 export const mtgContext = React.createContext();
 
 function App() {
   const [decks, setDecks] = useState([{
-    name: "myDeck",
+    name: "My Deck",
     deckItems: [],
   }]);
 
@@ -27,7 +26,7 @@ function App() {
     <mtgContext.Provider value={{ decks, setDecks }}>
       <NavBar />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route exact path="/" element={<Home />} />
         <Route path="/Search/:value" element={<Search />} />
         <Route path="/DetailView/:id" element={<DetailView />} />
         <Route path="/MyDeck" element={<MyDeck />} />

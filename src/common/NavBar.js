@@ -14,7 +14,7 @@ const NavBar = () => {
         .then((res) => res.json())
         .then((data) => {
           navigate(`detailview/${data.id}`)
-          
+
         });
   }
 
@@ -27,11 +27,11 @@ const NavBar = () => {
           </i>
         </Link>
       </div>
-      <nav className="nav-bar relative flex w-full items-center justify-around shadow-lg px-3">
+      <nav className="nav-bar relative w-full flex items-center justify-around shadow-lg px-2">
           <div className="links relative inline-flex items-center">
             <Link className="relative inline-flex items-center p-3" to="/MyDeck">
-              <i className="deck-icon ss ss-s00 p-1"/><span> My Deck</span>
-              {/* <div class="absolute inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-500 rounded-full top-2 -right-0">4</div> */}
+              <i className="deck-icon ss ss-s00 p-1"/><span> My Decklist</span>
+              <div className="absolute inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-500 rounded-full top-2 -right-0">4</div>
             </Link>
             |
             <Link className="link p-3" to="/FeaturedDecks">
@@ -42,13 +42,9 @@ const NavBar = () => {
               <i className="deck-icon ss ss-atq p-1"/><span> Tutorial</span>
             </Link>
             |
-            <button onClick={()=>onClick()}> Random Card</button>
-            |
-            <Link className="link p-3" to="/Advanced">
-              <span> Advanced Search</span>
-            </Link>
+            <button className="p-3" onClick={()=>onClick()}>  <i className="deck-icon ss ss-gn3 p-1"/> <span>Random Card</span></button>
           </div>
-          <div className="search-bundle">
+          <div className="search-bundle flex-shrink-0">
             <input
               className="search-input text-black italic"
               type="search"
