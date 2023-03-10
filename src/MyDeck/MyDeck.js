@@ -78,7 +78,16 @@ const MyDeck = () => {
     Promise.all(promises)
       .then(result => {
         let deckList = result.map((card) => ({...card, id: card.cardObj.id, name: card.cardObj.name}))
-        setDecks([...decks, {name: file.name.split('.').slice(0, -1).join('.'), deckItems: deckList}])
+        let deckNames = decks.map((deck) => deck.name);
+        const newDeckName = file.name.split('.').slice(0, -1).join('.')
+        if (deckNames.includes(newDeckName)) {
+          const existingDeckIndex = deckNames.indexOf(newDeckName);
+          let tempDecks = [...decks];
+          tempDecks.splice(existingDeckIndex, 1)
+          setDecks([...tempDecks, {name: newDeckName, deckItems: deckList}])
+        } else {
+          setDecks([...decks, {name: newDeckName, deckItems: deckList}])
+        }
       })
   }
 
@@ -132,22 +141,21 @@ const MyDeck = () => {
 
   return (
     <div className="import-export-bar relative flex-1">
-    <div className="import-bar relative w-full flex flex-wrap items-center justify-end shadow-lg px-4"> 
-      <div className="import">
-        {file.name}
-        <label className="import-btn-label p-3" htmlFor="import-btn">Import</label>
-        <input className="import-btn p-3" id="import-btn" type="file" onChange={handleFileChange} />
+      <div className="import-bar relative w-full flex flex-wrap items-center justify-end shadow-lg px-4"> 
+        <div className="import">
+          {file.name}
+          <label className="import-btn-label p-3" htmlFor="import-btn">Import</label>
+          <input className="import-btn p-3" id="import-btn" type="file" onChange={handleFileChange} />
+        </div>
+        <span className="import-export-span">| |</span>
+        <div className="export">
+          <button className="p-3" onClick={() => exportFile()}>Export</button> 
+          <i className="ss ss-jmp"/>
+          <label className="import-select-label text-sm p-3" htmlFor="import-dropdown">Select a Deck:</label>
+          <select className="import-select text-sm" id="DecksDropdown" />
+        </div>
       </div>
-      |
-      |
-      <div className="export">
-        <button className="p-3" onClick={() => exportFile()}>Export</button> 
-        <i className="ss ss-jmp"/>
-        <label className="import-select-label text-sm p-3" htmlFor="import-dropdown">Select a Deck:</label>
-        <select className="import-select text-sm" id="DecksDropdown" />
-      </div>
-    </div>
-        {decks.map(deck => <MyDecklist key={deck.name} deck={deck}/>)}
+      {decks.map(deck => <MyDecklist key={deck.name} deck={deck}/>)}
     </div>
   );
 };
