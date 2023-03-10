@@ -42,6 +42,10 @@ const NavBar = () => {
             </Link>
             |
             <button onClick={()=>onClick()}> Random Card</button>
+            |
+            <Link className="link p-3" to="/Advanced">
+              <span> Advanced Search</span>
+            </Link>
           </div>
           <div className="search-bundle">
             <input
