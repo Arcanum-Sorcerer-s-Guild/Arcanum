@@ -230,28 +230,14 @@ const Tutorial = () => {
           <img className="deckCard" src="/blankGraveyard.svg"></img>
         </div>
         <div className="deckHand">
-          {handInPlay.map((card) => {
-            if (card.hasOwnProperty("image_uris")) {
-              return (
-                <>
-                  <img
-                    className="deckCardHand"
-                    src={card.image_uris.normal}
-                    data-object={card}
-                  />
-                </>
-              );
-            } else {
-              return (
-                <>
-                  <img
-                    className="deckCardHand"
-                    src="/blankMonsterCard.svg"
-                    data-object={card}
-                  ></img>
-                </>
-              );
-            }
+
+    
+
+
+          {handInPlay.map((card, index) => {
+           return Object.keys(card).includes('image_uris') ?
+            <img key={index} className='deckCardHand' src={card.image_uris.normal}/> :
+             <img key={index} className='deckCardHand' src={card.card_faces[0].image_uris.normal}/>
           })}
         </div>
       </div>
