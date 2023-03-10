@@ -58,14 +58,26 @@ const AdvResults = () => {
 
   return (
     <>
-      <div>Total Results: {totalCards}</div>
+      <div>Total Results: {totalCards}</div><br/>
+      {params.page > 1 ? <button id="page-btn" className="submit-btn" onClick={()=>prevPageFunc()}>Previous Page</button> : <></>}
+      {nextPage ? <button id="page-btn" className="submit-btn" onClick={()=>nextPageFunc()}>Next Page</button> : <></>}
+      <br/><br/>
     <div className="flexResults">
-      {results ? results.map(card => {return (Object.keys(card).includes('image_uris') ? <img key={card.id} src={card.image_uris.small} onClick={()=>onClick(card.id)}/> : <img key={card.id}src={card.card_faces[0].image_uris.small}/>)})
-       : <div className="spinner" />}
+      {results ?
+        results.map(card => {
+          return (Object.keys(card).includes('image_uris')
+            ?
+          <div className="cardDiv">
+          <img className="card-image rounded-2xl transform hover:scale-125 transition-all" key={card.id} src={card.image_uris.small} onClick={()=>onClick(card.id)}/>
+          </div>
+            :
+          <img  className="card-image rounded-2xl transform hover:scale-125 transition-all" key={card.id}src={card.card_faces[0].image_uris.small}/>)})
+        : <div className="spinner" />}
 
-      {params.page > 1 ? <button onClick={()=>prevPageFunc()}>Previous Page</button> : <></>}
-      {nextPage ? <button onClick={()=>nextPageFunc()}>Next Page</button> : <></>}
-    </div>
+    </div><br/>
+    {params.page > 1 ? <button id="page-btn" className="submit-btn" onClick={()=>prevPageFunc()}>Previous Page</button> : <></>}
+      {nextPage ? <button id="page-btn" className="submit-btn" onClick={()=>nextPageFunc()}>Next Page</button> : <></>}
+    <br/>
     </>
   )
   }
