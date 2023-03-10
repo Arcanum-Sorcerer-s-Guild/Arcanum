@@ -10,6 +10,7 @@ import flowbite, { Tabs, Card } from "flowbite-react";
 const DetailView = () => {
   const { decks, setDecks } = React.useContext(mtgContext);
 
+  const [pulledData, setPulledData] = useState({});
   const [activeTab, setActiveTab] = useState(0);
   const tabsRef = useRef(null);
 
@@ -51,6 +52,7 @@ const DetailView = () => {
         return res.json();
       })
       .then((data) => {
+        setPulledData(data);
         setCurrCard({
           name: data.name,
           id: data.id,
@@ -115,7 +117,7 @@ const DetailView = () => {
             </div>
             <div className="detail-col px-5 py-2 rounded-md">
               <CardIncrementer
-                data={currCard}
+                data={pulledData}
                 deckListDropdownOption={true}
                 deckSet={decks[0].name}
               />

@@ -60,7 +60,7 @@ const Decklist = ({ deck }) => {
                             }}
                             onClick={() => navigate(`/DetailView/${card.cardObj.id}`)}
                           >
-                            {card.count} {card.name}
+                            {card.count} {card.cardObj.name}
                           </span>
                         </li>
                       ))}
