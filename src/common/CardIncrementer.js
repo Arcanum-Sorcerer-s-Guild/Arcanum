@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import { mtgContext } from "../App";
-
+import DeckDropDownCreator from "./DeckDropDownCreator.js"
 const cssLargeButton = {
   width: "100px",
   height: "30px",
@@ -28,25 +28,6 @@ const incrementContainer = {
   top: "50%",
 };
 
-const DeckDropDownCreator = ({ selectedDeck }) => {
-  const { decks, setDecks } = React.useContext(mtgContext);
-
-  return (
-    <div style={incrementContainer}>
-      <select style={cssLargeButton} onChange={selectedDeck}>
-        {decks.map((deck, index) => {
-          {
-            return (
-              <option key={index + deck.name} value={deck.name}>
-                {deck.name}
-              </option>
-            );
-          }
-        })}
-      </select>
-    </div>
-  );
-}
 
 const CardIncrementer = (props) => {
   const { decks, setDecks } = React.useContext(mtgContext);
