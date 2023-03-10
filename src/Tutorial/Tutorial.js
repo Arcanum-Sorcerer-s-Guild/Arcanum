@@ -182,6 +182,7 @@ const Tutorial = () => {
             src="/blankMonsterCard.svg"
           ></img>
         </div>
+        
         <div className="lands">
           <img
             onClick={turnImage}

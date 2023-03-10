@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React from "react";
 import { mtgContext } from "../App";
 
 const cssLargeButton = {
@@ -7,15 +7,11 @@ const cssLargeButton = {
     padding: "auto",
     margin: "5px",
     textAlign: "center",
-    "backgroundColor": "#b93b0d",
-    "borderRadius": "5px",
+    backgroundColor: "#b93b0d",
+    borderRadius: "5px",
   };
 
-  const currentItemText = {
-    textAlign: "center",
-    fontSize: "30px",
-    fontFamily: "fantasy",
-  };
+
   
   const incrementContainer = {
     textAlign: "center",
