@@ -162,16 +162,3 @@ const MyDeck = () => {
 
 
 export default MyDeck;
-
-    // {/* <>
-    //   <div>
-    //     Import:
-    //     <input type="file" onChange={handleFileChange} />
-    //   </div>
-
-    //   <div>
-    //     <select id="DecksDropdown" />
-    //     <button onClick={() => exportFile()}>Export</button>
-    //   </div>
-    //   {decks.map(deck => <Decklist key={deck.name} deck={deck} />)}
-    // </> */}
