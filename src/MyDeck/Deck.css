@@ -9,6 +9,14 @@
   color: #333;
 }
 
+.deck-img img{
+  max-width: 100%;
+}
+
+.front-img, .back-img {
+  width: 35%;
+}
+
 li:hover {
   color: #be630e;
 }
@@ -25,7 +33,7 @@ input[type="file"] {
   display: none;
 }
 
-.import-btn-label {
+.import-btn-label, .export button, .export label {
   color: #be630e;
   display: inline-block;
   cursor: pointer;
@@ -33,6 +41,11 @@ input[type="file"] {
 
 .import-select, .import-select-label {
   color: #333;
+  padding: 2px;
+}
+
+.import-export-span {
+  color: #be630e;
 }
 
 
