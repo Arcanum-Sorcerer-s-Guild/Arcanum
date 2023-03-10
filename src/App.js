@@ -13,7 +13,6 @@ import Tutorial from "./Tutorial/Tutorial";
 
 export const mtgContext = React.createContext();
 
-
 function App() {
   const [decks, setDecks] = useState([{
     name: "My Deck",
