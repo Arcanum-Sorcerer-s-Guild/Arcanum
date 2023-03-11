@@ -136,7 +136,7 @@ const DetailView = () => {
             </div>
 
             {/* GRID-COL-3 Card Details */}
-            <div className="detail-col px-5 py-2 rounded-md">
+            <div className="detail-col px-5 py-2 rounded-md shadow-xl">
               <CardIncrementer
                 data={pulledData}
                 deckListDropdownOption={true}
@@ -144,11 +144,12 @@ const DetailView = () => {
               />
 
               <Tabs.Group
-                // aria-label="Default tabs"
-                // style="default"
-                // ref={tabsRef}
+                aria-label="Tabs with underline"
+                style="underline"
+                className="border-orange-600"
               >
-                <Tabs.Item active title="Info">
+                <Tabs.Item title="Info" >
+
                   <div className="card-details mt-2">
                     <table className="auto">
                       <tbody>
@@ -188,6 +189,7 @@ const DetailView = () => {
                     </table>
                   </div>
                 </Tabs.Item>
+
                 <Tabs.Item title="Legalities">
                   <div className="card-details mt-2">
                     <table className="auto">
@@ -303,6 +305,7 @@ const DetailView = () => {
                 </Tabs.Item>
               </Tabs.Group>
 
+
             </div>
             <div>Grid 4</div>
 
@@ -312,7 +315,7 @@ const DetailView = () => {
                 <div className="w-250 gap-2 col-span-4">
                   {cardRulings.data.length === 0 ? "" : <h3>Rulings</h3>}
                 </div>
-                <div className="grid grid-cols-4 align-top p-6 gap-4 flex w-250 gap-2 col-span-3">
+                <div className="grid grid-cols-4  align-top p-6 gap-4 flex w-250 gap-2 col-span-3">
                   {cardRulings.data.map((ruling, index) => (
                     <Card>
                       <h5 className=" textColor inline-block text-2xl m-auto text-center font-bold tracking-tight text-orange-500">
