@@ -18,6 +18,11 @@ body {
   height: 850px;
 } */
 
+.grid {
+  margin-right: 30px;
+  margin-left: 30px;
+}
+
 .card-detail-img {
   height: 400px;
 }

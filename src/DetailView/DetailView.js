@@ -5,13 +5,12 @@ import "../App.css";
 
 import { mtgContext } from "../App.js";
 import CardIncrementer from "../common/CardIncrementer";
-import flowbite, { Tabs, Card } from "flowbite-react";
+import { Tabs, Card } from "flowbite-react";
 
 const DetailView = () => {
-  const { decks, setDecks } = React.useContext(mtgContext);
+  const { decks } = React.useContext(mtgContext);
 
   const [pulledData, setPulledData] = useState({});
-  const [activeTab, setActiveTab] = useState(0);
   const tabsRef = useRef(null);
 
   const [currCard, setCurrCard] = useState({
@@ -59,7 +58,7 @@ const DetailView = () => {
           set_name: data.set_name,
           image: Object.keys(data).includes("image_uris")
             ? data.image_uris.normal
-            : data.card_faces[0].image_uris.normal,
+            : data.card_faces.map(card=>{return(card.image_uris.normal)}),
           rarity: data.rarity,
           mana_cost: data.mana_cost,
           type_line: data.type_line,
@@ -84,6 +83,7 @@ const DetailView = () => {
         });
       })
       .catch((err) => {
+        console.log(err)
         alert(
           `${err}: Unable to locate card with id:\n${params.id}\n\nReturning to main page...`
         );
@@ -106,15 +106,36 @@ const DetailView = () => {
   return (
     <>
       {currCard.image !== "" ? (
-        <div className="relative flex justify-center mt-20">
-          <div className="relative grid grid-cols-2 gap-5">
+
+        <div className="flex justify-center mt-20">
+
+          <div className="grid grid-cols-4 gap-1">
+            {console.log(currCard)}
+
+            {/*GRID-COL-1 Alternate spot for flip cards */}
+            {Array.isArray(currCard.image)
+              ? <div><span>Front:</span><img
+                  className="rounded-3xl max-w-sm transition-all duration-300 cursor-pointer filter hover:grayscale"
+                  src={currCard.image[0]}
+                  alt={currCard.name}/>
+                  </div>
+              :<div></div> }
+
+            {/*GRID-COL-2 Default card view (Back side for flip cards) */}
             <div className="img-col p-1">
-              <img
-                className="relative rounded-3xl max-w-sm transition-all duration-300 cursor-pointer filter hover:grayscale"
+            {Array.isArray(currCard.image)
+              ? <div><span>Back:</span><img
+                className="rounded-3xl max-w-sm transition-all duration-300 cursor-pointer filter hover:grayscale"
+                src={currCard.image[1]}
+                alt={currCard.name}/></div>
+              : <img
+                className="rounded-3xl max-w-sm transition-all duration-300 cursor-pointer filter hover:grayscale"
                 src={currCard.image}
                 alt={currCard.name}
-              />
+              /> }
             </div>
+
+            {/* GRID-COL-3 Card Details */}
             <div className="detail-col px-5 py-2 rounded-md">
               <CardIncrementer
                 data={pulledData}
@@ -123,10 +144,9 @@ const DetailView = () => {
               />
 
               <Tabs.Group
-                aria-label="Default tabs"
-                style="default"
-                ref={tabsRef}
-                onActiveTabChange={(tab) => setActiveTab(tab)}
+                // aria-label="Default tabs"
+                // style="default"
+                // ref={tabsRef}
               >
                 <Tabs.Item active title="Info">
                   <div className="card-details mt-2">
@@ -282,8 +302,11 @@ const DetailView = () => {
                   <p style={{ fontStyle: "italic" }}>{currCard.flavorText}</p>
                 </Tabs.Item>
               </Tabs.Group>
-            </div>
 
+            </div>
+            <div>Grid 4</div>
+
+            {/* Below the grid */}
             {cardRulings.data ? (
               <>
                 <div className="w-250 gap-2 col-span-4">
@@ -305,6 +328,7 @@ const DetailView = () => {
             ) : (
               <div className="spinner" />
             )}
+
           </div>
         </div>
       ) : (
