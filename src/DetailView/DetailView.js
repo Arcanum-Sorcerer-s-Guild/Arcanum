@@ -319,17 +319,17 @@ const DetailView = () => {
                     {Array.isArray(currCard.image) ? <><h3>Front: </h3><br /></> : <></>}
 
                     <th>Oracle Text: </th>
-                    <td>{currCard.oracleText[0]}</td><br />
+                    {currCard.oracleText[0] === undefined ? <><td>None</td><br/></> : <><td>{currCard.oracleText[0]}</td><br /></>}
                     <th>Flavor Text:</th>
-                    <td style={{ fontStyle: "italic" }}>{currCard.flavorText[0]}</td>
+                    {currCard.flavorText[0] === undefined ? <td>None</td> : <td style={{ fontStyle: "italic" }}>{currCard.flavorText[0]}</td>}
 
                     {Array.isArray(currCard.image) ?
                       <>
                         <br /><h3>Back:</h3><br />
                         <th>Oracle Text: </th>
-                        <td>{currCard.oracleText[1]}</td><br />
+                        {currCard.oracleText[1] === undefined ? <><td>None</td><br/></> : <><td>{currCard.oracleText[1]}</td><br /></>}
                         <th>Flavor Text:</th>
-                        <td style={{ fontStyle: "italic" }}>{currCard.flavorText[1]}</td>
+                        {currCard.flavorText[1] === undefined ? <td>None</td> : <td style={{ fontStyle: "italic" }}>{currCard.flavorText[1]}</td>}
 
                       </>
 
