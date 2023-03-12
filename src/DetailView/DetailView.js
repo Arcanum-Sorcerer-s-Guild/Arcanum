@@ -14,7 +14,6 @@ const DetailView = () => {
 
   const [pulledData, setPulledData] = useState({});
   const tabsRef = useRef(null);
-  const [altArt,setAltArt] = useState([])
 
   const [currCard, setCurrCard] = useState({
     name: "",
@@ -22,11 +21,12 @@ const DetailView = () => {
     set_name: "",
     image: "",
     rarity: "",
-    mana_cost: "",
+    mana_cost: "None",
     type_line: "",
     color_identity: "",
     artist: "",
     standard_legal: "",
+    set: "",
     legacy_legal: "",
     modern_legal: "",
     vintage_legal: "",
@@ -62,12 +62,13 @@ const DetailView = () => {
           image: Object.keys(data).includes("image_uris")
             ? data.image_uris.normal
             : data.card_faces.map(card => { return (card.image_uris.normal) }),
-          rarity: data.rarity,
+          rarity: data.rarity[0].toUpperCase() + data.rarity.slice(1),
           mana_cost: data.mana_cost,
           type_line: data.type_line,
           color_identity: data.color_identity,
           artist: data.artist,
           oracle_id: data.oracle_id,
+          set: data.set,
           standard_legal: data.legalities.standard,
           modern_legal: data.legalities.modern,
           legacy_legal: data.legalities.legacy,
@@ -106,6 +107,7 @@ const DetailView = () => {
   useEffect(() => {
     document.title = currCard.name;
   }, [currCard]);
+
 
 
 
@@ -167,7 +169,7 @@ const DetailView = () => {
                           </tr>
                           <tr>
                             <th>Set:</th>
-                            <td>{currCard.set_name}</td>
+                            <td><button onClick={()=>navigate(`/AdvResults/1/q=e:${currCard.set}`)}>{currCard.set_name}</button></td>
                           </tr>
                           <tr>
                             <th>Rarity:</th>
@@ -304,7 +306,7 @@ const DetailView = () => {
                           <a href={currCard.edhrecLink}>Read about at EDHREC</a>
                         </li>
                         <li>
-                          <button onClick={()=>navigate(`/AdvResults/1/q=${currCard.name}&unique=art`)}>Alternate Arts</button>
+                          <button onClick={()=>navigate(`/AdvResults/1/q=!${currCard.name}&unique=art`)}>Alternate Arts</button>
                         </li>
                       </ul>
                     </div>
