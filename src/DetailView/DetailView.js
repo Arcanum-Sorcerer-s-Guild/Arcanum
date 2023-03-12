@@ -169,7 +169,7 @@ const DetailView = () => {
                           </tr>
                           <tr>
                             <th>Set:</th>
-                            <td><button onClick={()=>navigate(`/AdvResults/1/q=e:${currCard.set}`)}>{currCard.set_name}</button></td>
+                            <td><ul className="list-inside"><li><button onClick={()=>navigate(`/AdvResults/1/q=e:${currCard.set}`)}>{currCard.set_name}</button></li></ul></td>
                           </tr>
                           <tr>
                             <th>Rarity:</th>
