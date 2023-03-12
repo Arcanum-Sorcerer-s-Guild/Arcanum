@@ -41,6 +41,8 @@ const DetailView = () => {
     scryfallLink: "",
     oracleText: "",
     flavorText: "",
+    releaseDate: "",
+    reprint: false,
   });
 
   const [cardRulings, setCardRulings] = useState([]);
@@ -85,6 +87,8 @@ const DetailView = () => {
           scryfallLink: data.scryfall_uri,
           oracleText: data.oracle_text,
           flavorText: data.flavor_text,
+          releaseDate: data.released_at,
+          reprint: data.reprint,
         });
       })
       .catch((err) => {
@@ -177,7 +181,7 @@ const DetailView = () => {
                           </tr>
                           <tr>
                             <th>CMC:</th>
-                            <td>{currCard.mana_cost}</td>
+                            {currCard.mana_cost === '' ? <td>None</td> : <td>{currCard.mana_cost}</td>}
                           </tr>
                           <tr>
                             <th>Card Type:</th>
@@ -193,7 +197,7 @@ const DetailView = () => {
                           </tr>
                           <tr>
                             <th>Artist:</th>
-                            <td>{currCard.artist}</td>
+                            <td><ul className="list-inside"><li><button onClick={()=>navigate(`/AdvResults/1/q=a:"${currCard.artist}"`)}>{currCard.artist}</button></li></ul></td>
                           </tr>
                         </tbody>
                       </table>
@@ -348,6 +352,20 @@ const DetailView = () => {
                   <Timeline.Item>
 
                     <Timeline.Content>
+                    <Timeline.Point/>
+                    <Timeline.Time>
+                      {currCard.releaseDate}
+                    </Timeline.Time>
+                    {currCard.reprint ?
+                    <Timeline.Body className="text-white">
+                      {currCard.name} released in {currCard.set_name} ({currCard.set.toUpperCase()}).
+                    </Timeline.Body>
+                    :
+                    <Timeline.Body className="text-white">
+                      {currCard.name} reprinted in {currCard.set_name} ({currCard.set.toUpperCase()}).
+                    </Timeline.Body>
+                    }
+
                     {cardRulings.data.map( ruling =>
                       <>
                       <Timeline.Point />
