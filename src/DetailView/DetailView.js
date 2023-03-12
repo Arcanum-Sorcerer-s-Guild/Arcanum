@@ -66,7 +66,7 @@ const DetailView = () => {
             ? data.image_uris.normal
             : data.card_faces.map(card => { return (card.image_uris.normal) }),
           rarity: data.rarity[0].toUpperCase() + data.rarity.slice(1),
-          mana_cost: data.mana_cost,
+          mana_cost: Object.keys(data).includes("card_faces") ? data.card_faces[0].mana_cost : data.mana_cost,
           type_line: data.type_line,
           color_identity: data.color_identity,
           artist: data.artist,
@@ -86,8 +86,12 @@ const DetailView = () => {
           gathererLink: data.related_uris.gatherer,
           edhrecLink: data.related_uris.edhrec,
           scryfallLink: data.scryfall_uri,
-          oracleText: data.oracle_text,
-          flavorText: data.flavor_text,
+          oracleText: Object.keys(data).includes("card_faces")
+            ? [data.card_faces[0].oracle_text , data.card_faces[1].oracle_text]
+            : [data.oracle_text],
+          flavorText: Object.keys(data).includes("card_faces")
+          ? [data.card_faces[0].flavor_text , data.card_faces[1].flavor_text]
+          : [data.flavor_text],
           releaseDate: data.released_at,
           reprint: data.reprint,
         });
@@ -121,17 +125,11 @@ const DetailView = () => {
 
       <h1 class=" text-4xl mt-3 font-extrabold leading-none tracking-tight text-white-900 md:text-5xl lg:text-6xl ">{currCard.name}</h1>
 
-      <div className="flex justify-center mt-20">
+      <div className="flex justify-center mt-10">
         <div className={Array.isArray(currCard.image) ? "grid grid-cols-3 gap-2" : "grid grid-cols-3 gap-2"}>
           {currCard.image !== "" ? (
             <>
               {console.log(currCard)}
-
-
-
-
-
-
 
               {/*GRID-COL-1 Default card view (Back side for flip cards) */}
               <div className="img-col p-1">
@@ -320,20 +318,20 @@ const DetailView = () => {
                   </Tabs.Item>
                   <Tabs.Item title="Oracle Text">
 
-                  {Array.isArray(currCard.image) ? <h4>Front: </h4> : <></>}
+                  {Array.isArray(currCard.image) ? <><h3>Front: </h3><br/></> : <></>}
 
                     <th>Oracle Text: </th>
-                    <td>{currCard.oracleText}</td><br/>
+                    <td>{currCard.oracleText[0]}</td><br/>
                     <th>Flavor Text:</th>
-                    <td style={{ fontStyle: "italic" }}>{currCard.flavorText}</td>
+                    <td style={{ fontStyle: "italic" }}>{currCard.flavorText[0]}</td>
 
                   {Array.isArray(currCard.image) ?
                   <>
-                  <br/><h4>Back:</h4>
+                  <br/><h3>Back:</h3><br/>
                   <th>Oracle Text: </th>
-                    <td>Placeholder</td><br/>
+                    <td>{currCard.oracleText[1]}</td><br/>
                   <th>Flavor Text:</th>
-                  <td style={{ fontStyle: "italic" }}>Placeholder</td>
+                  <td style={{ fontStyle: "italic" }}>{currCard.flavorText[1]}</td>
 
                   </>
 
