@@ -125,7 +125,7 @@ const DetailView = () => {
                 </div>
                 : <></>}
 
-              {/*GRID-COL-2 Default card view (Back side for flip cards) */}
+              {/*GRID-COL-1 Default card view (Back side for flip cards) */}
               <div className="img-col p-1">
                 {Array.isArray(currCard.image)
                   ? <div><span>Back:</span><img
@@ -139,7 +139,7 @@ const DetailView = () => {
                   />}
               </div>
 
-              {/* GRID-COL-3 Card Details */}
+              {/* GRID-COL-2 Card Details */}
               <div className="detail-col px-4 py-2 rounded-md shadow-xl">
                 <CardIncrementer
                   data={pulledData}
@@ -313,30 +313,7 @@ const DetailView = () => {
               </div>
 
 
-
-              {/* Below the grid
-              {cardRulings.data ? (
-                <>
-                  <div className="w-250 gap-2 col-span-4">
-                    {cardRulings.data.length === 0 ? "" : <h3>Rulings</h3>}
-                  </div>
-                  <div className="grid grid-cols-4  align-top p-6 gap-4 flex w-250 gap-2 col-span-3">
-                    {cardRulings.data.map((ruling, index) => (
-                      <Card>
-                        <h5 className=" textColor inline-block text-2xl m-auto text-center font-bold tracking-tight text-orange-500">
-                          {ruling.published_at}
-                        </h5>
-                        <p className=" textColor inline-blockfont-normal text-justify text-gray-700 dark:text-orange-500 b-40 ">
-                          {ruling.comment}
-                        </p>
-                      </Card>
-                    ))}
-                  </div>
-                </>
-              ) : (
-                <TextLoading />
-              )} */}
-
+              {/* COL 3 TIMELINE */}
               {cardRulings.data ?
               <div>
               <div>
@@ -352,7 +329,7 @@ const DetailView = () => {
                         {ruling.published_at}
                       </Timeline.Time>
 
-                      <Timeline.Body>
+                      <Timeline.Body className="text-white">
                         {ruling.comment}
                       </Timeline.Body>
                       </>
