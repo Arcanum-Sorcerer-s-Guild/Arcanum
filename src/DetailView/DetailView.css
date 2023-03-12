@@ -7,6 +7,15 @@ body {
   color: white;
 }
 
+.tab-list {
+  background-color: #f8f8f8;
+}
+
+.tab-list .active {
+  background-color: #ffa500;
+  color: white;
+}
+
 /* .cardDetailContainer {
   display:flex;
   flex-direction: row;
@@ -49,4 +58,9 @@ td {
 
 th, td {
   padding: 5px;
+}
+
+.card-details {
+  width: auto;
+  max-width: 420px;
 }

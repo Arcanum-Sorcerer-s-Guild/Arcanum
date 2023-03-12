@@ -5,7 +5,7 @@ import "../App.css";
 
 import { mtgContext } from "../App.js";
 import CardIncrementer from "../common/CardIncrementer";
-import { Tabs, Card } from "flowbite-react";
+import { Tabs, Table, Carousel } from "flowbite-react";
 
 const DetailView = () => {
   const { decks, setDecks } = React.useContext(mtgContext);
@@ -110,7 +110,7 @@ const DetailView = () => {
           <div className="relative grid grid-cols-2 gap-5">
             <div className="img-col p-1">
               <img
-                className="relative rounded-3xl max-w-sm transition-all duration-300 cursor-pointer filter hover:grayscale"
+                className="relative mx-auto rounded-3xl max-w-sm transition-all duration-300 cursor-pointer filter hover:grayscale"
                 src={currCard.image}
                 alt={currCard.name}
               />
@@ -124,128 +124,129 @@ const DetailView = () => {
 
               <Tabs.Group
                 aria-label="Default tabs"
-                style="default"
+                style="underline"
+                class="mx-auto flex"
                 ref={tabsRef}
                 onActiveTabChange={(tab) => setActiveTab(tab)}
               >
                 <Tabs.Item active title="Info">
                   <div className="card-details mt-2">
-                    <table className="auto">
-                      <tbody>
-                        <tr>
-                          <th>Card Name:</th>
-                          <td>{currCard.name}</td>
-                        </tr>
-                        <tr>
-                          <th>Set:</th>
-                          <td>{currCard.set_name}</td>
-                        </tr>
-                        <tr>
-                          <th>Rarity:</th>
-                          <td>{currCard.rarity}</td>
-                        </tr>
-                        <tr>
-                          <th>CMC:</th>
-                          <td>{currCard.mana_cost}</td>
-                        </tr>
-                        <tr>
-                          <th>Card Type:</th>
-                          <td>{currCard.type_line}</td>
-                        </tr>
-                        <tr>
-                          <th>Colors:</th>
-                          <td>
+                    <Table className="max-w-200">
+                      <Table.Body className="divide-y">
+                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                          <Table.HeadCell>Card Name:</Table.HeadCell>
+                          <Table.Cell>{currCard.name}</Table.Cell>
+                        </Table.Row>
+                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                          <Table.HeadCell>Set:</Table.HeadCell>
+                          <Table.Cell>{currCard.set_name}</Table.Cell>
+                        </Table.Row>
+                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                          <Table.HeadCell>Rarity:</Table.HeadCell>
+                          <Table.Cell>{currCard.rarity}</Table.Cell>
+                        </Table.Row>
+                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                          <Table.HeadCell>CMC:</Table.HeadCell>
+                          <Table.Cell>{currCard.mana_cost}</Table.Cell>
+                        </Table.Row>
+                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                          <Table.HeadCell>Card Type:</Table.HeadCell>
+                          <Table.Cell>{currCard.type_line}</Table.Cell>
+                        </Table.Row>
+                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                          <Table.HeadCell>Colors:</Table.HeadCell>
+                          <Table.Cell>
                             {currCard.color_identity.length === 0
                               ? (currCard.color_identity = "None")
                               : currCard.color_identity}
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>Artist:</th>
-                          <td>{currCard.artist}</td>
-                        </tr>
-                      </tbody>
-                    </table>
+                          </Table.Cell>
+                        </Table.Row>
+                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                          <Table.HeadCell>Artist:</Table.HeadCell>
+                          <Table.Cell>{currCard.artist}</Table.Cell>
+                        </Table.Row>
+                      </Table.Body>
+                    </Table>
                   </div>
                 </Tabs.Item>
                 <Tabs.Item title="Legalities">
                   <div className="card-details mt-2">
-                    <table className="auto">
-                      <tbody>
-                        <tr>
-                          <th>Standard:</th>
-                          <td>
+                    <Table className="max-w-lg whitespace-wrap">
+                      <Table.Body className="divide-y">
+                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                          <Table.HeadCell>Standard:</Table.HeadCell>
+                          <Table.Cell>
                             {currCard.standard_legal === "legal"
                               ? "\u2705"
                               : "\u274C"}
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>Modern:</th>
-                          <td>
+                          </Table.Cell>
+                        </Table.Row>
+                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                          <Table.HeadCell>Modern:</Table.HeadCell>
+                          <Table.Cell>
                             {currCard.modern_legal === "legal"
                               ? "\u2705"
                               : "\u274C"}
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>Legacy:</th>
-                          <td>
+                          </Table.Cell>
+                        </Table.Row>
+                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                          <Table.HeadCell>Legacy:</Table.HeadCell>
+                          <Table.Cell>
                             {currCard.legacy_legal === "legal"
                               ? "\u2705"
                               : "\u274C"}
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>Vintage:</th>
-                          <td>
+                          </Table.Cell>
+                        </Table.Row>
+                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                          <Table.HeadCell>Vintage:</Table.HeadCell>
+                          <Table.Cell>
                             {currCard.vintage_legal === "legal"
                               ? "\u2705"
                               : "\u274C"}
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>Commander:</th>
-                          <td>
+                          </Table.Cell>
+                        </Table.Row>
+                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                          <Table.HeadCell>Commander:</Table.HeadCell>
+                          <Table.Cell>
                             {currCard.commander_legal === "legal"
                               ? "\u2705"
                               : "\u274C"}
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                          </Table.Cell>
+                        </Table.Row>
+                      </Table.Body>
+                    </Table>
                   </div>
                 </Tabs.Item>
                 <Tabs.Item title="Prices">
                   <div className="card-details mt-2">
-                    <table className="auto">
-                      <tbody>
-                        <tr>
-                          <th>USD:</th>
-                          <td>
+                    <Table className="max-w-lg whitespace-wrap">
+                      <Table.Body className="divide-y">
+                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                          <Table.HeadCell>USD:</Table.HeadCell>
+                          <Table.Cell>
                             {currCard.priceUSD
                               ? `$${currCard.priceUSD}`
                               : "No price available"}
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>USD Foil:</th>
-                          <td>
+                          </Table.Cell>
+                        </Table.Row>
+                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                          <Table.HeadCell>USD Foil:</Table.HeadCell>
+                          <Table.Cell>
                             {currCard.priceUSDFoil
                               ? `$${currCard.priceUSDFoil}`
                               : "No price available"}
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>TIX:</th>
-                          <td>
+                          </Table.Cell>
+                        </Table.Row>
+                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                          <Table.HeadCell>TIX:</Table.HeadCell>
+                          <Table.Cell>
                             {currCard.priceTIX
                               ? `$${currCard.priceTIX}`
                               : "No price available"}
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                          </Table.Cell>
+                        </Table.Row>
+                      </Table.Body>
+                    </Table>
                   </div>
                 </Tabs.Item>
                 <Tabs.Item title="External Links">
@@ -253,7 +254,7 @@ const DetailView = () => {
                     <ul className="list-inside">
                       {currCard.tcgplayerLink ? (
                         <li>
-                          <a href={currCard.tcgplayerLink}>
+                          <a href={currCard.tcgplayerLink} target="_blank">
                             Purchase at TCG Player
                           </a>
                         </li>
@@ -262,50 +263,70 @@ const DetailView = () => {
                       )}
                       {currCard.gathererLink ? (
                         <li>
-                          <a href={currCard.gathererLink}>View in Gatherer</a>
+                          <a href={currCard.gathererLink} target="_blank">View in Gatherer</a>
                         </li>
                       ) : (
                         <></>
                       )}
                       <li>
-                        <a href={currCard.scryfallLink}>View in Scryfall</a>
+                        <a href={currCard.scryfallLink} target="_blank">View in Scryfall</a>
                       </li>
                       <li>
-                        <a href={currCard.edhrecLink}>Read about at EDHREC</a>
+                        <a href={currCard.edhrecLink} target="_blank">Read about at EDHREC</a>
                       </li>
                     </ul>
                   </div>
                 </Tabs.Item>
                 <Tabs.Item title="Oracle Text">
-                  <p>{currCard.oracleText}</p>
-
-                  <p style={{ fontStyle: "italic" }}>{currCard.flavorText}</p>
+                  <div className="card-details mt-2">
+                    <Table>
+                      <Table.Body className="divide-y">
+                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                          <Table.HeadCell>Oracle:</Table.HeadCell>
+                          <Table.Cell>{currCard.oracleText}</Table.Cell>
+                        </Table.Row>
+                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                          <Table.HeadCell>Flavor:</Table.HeadCell>
+                          <Table.Cell className="max-w-100 mx-auto">
+                            {currCard.flavorText}
+                          </Table.Cell>
+                        </Table.Row>
+                      </Table.Body>
+                    </Table>
+                  </div>
                 </Tabs.Item>
               </Tabs.Group>
             </div>
+          </div>
+        </div>
+      ) : (
+        <div className="spinner" />
+      )}
 
-            {cardRulings.data ? (
+      {cardRulings.data ? (
+        <div className="h-42 textColor sm:h-70 xl:h-32 2xl:h-32 p-2">
+          <Carousel
+            slideInterval={6000}
+            show={3}
+            infinite={true}
+            arrowClass="color-white"
+            indicatorContainerClass="mt-2"
+          >
+            {cardRulings.data.map((ruling, index) => (
               <>
-                <div className="w-250 gap-2 col-span-4">
-                  {cardRulings.data.length === 0 ? "" : <h3>Rulings</h3>}
-                </div>
-                <div className="grid grid-cols-4 align-top p-6 gap-4 flex w-250 gap-2 col-span-3">
-                  {cardRulings.data.map((ruling, index) => (
-                    <Card>
-                      <h5 className=" textColor inline-block text-2xl m-auto text-center font-bold tracking-tight text-orange-500">
-                        {ruling.published_at}
-                      </h5>
-                      <p className=" textColor inline-blockfont-normal text-justify text-gray-700 dark:text-orange-500 b-40 ">
-                        {ruling.comment}
-                      </p>
-                    </Card>
-                  ))}
+                <div className="text-center h-full bg-white dark:border-gray-700 dark:bg-gray-800">
+                  <h5 className="w-100 underline textColor inline-block text-2xl m-auto text-center font-bold tracking-tight text-orange-500">
+                    Rulings {index + 1} of {cardRulings.data.length}. Dated:{" "}
+                    {ruling.published_at}
+                  </h5>
+                  <br />
+                  <p className="w-100 textColor inline-block text-2xl m-auto text-center font-bold tracking-tight text-orange-500">
+                    {ruling.comment}
+                  </p>
                 </div>
               </>
-            ) : (
-              <div className="spinner" />
-            )}
-          </div>
+            ))}
+          </Carousel>
         </div>
       ) : (
         <div className="spinner" />
