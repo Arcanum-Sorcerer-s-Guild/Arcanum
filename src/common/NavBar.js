@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
 import "./NavBar.css";
 import { mtgContext } from "../App";
+// import Decklist from "../MyDeck/MyDecklist";
 
 
 const NavBar = () => {
-
+   const { decks, setDecks } = React.useContext(mtgContext);
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
@@ -31,7 +32,7 @@ const NavBar = () => {
           <div className="links relative inline-flex items-center">
             <Link className="relative inline-flex items-center p-3" to="/MyDeck">
               <i className="deck-icon ss ss-s00 p-1"/><span> My Decklist</span>
-              <div className="absolute inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-500 rounded-full top-2 -right-0">4</div>
+              <div className="absolute inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-500 rounded-full top-2 -right-0">{decks.length}</div>
             </Link>
             |
             <Link className="link p-3" to="/Tutorial">
