@@ -135,6 +135,10 @@ const Tutorial = () => {
     console.log(handInPlay, deckInPlay);
   };
 
+  useEffect(() => {
+    document.title = "Tutorial";
+  }, []);
+
   return (
     <>
       <div className="playerField wrapper  relative flex w-full h-full flex-wrap">
@@ -182,6 +186,7 @@ const Tutorial = () => {
             src="/blankMonsterCard.svg"
           ></img>
         </div>
+        
         <div className="lands">
           <img
             onClick={turnImage}

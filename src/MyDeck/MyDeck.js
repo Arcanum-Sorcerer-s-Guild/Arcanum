@@ -3,6 +3,30 @@ import MyDecklist from "./MyDecklist";
 import {mtgContext} from "../App";
 import "./Deck.css"
 
+
+let deckLists = [
+  {
+    deckName: 'Brittney (5-0)',
+    deckPath: 'decklists/Brittney (5-0).txt'
+  },
+  {
+    deckName: 'Kingperrytwin (5-0)',
+    deckPath: 'decklists/Kingperrytwin (5-0).txt'
+  },
+  {
+    deckName: 'liyilin (5-0)',
+    deckPath: 'decklists/liyilin (5-0).txt'
+  },
+  {
+    deckName: 'ThaisM (5-0)',
+    deckPath: 'decklists/ThaisM (5-0).txt'
+  },
+  {
+    deckName: 'Daize (5-0)',
+    deckPath: 'decklists/Daize (5-0).txt'
+  },
+]
+
 const MyDeck = () => {
   const {decks, setDecks} = useContext(mtgContext);
   
@@ -10,10 +34,18 @@ const MyDeck = () => {
     document.title = 'Arcanum: Featured Decks'
   },[])
 
+  useEffect(()=> {
+    if(deckLists.length > 0) {
+      const {deckName, deckPath} = deckLists.pop()
+      fetch(deckPath)
+        .then(response => response.text())
+        .then(text => parse(text, deckName))
+    }
+  }, [decks])
+
   const [file, setFile] = useState('');
 
   const handleFileChange = (e) => {
-    // console.log('handleFileChange called with:', e.target.files[0]);
     e.preventDefault()
     if (! e.target.files) {
       return;
@@ -23,9 +55,6 @@ const MyDeck = () => {
 
   useEffect(() => {
     if (file) {
-      if (file.name) {
-
-      }
       const currentFile = file;
       importFile(currentFile);
     }
@@ -36,18 +65,19 @@ const MyDeck = () => {
     const reader = new FileReader()
     reader.onload = async (e) => { 
       const text = (e.target.result)
-      parse(text)
+      const deckName = file.name.split('.').slice(0, -1).join('.')
+      parse(text, deckName)
     };
     reader.readAsText(file)
   }
 
-  const parse = (text) => {
+  const parse = (text, deckName) => {
     const lines = text.split('\n')
     let cards = [];
     for (let line of lines) {
       // Stop at the first blank line (skips the sideboard)
       if (! line.match(/^\d/)) {
-        pullCards(cards);
+        pullCards(cards, deckName);
         break;
       }
 
@@ -60,9 +90,7 @@ const MyDeck = () => {
     }
   }
 
-  const pullCards = (cards) => {
-    // console.log('pulling cards:', cards)
-
+  const pullCards = (cards, deckName) => {
     let promises = [];
     for (let card of cards) {
       let cleanName = card.name.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '').replace(/ /g, '+').toLowerCase();
@@ -79,14 +107,13 @@ const MyDeck = () => {
       .then(result => {
         let deckList = result.map((card) => ({...card, id: card.cardObj.id, name: card.cardObj.name}))
         let deckNames = decks.map((deck) => deck.name);
-        const newDeckName = file.name.split('.').slice(0, -1).join('.')
-        if (deckNames.includes(newDeckName)) {
-          const existingDeckIndex = deckNames.indexOf(newDeckName);
+        if (deckNames.includes(deckName)) {
+          const existingDeckIndex = deckNames.indexOf(deckName);
           let tempDecks = [...decks];
           tempDecks.splice(existingDeckIndex, 1)
-          setDecks([...tempDecks, {name: newDeckName, deckItems: deckList}])
+          setDecks([...tempDecks, {name: deckName, deckItems: deckList}])
         } else {
-          setDecks([...decks, {name: newDeckName, deckItems: deckList}])
+          setDecks([...decks, {name: deckName, deckItems: deckList}])
         }
       })
   }
@@ -105,7 +132,7 @@ const MyDeck = () => {
     const file = new Blob(encode(deckList), {type: 'text/plain'});
     element.href = URL.createObjectURL(file);
     element.download = `${deckName}.txt`;
-    document.body.appendChild(element); // Required for this to work in FireFox
+    document.body.appendChild(element); // Required for FireFox compatibility
     element.click();
   }
 
