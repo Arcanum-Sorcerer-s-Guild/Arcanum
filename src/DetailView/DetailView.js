@@ -6,6 +6,8 @@ import "../App.css";
 import { mtgContext } from "../App.js";
 import CardIncrementer from "../common/CardIncrementer";
 import { Tabs, Card } from "flowbite-react";
+import TextLoading from "./TextLoading.js"
+import CardLoading from "./CardLoading.js"
 
 const DetailView = () => {
   const { decks } = React.useContext(mtgContext);
@@ -84,10 +86,10 @@ const DetailView = () => {
       })
       .catch((err) => {
         console.log(err)
-        alert(
-          `${err}: Unable to locate card with id:\n${params.id}\n\nReturning to main page...`
-        );
-        navigate("/");
+        // alert(
+        //   `${err}: Unable to locate card with id:\n${params.id}\n\nReturning to main page...`
+        // );
+        // navigate("/");
       });
   }, [params.id]);
 
@@ -105,11 +107,13 @@ const DetailView = () => {
 
   return (
     <>
-      {currCard.image !== "" ? (
 
+          <h1 class=" text-4xl mt-3 font-extrabold leading-none tracking-tight text-white-900 md:text-5xl lg:text-6xl ">{currCard.name}</h1>
         <div className="flex justify-center mt-20">
 
           <div className="grid grid-cols-4 gap-1">
+      {currCard.image !== "" ? (
+            <>
             {console.log(currCard)}
 
             {/*GRID-COL-1 Alternate spot for flip cards */}
@@ -144,8 +148,8 @@ const DetailView = () => {
               />
 
               <Tabs.Group
-                aria-label="Tabs with underline"
-                style="underline"
+  aria-label="Pills"
+  style="pills"
                 className="border-orange-600"
               >
                 <Tabs.Item title="Info" >
@@ -270,7 +274,7 @@ const DetailView = () => {
                     </table>
                   </div>
                 </Tabs.Item>
-                <Tabs.Item title="External Links">
+                <Tabs.Item title="Links">
                   <div className="card-details mt-2">
                     <ul className="list-inside">
                       {currCard.tcgplayerLink ? (
@@ -307,7 +311,8 @@ const DetailView = () => {
 
 
             </div>
-            <div>Grid 4</div>
+
+
 
             {/* Below the grid */}
             {cardRulings.data ? (
@@ -332,11 +337,22 @@ const DetailView = () => {
               <div className="spinner" />
             )}
 
-          </div>
-        </div>
+</>
       ) : (
-        <div className="spinner" />
+        <>
+        {/* Card Image loading */}
+        <CardLoading />
+
+    {/* Text box loading... */}
+    <div>
+        <TextLoading />
+        <TextLoading />
+        <TextLoading />
+        </div>
+    </>
       )}
+      </div>
+        </div>
     </>
   );
 };
