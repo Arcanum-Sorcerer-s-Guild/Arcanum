@@ -14,6 +14,7 @@ const DetailView = () => {
 
   const [pulledData, setPulledData] = useState({});
   const tabsRef = useRef(null);
+  const [altArt,setAltArt] = useState([])
 
   const [currCard, setCurrCard] = useState({
     name: "",
@@ -30,7 +31,7 @@ const DetailView = () => {
     modern_legal: "",
     vintage_legal: "",
     commander_legal: "",
-
+    oracle_id: "",
     priceUSD: null,
     priceUSDFoil: null,
     priceTIX: null,
@@ -66,6 +67,7 @@ const DetailView = () => {
           type_line: data.type_line,
           color_identity: data.color_identity,
           artist: data.artist,
+          oracle_id: data.oracle_id,
           standard_legal: data.legalities.standard,
           modern_legal: data.legalities.modern,
           legacy_legal: data.legalities.legacy,
@@ -105,6 +107,8 @@ const DetailView = () => {
     document.title = currCard.name;
   }, [currCard]);
 
+
+
   return (
     <>
 
@@ -119,7 +123,7 @@ const DetailView = () => {
               {/*GRID-COL-1 Alternate spot for flip cards */}
               {Array.isArray(currCard.image)
                 ? <div><span>Front:</span><img
-                  className="rounded-3xl transition-all duration-300 cursor-pointer filter hover:grayscale"
+                  className="rounded-3xl transition-all duration-300 cursor-pointer filter"
                   src={currCard.image[0]}
                   alt={currCard.name} />
                 </div>
@@ -299,14 +303,34 @@ const DetailView = () => {
                         <li>
                           <a href={currCard.edhrecLink}>Read about at EDHREC</a>
                         </li>
+                        <li>
+                          <button onClick={()=>navigate(`/AdvResults/1/q=${currCard.name}&unique=art`)}>Alternate Arts</button>
+                        </li>
                       </ul>
                     </div>
                   </Tabs.Item>
                   <Tabs.Item title="Oracle Text">
-                    <p>{currCard.oracleText}</p>
 
-                    <p style={{ fontStyle: "italic" }}>{currCard.flavorText}</p>
-                  </Tabs.Item>
+                  {Array.isArray(currCard.image) ? <h4>Front: </h4> : <></>}
+
+                    <th>Oracle Text: </th>
+                    <td>{currCard.oracleText}</td><br/>
+                    <th>Flavor Text:</th>
+                    <td style={{ fontStyle: "italic" }}>{currCard.flavorText}</td>
+
+                  {Array.isArray(currCard.image) ?
+                  <>
+                  <br/><h4>Back:</h4>
+                  <th>Oracle Text: </th>
+                    <td>Placeholder</td><br/>
+                  <th>Flavor Text:</th>
+                  <td style={{ fontStyle: "italic" }}>Placeholder</td>
+
+                  </>
+
+                  : <></>}
+
+                    </Tabs.Item>
                 </Tabs.Group>
 
 
@@ -316,7 +340,7 @@ const DetailView = () => {
               {/* COL 3 TIMELINE */}
               {cardRulings.data ?
               <div>
-              <div>
+              <div className="timeline">
 
                 <Timeline>
                   <Timeline.Item>
@@ -354,6 +378,7 @@ const DetailView = () => {
           )}
         </div>
       </div>
+
     </>
   );
 };

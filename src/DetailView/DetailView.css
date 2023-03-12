@@ -70,3 +70,7 @@ th, td {
   width: auto;
   max-width: 420px;
 }
+
+/* .timeline {
+  overflow-y:auto;
+} */
