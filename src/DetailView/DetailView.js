@@ -309,7 +309,7 @@ const DetailView = () => {
                           <a href={currCard.edhrecLink}>Read about at EDHREC</a>
                         </li>
                         <li>
-                          <button onClick={() => navigate(`/AdvResults/1/q=!${currCard.name}&unique=art`)}>Alternate Arts</button>
+                          <button onClick={() => navigate(`/AdvResults/1/q=!"${currCard.name}"&unique=art`)}>Alternate Arts</button>
                         </li>
                       </ul>
                     </div>
