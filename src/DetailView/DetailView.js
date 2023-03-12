@@ -304,10 +304,9 @@ const DetailView = () => {
       )}
 
       {cardRulings.data ? (
-        <div className="h-42 textColor sm:h-70 xl:h-32 2xl:h-40  m-4">
+        <div className="h-42 textColor sm:h-70 xl:h-64 2xl:h-40 m-4">
           <Carousel
           className="bg-[#393939]"
-          arrow
             slideInterval={6000}
           >
             {cardRulings.data.map((ruling, index) => (
@@ -318,7 +317,7 @@ const DetailView = () => {
                     {ruling.published_at}
                   </h5>
                   <br />
-                  <p className="w-100 textColor inline-block text-2xl m-auto text-center font-bold tracking-tight text-white pl-12 pr-12">
+                  <p className="w-100 textColor inline-block text-2xl m-auto text-center font-bold tracking-tight text-white pl-12 pr-12 ">
                     {ruling.comment}
                   </p>
                 </div>
