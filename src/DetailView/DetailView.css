@@ -27,6 +27,11 @@ body {
   height: 850px;
 } */
 
+.grid {
+  margin-right: 30px;
+  margin-left: 30px;
+}
+
 .card-detail-img {
   height: 400px;
 }
@@ -60,7 +65,12 @@ th, td {
   padding: 5px;
 }
 
+
 .card-details {
   width: auto;
   max-width: 420px;
 }
+
+/* .timeline {
+  overflow-y:auto;
+} */
