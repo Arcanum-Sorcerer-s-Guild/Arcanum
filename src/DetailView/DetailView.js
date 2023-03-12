@@ -11,6 +11,7 @@ import CardLoading from "./CardLoading.js"
 
 const DetailView = () => {
   const { decks } = React.useContext(mtgContext);
+  const [open, setOpen] = useState(false);
 
   const [pulledData, setPulledData] = useState({});
   const tabsRef = useRef(null);
@@ -126,22 +127,24 @@ const DetailView = () => {
             <>
               {console.log(currCard)}
 
-              {/*GRID-COL-1 Alternate spot for flip cards */}
-              {Array.isArray(currCard.image)
-                ? <div><span>Front:</span><img
-                  className="rounded-3xl transition-all duration-300 cursor-pointer filter"
-                  src={currCard.image[0]}
-                  alt={currCard.name} />
-                </div>
-                : <></>}
+
+
+
+
+
 
               {/*GRID-COL-1 Default card view (Back side for flip cards) */}
               <div className="img-col p-1">
                 {Array.isArray(currCard.image)
-                  ? <div><span>Back:</span><img
-                    className="rounded-3xl transition-all duration-300 cursor-pointer filter hover:grayscale object-position: center"
-                    src={currCard.image[1]}
-                    alt={currCard.name} /></div>
+                  ? <><div onMouseOver={() => setOpen(true)} onMouseOut={() => setOpen(false)}>
+                  Hover to see backside of card:
+                <img
+                  className="rounded-3xl transition-all duration-300 cursor-pointer filter hover:grayscale object-position: center"
+                  src={open ? currCard.image[1] : currCard.image[0]}
+                  alt={currCard.name}
+                  />
+                </div>
+                </>
                   : <img
                     className="rounded-3xl transition-all duration-300 cursor-pointer filter hover:grayscale object-position: center"
                     src={currCard.image}
