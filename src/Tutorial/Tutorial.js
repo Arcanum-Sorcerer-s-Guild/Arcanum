@@ -143,7 +143,7 @@ const Tutorial = () => {
     <>
       <div className="playerField wrapper  relative flex w-full h-full flex-wrap">
         <div className="info">
-          {steps.map((stepItem) => (
+          {steps.map((stepItem, index) => (
             <a>{stepItem}</a>
           ))}
 
@@ -159,34 +159,40 @@ const Tutorial = () => {
             onClick={turnImage}
             className="deckCard"
             src="/blankMonsterCard.svg"
+            alt="Blank Card"
           ></img>
           <img
             onClick={turnImage}
             className="deckCard"
             src="/blankMonsterCard.svg"
+            alt="Blank Card"
           ></img>
           <img
             onClick={turnImage}
             className="deckCard"
             src="/blankMonsterCard.svg"
+            alt="Blank Card"
           ></img>
           <img
             onClick={turnImage}
             className="deckCard"
             src="/blankMonsterCard.svg"
+            alt="Blank Card"
           ></img>
           <img
             onClick={turnImage}
             className="deckCard"
             src="/blankMonsterCard.svg"
+            alt="Blank Card"
           ></img>
           <img
             onClick={turnImage}
             className="deckCard"
             src="/blankMonsterCard.svg"
+            alt="Blank Card"
           ></img>
         </div>
-        
+
         <div className="lands">
           <img
             onClick={turnImage}
@@ -235,14 +241,20 @@ const Tutorial = () => {
           <img className="deckCard" src="/blankGraveyard.svg"></img>
         </div>
         <div className="deckHand">
-
-    
-
-
           {handInPlay.map((card, index) => {
-           return Object.keys(card).includes('image_uris') ?
-            <img key={index} className='deckCardHand' src={card.image_uris.normal}/> :
-             <img key={index} className='deckCardHand' src={card.card_faces[0].image_uris.normal}/>
+            return Object.keys(card).includes("image_uris") ? (
+              <img
+                key={index}
+                className="deckCardHand"
+                src={card.image_uris.normal}
+              />
+            ) : (
+              <img
+                key={index}
+                className="deckCardHand"
+                src={card.card_faces[0].image_uris.normal}
+              />
+            );
           })}
         </div>
       </div>

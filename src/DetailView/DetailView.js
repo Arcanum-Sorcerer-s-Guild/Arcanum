@@ -125,35 +125,35 @@ const DetailView = () => {
               <Tabs.Group
                 aria-label="Default tabs"
                 style="underline"
-                class="mx-auto flex"
+                className="mx-auto flex"
                 ref={tabsRef}
                 onActiveTabChange={(tab) => setActiveTab(tab)}
               >
                 <Tabs.Item active title="Info">
-                  <div className="card-details mt-2">
+                  <div className="mt-2">
                     <Table className="max-w-200">
-                      <Table.Body className="divide-y">
-                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                      <Table.Body className="divide-y bg-[#393939]">
+                        <Table.Row >
                           <Table.HeadCell>Card Name:</Table.HeadCell>
                           <Table.Cell>{currCard.name}</Table.Cell>
                         </Table.Row>
-                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                        <Table.Row >
                           <Table.HeadCell>Set:</Table.HeadCell>
                           <Table.Cell>{currCard.set_name}</Table.Cell>
                         </Table.Row>
-                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                        <Table.Row >
                           <Table.HeadCell>Rarity:</Table.HeadCell>
                           <Table.Cell>{currCard.rarity}</Table.Cell>
                         </Table.Row>
-                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                          <Table.HeadCell>CMC:</Table.HeadCell>
+                        <Table.Row >
+                          <Table.HeadCell>Mana Cost:</Table.HeadCell>
                           <Table.Cell>{currCard.mana_cost}</Table.Cell>
                         </Table.Row>
-                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                        <Table.Row >
                           <Table.HeadCell>Card Type:</Table.HeadCell>
                           <Table.Cell>{currCard.type_line}</Table.Cell>
                         </Table.Row>
-                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                        <Table.Row >
                           <Table.HeadCell>Colors:</Table.HeadCell>
                           <Table.Cell>
                             {currCard.color_identity.length === 0
@@ -161,7 +161,7 @@ const DetailView = () => {
                               : currCard.color_identity}
                           </Table.Cell>
                         </Table.Row>
-                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                        <Table.Row >
                           <Table.HeadCell>Artist:</Table.HeadCell>
                           <Table.Cell>{currCard.artist}</Table.Cell>
                         </Table.Row>
@@ -172,8 +172,8 @@ const DetailView = () => {
                 <Tabs.Item title="Legalities">
                   <div className="card-details mt-2">
                     <Table className="max-w-lg whitespace-wrap">
-                      <Table.Body className="divide-y">
-                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                      <Table.Body className="divide-y bg-[#393939]">
+                        <Table.Row >
                           <Table.HeadCell>Standard:</Table.HeadCell>
                           <Table.Cell>
                             {currCard.standard_legal === "legal"
@@ -181,7 +181,7 @@ const DetailView = () => {
                               : "\u274C"}
                           </Table.Cell>
                         </Table.Row>
-                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                        <Table.Row >
                           <Table.HeadCell>Modern:</Table.HeadCell>
                           <Table.Cell>
                             {currCard.modern_legal === "legal"
@@ -189,7 +189,7 @@ const DetailView = () => {
                               : "\u274C"}
                           </Table.Cell>
                         </Table.Row>
-                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                        <Table.Row >
                           <Table.HeadCell>Legacy:</Table.HeadCell>
                           <Table.Cell>
                             {currCard.legacy_legal === "legal"
@@ -197,7 +197,7 @@ const DetailView = () => {
                               : "\u274C"}
                           </Table.Cell>
                         </Table.Row>
-                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                        <Table.Row >
                           <Table.HeadCell>Vintage:</Table.HeadCell>
                           <Table.Cell>
                             {currCard.vintage_legal === "legal"
@@ -205,7 +205,7 @@ const DetailView = () => {
                               : "\u274C"}
                           </Table.Cell>
                         </Table.Row>
-                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                        <Table.Row >
                           <Table.HeadCell>Commander:</Table.HeadCell>
                           <Table.Cell>
                             {currCard.commander_legal === "legal"
@@ -220,8 +220,8 @@ const DetailView = () => {
                 <Tabs.Item title="Prices">
                   <div className="card-details mt-2">
                     <Table className="max-w-lg whitespace-wrap">
-                      <Table.Body className="divide-y">
-                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                      <Table.Body className="divide-y bg-[#393939]">
+                        <Table.Row >
                           <Table.HeadCell>USD:</Table.HeadCell>
                           <Table.Cell>
                             {currCard.priceUSD
@@ -229,7 +229,7 @@ const DetailView = () => {
                               : "No price available"}
                           </Table.Cell>
                         </Table.Row>
-                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                        <Table.Row >
                           <Table.HeadCell>USD Foil:</Table.HeadCell>
                           <Table.Cell>
                             {currCard.priceUSDFoil
@@ -237,7 +237,7 @@ const DetailView = () => {
                               : "No price available"}
                           </Table.Cell>
                         </Table.Row>
-                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                        <Table.Row >
                           <Table.HeadCell>TIX:</Table.HeadCell>
                           <Table.Cell>
                             {currCard.priceTIX
@@ -280,12 +280,12 @@ const DetailView = () => {
                 <Tabs.Item title="Oracle Text">
                   <div className="card-details mt-2">
                     <Table>
-                      <Table.Body className="divide-y">
-                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                      <Table.Body className="divide-y bg-[#393939]">
+                        <Table.Row >
                           <Table.HeadCell>Oracle:</Table.HeadCell>
                           <Table.Cell>{currCard.oracleText}</Table.Cell>
                         </Table.Row>
-                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                        <Table.Row >
                           <Table.HeadCell>Flavor:</Table.HeadCell>
                           <Table.Cell className="max-w-100 mx-auto">
                             {currCard.flavorText}
@@ -304,27 +304,24 @@ const DetailView = () => {
       )}
 
       {cardRulings.data ? (
-        <div className="h-42 textColor sm:h-70 xl:h-32 2xl:h-32 p-2">
+        <div className="h-42 textColor sm:h-70 xl:h-32 2xl:h-40  m-4">
           <Carousel
+          className="bg-[#393939]"
             slideInterval={6000}
-            show={3}
-            infinite={true}
-            arrowClass="color-white"
-            indicatorContainerClass="mt-2"
           >
             {cardRulings.data.map((ruling, index) => (
-              <>
-                <div className="text-center h-full bg-white dark:border-gray-700 dark:bg-gray-800">
-                  <h5 className="w-100 underline textColor inline-block text-2xl m-auto text-center font-bold tracking-tight text-orange-500">
+
+                <div key={index} className="text-center h-full ">
+                  <h5 className="w-100 underline textColor inline-block text-2xl m-auto text-center font-bold tracking-tight text-orange-500 ">
                     Rulings {index + 1} of {cardRulings.data.length}. Dated:{" "}
                     {ruling.published_at}
                   </h5>
                   <br />
-                  <p className="w-100 textColor inline-block text-2xl m-auto text-center font-bold tracking-tight text-orange-500">
+                  <p className="w-100 textColor inline-block text-2xl m-auto text-center font-bold tracking-tight text-white pl-12 pr-12">
                     {ruling.comment}
                   </p>
                 </div>
-              </>
+     
             ))}
           </Carousel>
         </div>

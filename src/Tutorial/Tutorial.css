@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-.wrapper  {
+.playerField {
+  display: grid;
+  padding-left: 2%;
   margin-top: 50px;
   height: 45vw;
   background-image: url(battlefield.webp);
@@ -10,12 +12,6 @@
   background-repeat: no-repeat;
   background-size:cover;
   /* position: relative; */
-}
-
-
-.playerField {
-  display: grid;
-  padding-left: 2%;
 }
 
 .info {
