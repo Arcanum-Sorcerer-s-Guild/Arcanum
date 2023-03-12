@@ -307,6 +307,7 @@ const DetailView = () => {
         <div className="h-42 textColor sm:h-70 xl:h-32 2xl:h-40  m-4">
           <Carousel
           className="bg-[#393939]"
+          arrow
             slideInterval={6000}
           >
             {cardRulings.data.map((ruling, index) => (
