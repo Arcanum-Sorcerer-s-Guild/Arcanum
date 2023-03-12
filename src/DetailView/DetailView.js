@@ -1,20 +1,18 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState} from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./DetailView.css";
 import "../App.css";
 
 import { mtgContext } from "../App.js";
 import CardIncrementer from "../common/CardIncrementer";
-import { Tabs, Card, Timeline } from "flowbite-react";
+import { Tabs, Timeline } from "flowbite-react";
 import TextLoading from "./TextLoading.js"
 import CardLoading from "./CardLoading.js"
 
 const DetailView = () => {
   const { decks } = React.useContext(mtgContext);
   const [open, setOpen] = useState(false);
-
   const [pulledData, setPulledData] = useState({});
-  const tabsRef = useRef(null);
 
   const [currCard, setCurrCard] = useState({
     name: "",
@@ -87,11 +85,11 @@ const DetailView = () => {
           edhrecLink: data.related_uris.edhrec,
           scryfallLink: data.scryfall_uri,
           oracleText: Object.keys(data).includes("card_faces")
-            ? [data.card_faces[0].oracle_text , data.card_faces[1].oracle_text]
+            ? [data.card_faces[0].oracle_text, data.card_faces[1].oracle_text]
             : [data.oracle_text],
           flavorText: Object.keys(data).includes("card_faces")
-          ? [data.card_faces[0].flavor_text , data.card_faces[1].flavor_text]
-          : [data.flavor_text],
+            ? [data.card_faces[0].flavor_text, data.card_faces[1].flavor_text]
+            : [data.flavor_text],
           releaseDate: data.released_at,
           reprint: data.reprint,
         });
@@ -135,14 +133,14 @@ const DetailView = () => {
               <div className="img-col p-1">
                 {Array.isArray(currCard.image)
                   ? <><div onMouseOver={() => setOpen(true)} onMouseOut={() => setOpen(false)}>
-                  Hover to see backside of card:
-                <img
-                  className="rounded-3xl transition-all duration-300 cursor-pointer filter hover:grayscale object-position: center"
-                  src={open ? currCard.image[1] : currCard.image[0]}
-                  alt={currCard.name}
-                  />
-                </div>
-                </>
+                    Hover to see backside of card:
+                    <img
+                      className="rounded-3xl transition-all duration-300 cursor-pointer filter hover:grayscale object-position: center"
+                      src={open ? currCard.image[1] : currCard.image[0]}
+                      alt={currCard.name}
+                    />
+                  </div>
+                  </>
                   : <img
                     className="rounded-3xl transition-all duration-300 cursor-pointer filter hover:grayscale object-position: center"
                     src={currCard.image}
@@ -174,7 +172,7 @@ const DetailView = () => {
                           </tr>
                           <tr>
                             <th>Set:</th>
-                            <td><ul className="list-inside"><li><button onClick={()=>navigate(`/AdvResults/1/q=e:${currCard.set}`)}>{currCard.set_name}</button></li></ul></td>
+                            <td><ul className="list-inside"><li><button onClick={() => navigate(`/AdvResults/1/q=e:${currCard.set}`)}>{currCard.set_name}</button></li></ul></td>
                           </tr>
                           <tr>
                             <th>Rarity:</th>
@@ -198,7 +196,7 @@ const DetailView = () => {
                           </tr>
                           <tr>
                             <th>Artist:</th>
-                            <td><ul className="list-inside"><li><button onClick={()=>navigate(`/AdvResults/1/q=a:"${currCard.artist}"`)}>{currCard.artist}</button></li></ul></td>
+                            <td><ul className="list-inside"><li><button onClick={() => navigate(`/AdvResults/1/q=a:"${currCard.artist}"`)}>{currCard.artist}</button></li></ul></td>
                           </tr>
                         </tbody>
                       </table>
@@ -311,33 +309,33 @@ const DetailView = () => {
                           <a href={currCard.edhrecLink}>Read about at EDHREC</a>
                         </li>
                         <li>
-                          <button onClick={()=>navigate(`/AdvResults/1/q=!${currCard.name}&unique=art`)}>Alternate Arts</button>
+                          <button onClick={() => navigate(`/AdvResults/1/q=!${currCard.name}&unique=art`)}>Alternate Arts</button>
                         </li>
                       </ul>
                     </div>
                   </Tabs.Item>
                   <Tabs.Item title="Oracle Text">
 
-                  {Array.isArray(currCard.image) ? <><h3>Front: </h3><br/></> : <></>}
+                    {Array.isArray(currCard.image) ? <><h3>Front: </h3><br /></> : <></>}
 
                     <th>Oracle Text: </th>
-                    <td>{currCard.oracleText[0]}</td><br/>
+                    <td>{currCard.oracleText[0]}</td><br />
                     <th>Flavor Text:</th>
                     <td style={{ fontStyle: "italic" }}>{currCard.flavorText[0]}</td>
 
-                  {Array.isArray(currCard.image) ?
-                  <>
-                  <br/><h3>Back:</h3><br/>
-                  <th>Oracle Text: </th>
-                    <td>{currCard.oracleText[1]}</td><br/>
-                  <th>Flavor Text:</th>
-                  <td style={{ fontStyle: "italic" }}>{currCard.flavorText[1]}</td>
+                    {Array.isArray(currCard.image) ?
+                      <>
+                        <br /><h3>Back:</h3><br />
+                        <th>Oracle Text: </th>
+                        <td>{currCard.oracleText[1]}</td><br />
+                        <th>Flavor Text:</th>
+                        <td style={{ fontStyle: "italic" }}>{currCard.flavorText[1]}</td>
 
-                  </>
+                      </>
 
-                  : <></>}
+                      : <></>}
 
-                    </Tabs.Item>
+                  </Tabs.Item>
                 </Tabs.Group>
 
 
@@ -346,43 +344,43 @@ const DetailView = () => {
 
               {/* COL 3 TIMELINE */}
               {cardRulings.data ?
-              <div>
-              <div className="timeline">
+                <div>
+                  <div className="timeline">
 
-                <Timeline>
-                  <Timeline.Item>
+                    <Timeline>
+                      <Timeline.Item>
 
-                    <Timeline.Content>
-                    <Timeline.Point/>
-                    <Timeline.Time>
-                      {currCard.releaseDate}
-                    </Timeline.Time>
-                    {currCard.reprint ?
-                    <Timeline.Body className="text-white">
-                      {currCard.name} released in {currCard.set_name} ({currCard.set.toUpperCase()}).
-                    </Timeline.Body>
-                    :
-                    <Timeline.Body className="text-white">
-                      {currCard.name} reprinted in {currCard.set_name} ({currCard.set.toUpperCase()}).
-                    </Timeline.Body>
-                    }
+                        <Timeline.Content>
+                          <Timeline.Point />
+                          <Timeline.Time>
+                            {currCard.releaseDate}
+                          </Timeline.Time>
+                          {currCard.reprint ?
+                            <Timeline.Body className="text-white">
+                              {currCard.name} released in {currCard.set_name} ({currCard.set.toUpperCase()}).
+                            </Timeline.Body>
+                            :
+                            <Timeline.Body className="text-white">
+                              {currCard.name} reprinted in {currCard.set_name} ({currCard.set.toUpperCase()}).
+                            </Timeline.Body>
+                          }
 
-                    {cardRulings.data.map( ruling =>
-                      <>
-                      <Timeline.Point />
-                      <Timeline.Time>
-                        {ruling.published_at}
-                      </Timeline.Time>
+                          {cardRulings.data.map(ruling =>
+                            <>
+                              <Timeline.Point />
+                              <Timeline.Time>
+                                {ruling.published_at} Ruling:
+                              </Timeline.Time>
 
-                      <Timeline.Body className="text-white">
-                        {ruling.comment}
-                      </Timeline.Body>
-                      </>
-                    )}
-                    </Timeline.Content>
-                  </Timeline.Item>
-                </Timeline></div></div>: <TextLoading/>
-          }
+                              <Timeline.Body className="text-white">
+                                {ruling.comment}
+                              </Timeline.Body>
+                            </>
+                          )}
+                        </Timeline.Content>
+                      </Timeline.Item>
+                    </Timeline></div></div> : <TextLoading />
+              }
             </>
           ) : (
             <>
