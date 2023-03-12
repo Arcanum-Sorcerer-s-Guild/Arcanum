@@ -44,7 +44,7 @@ const CardIncrementer = (props) => {
     if (!deckList) {
       deckSet ? setSelectedDeck(deckSet) : setSelectedDeck(decks[0].name);
     }
-  }, [deckSet]);
+  }, [deckList, decks, deckSet, selectedDeck]);
 
   // checkcurrentvalue
   useEffect(() => {
