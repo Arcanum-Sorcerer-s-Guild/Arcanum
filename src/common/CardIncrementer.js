@@ -115,10 +115,11 @@ const CardIncrementer = (props) => {
               : null
           }
         >
-          <i
+        <ion-icon name="remove-outline"></ion-icon>
+          {/* <i
             className="large ss ss-2x ss-ulg  "
             style={{ transform: "rotate(0deg)" }}
-          ></i>
+          ></i> */}
         </button>
 
         <i style={currentItemText}>{currentAmmount}</i>
@@ -130,10 +131,11 @@ const CardIncrementer = (props) => {
             setuserUpdatedState(true);
           }}
         >
-          <i
+        <ion-icon name="add-outline"></ion-icon>
+          {/* <i
             className="large ss ss-2x ss-ulg"
             style={{ transform: "scaleX(-1)" }}
-          ></i>
+          ></i> */}
         </button>
       </div>
 

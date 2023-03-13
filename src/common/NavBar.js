@@ -42,7 +42,7 @@ const NavBar = () => {
             <button className="p-3" onClick={()=>onClick()}>  <i className="deck-icon ss ss-gn3 p-1"/> <span>Random Card</span></button>
             |
             <Link className="link p-3" to="/Advanced">
-              <i className="deck-icon ss ss-v10 p-1"/><span> Advanced</span>
+              <i className="deck-icon ss ss-v10 p-1"/><span> Advanced Search</span>
             </Link>
 
           </div>
@@ -62,15 +62,6 @@ const NavBar = () => {
       </nav>
     </div>
 
-    //old code
-    // <nav className="navBar">
-    //   <Link className ="link" to="/">Home</Link>
-    //   <Link className ="link" to="/MyDeck">My Deck</Link>
-    //   <Link className ="link" to="/FeaturedDecks">Featured Decks</Link>
-    //   {/* <Link to="/Tutorial">Tutorial</Link> */}
-    //   <Link className="searchBtn" to={`/Search/${searchTerm}`}><button>SEARCH</button></Link>
-    //   <input className="searchBar" type="search" placeholder="Search..." onChange={e=>setSearchTerm(e.target.value)}/>
-    // </nav>
   );
 };
 

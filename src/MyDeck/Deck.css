@@ -23,8 +23,10 @@ li:hover {
 
 .deck-header {
   position: relative;
+  margin: 0 30px;
+  padding: 0;
   color: #be630e;
-  background: #fff;
+  background: #191919;
   border-bottom-color: #be630e;
   border-bottom: solid 0.3em;
 }

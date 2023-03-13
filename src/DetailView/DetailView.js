@@ -165,8 +165,8 @@ const DetailView = () => {
                 />
 
                 <Tabs.Group
-                  aria-label="Pills"
-                  style="pills"
+                  aria-label="underline"
+                  style="underline"
                   className="border-orange-600"
                 >
                   <Tabs.Item title="Info">

@@ -22,22 +22,22 @@ function App() {
 
   return (
     <div className="page-container">
-    <mtgContext.Provider value={{ decks, setDecks }}>
-      <NavBar />
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route path="/Search/:value" element={<Search />} />
-        <Route path="/DetailView/:id" element={<DetailView />} />
-        <Route path="/MyDeck" element={<MyDeck />} />
-        <Route path="/Tutorial" element={<Tutorial />} />
-        <Route path="/*" element={<NotFound />} />
-        <Route path="/Advanced" element={<Advanced/>}/>
-        <Route path="/AdvResults/:page/:value" element={<AdvResults/>}/>
-      </Routes>
-    </mtgContext.Provider>
-      <div>
-        <Footer />
+      <div className="content-wrap">
+        <mtgContext.Provider value={{ decks, setDecks }}>
+          <NavBar />
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route path="/Search/:value" element={<Search />} />
+            <Route path="/DetailView/:id" element={<DetailView />} />
+            <Route path="/MyDeck" element={<MyDeck />} />
+            <Route path="/Tutorial" element={<Tutorial />} />
+            <Route path="/*" element={<NotFound />} />
+            <Route path="/Advanced" element={<Advanced/>}/>
+            <Route path="/AdvResults/:page/:value" element={<AdvResults/>}/>
+          </Routes>
+        </mtgContext.Provider>
       </div>
+        <Footer />
     </div>
   );
 }
