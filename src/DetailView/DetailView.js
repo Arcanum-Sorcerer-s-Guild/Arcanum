@@ -351,7 +351,7 @@ const DetailView = () => {
                           <button
                             onClick={() =>
                               navigate(
-                                `/AdvResults/1/q=!${currCard.name}&unique=art`
+                                `/AdvResults/1/q=!"${currCard.name}"&unique=art`
                               )
                             }
                           >
