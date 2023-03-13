@@ -5,10 +5,10 @@ import "./Deck.css"
 
 
 let deckLists = [
-  {
-    deckName: 'Brittney (5-0)',
-    deckPath: 'decklists/Brittney (5-0).txt'
-  },
+  // {
+  //   deckName: 'Brittney (5-0)',
+  //   deckPath: 'decklists/Brittney (5-0).txt'
+  // },
   {
     deckName: 'Kingperrytwin (5-0)',
     deckPath: 'decklists/Kingperrytwin (5-0).txt'

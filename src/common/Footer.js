@@ -3,8 +3,7 @@ import { Footer } from "flowbite-react";
 
 const FooterBar = () => {
   return (
-    <div>
-
+    <div className="main-footer">
     <Footer container={true} className="" style={{backgroundColor: '#393939'}}>
       <Footer.Copyright href="#" by="Arcanum All Rights Reserved" year={2023} />
       <Footer.LinkGroup>

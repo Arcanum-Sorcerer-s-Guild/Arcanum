@@ -31,7 +31,7 @@ const NavBar = () => {
       <nav className="nav-bar relative w-full flex items-center justify-around shadow-lg px-2">
           <div className="links relative inline-flex items-center">
             <Link className="relative inline-flex items-center p-3" to="/MyDeck">
-              <i className="deck-icon ss ss-s00 p-1"/><span> My Decklist</span>
+              <i className="deck-icon ss ss-s00 p-1"/><span> My Decklists</span>
               <div className="absolute inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-500 rounded-full top-2 -right-0">{decks.length}</div>
             </Link>
             |

@@ -21,6 +21,7 @@ function App() {
   }]);
 
   return (
+    <div className="page-container">
     <mtgContext.Provider value={{ decks, setDecks }}>
       <NavBar />
       <Routes>
@@ -33,8 +34,11 @@ function App() {
         <Route path="/Advanced" element={<Advanced/>}/>
         <Route path="/AdvResults/:page/:value" element={<AdvResults/>}/>
       </Routes>
-      <Footer />
     </mtgContext.Provider>
+      <div>
+        <Footer />
+      </div>
+    </div>
   );
 }
 

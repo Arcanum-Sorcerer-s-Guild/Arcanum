@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useNavigate} from "react";
+import React, {useEffect, useState} from "react";
 import {useParams, Link} from 'react-router-dom'
 import "./Search.css";
 import CardIncrementer from "../common/CardIncrementer.js";
@@ -31,9 +31,11 @@ const Search = ({}) => {
               {card.image_uris === undefined ?
                 <div className='cardDiv'>
                   <div class="card-image rounded-2xl transform hover:scale-125 transition-all">
+                    <Link to={`/DetailView/${card.id}`}>
                     <div class="card-image-front">
                       <img src={card.card_faces[0].image_uris.small} alt={""}/>
                     </div>
+                    </Link>
                   </div>
                 </div>:
                 <Link to={`/DetailView/${card.id}`}>
