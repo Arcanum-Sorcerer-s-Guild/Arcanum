@@ -76,19 +76,19 @@ const Advanced = () => {
       <input placeholder="Choose something scary..." className="search-input text-black italic" name="cardName" value={inputs.name} type="text" onChange={handleChange} />
       <br/><br/>
 
-      <div>Converted Mana Cost</div>
+      <div>Converted Mana Cost:</div>
       <input placeholder="Choose a number" className="search-input text-black italic" name="cardCMC" value={inputs.name} type="text" onChange={handleChange} />
       <br/><br/>
 
-      <div>Inner Card Text</div>
+      <div>Inner Card Text:</div>
       <input placeholder="Choose the word win" className="search-input text-black italic" name="cardText" value={inputs.name} type="text" onChange={handleChange}/>
       <br/><br/>
 
-      <div>Artist</div>
+      <div>Artist:</div>
       <input placeholder="Artist name here" className="search-input text-black italic" name="cardArtist" value={inputs.name} type="text" onChange={handleChange} />
       <br/><br/>
 
-      <div>Card Rarity</div>
+      <div>Card Rarity:</div>
       <select className="search-input text-black italic" name="cardRarity" value={inputs.name} onChange={handleChange}>
         <option value=""></option>
         <option value="c">Common</option>
@@ -99,7 +99,7 @@ const Advanced = () => {
       <br/><br/>
 
 
-        <div>Card Type</div>
+        <div>Card Type:</div>
         <select className="search-input text-black italic" name="cardType" value={inputs.name} onChange={handleChange}>
           <option value=""></option>
           <option value="Artifact">Artifact</option>
@@ -115,12 +115,12 @@ const Advanced = () => {
 
 
       <div className="checkBoxDiv">Card Color: (Unless checked searches all colors)</div>
-        <input type="checkbox" name="colorWhite" value='w' defaultChecked={false} onChange={()=>updateColors('w')}/>White<br/>
-        <input type="checkbox" name="colorBlue" value='u' defaultChecked={false} onChange={()=>updateColors('u')}/>Blue<br/>
-        <input type="checkbox" name="colorBlack" value='b' defaultChecked={false} onChange={()=>updateColors('b')}/>Black<br/>
-        <input type="checkbox" name="colorGreen" value='r' defaultChecked={false} onChange={()=>updateColors('r')}/>Red<br/>
-        <input type="checkbox" name="colorRed" value='g' defaultChecked={false} onChange={()=>updateColors('g')} />Green<br/>
-        <input type="checkbox" name="colorLess" value='c' defaultChecked={false} onChange={()=>updateColors('c')}/>Colorless<br/>
+        <input type="checkbox" name="colorWhite" value='w' defaultChecked={false} onChange={()=>updateColors('w')}/> White<br/>
+        <input type="checkbox" name="colorBlue" value='u' defaultChecked={false} onChange={()=>updateColors('u')}/> Blue<br/>
+        <input type="checkbox" name="colorBlack" value='b' defaultChecked={false} onChange={()=>updateColors('b')}/> Black<br/>
+        <input type="checkbox" name="colorGreen" value='r' defaultChecked={false} onChange={()=>updateColors('r')}/> Red<br/>
+        <input type="checkbox" name="colorRed" value='g' defaultChecked={false} onChange={()=>updateColors('g')} /> Green<br/>
+        <input type="checkbox" name="colorLess" value='c' defaultChecked={false} onChange={()=>updateColors('c')}/> Colorless<br/>
       <br/>
 
 
