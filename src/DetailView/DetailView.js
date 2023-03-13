@@ -362,35 +362,32 @@ const DetailView = () => {
                     </div>
                   </Tabs.Item>
                   <Tabs.Item title="Oracle Text">
-                    <tbody>
-                      {Array.isArray(currCard.image) ? <h3>Front Side: </h3> : <></>}
-                      <tr>
-                        <th className="text-left ">Oracle Text: </th>
+                    <>
+                      {Array.isArray(currCard.image) ? <h2 className="text-left">Front Side: </h2> : <></>}
+                        <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
+                        <tbody >
+                          <tr>
+                            <th className="text-left ">Oracle Text: </th>
+                              {currCard.oracleText[0] === undefined ? ( <td>None</td> ) : (
+                              <td className="text-justify">{currCard.oracleText[0]}</td> )}
+                          </tr> <br/>
 
-                        {currCard.oracleText[0] === undefined ? (
-                          <td>None</td>
-                        ) : (
-                          <td className="text-justify">{currCard.oracleText[0]}</td>
-                        )}
-                      </tr>
-                      <br/>
-                      <tr>
-                        <th className="text-left ">Flavor Text:</th>
-
-
-                        {currCard.flavorText[0] === undefined ? (
-                          <td>None</td>
-                        ) : (
-                          <td className="text-justify" style={{ fontStyle: "italic" }}>
-                            {currCard.flavorText[0]}
-                          </td>
-                        )}
-                      </tr>
-                      <br/>
+                          <tr>
+                           <th className="text-left ">Flavor Text:</th>
+                            {currCard.flavorText[0] === undefined ? ( <td>None</td> ) : (
+                            <td className="text-justify"
+                                style={{ fontStyle: "italic" }}>
+                                {currCard.flavorText[0]}
+                            </td> )}
+                          </tr> <br/>
+                        </tbody>
+                        <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
 
                       {Array.isArray(currCard.image) ? (
                         <>
-                          <h3 className="text-left">Back Side:</h3>
+                          <h2 className="text-left">Back Side:</h2>
+                          <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
+                        <tbody>
                           <tr>
                             <th className="text-left">Oracle Text: </th>
                             {currCard.oracleText[1] === undefined ? (
@@ -412,11 +409,13 @@ const DetailView = () => {
                             )}
                           </tr>
                           <br/>
-                        </>
+                          </tbody>
+                          <hr class="h-px my-8  bg-gray-200 border-0 dark:bg-gray-700"></hr>
+                          </>
                       ) : (
                         <></>
-                      )}
-                    </tbody>
+                        )}
+                   </>
                   </Tabs.Item>
                 </Tabs.Group>
               </div>
