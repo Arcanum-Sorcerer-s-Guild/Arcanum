@@ -214,7 +214,7 @@ const Tutorial = () => {
             </Tabs.Item>
           ))}
         </Tabs.Group>
-        <div className="flex float-right">
+        <div className="flex float-right h-16">
           Cards Left: {deckInPlayLength} || Life: {lifePoints}
           <DeckDropDownCreator selectedDeck={changeDeck} />
         </div>

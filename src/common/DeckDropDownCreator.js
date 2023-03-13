@@ -5,7 +5,6 @@ const cssLargeButton = {
     width: "100%",
     height: "75%",
     padding: "auto",
-    margin: "5px",
     textAlign: "center",
     backgroundColor: "#b93b0d",
     borderRadius: "5px",
