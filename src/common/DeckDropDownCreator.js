@@ -3,7 +3,7 @@ import { mtgContext } from "../App";
 
 const cssLargeButton = {
     width: "100%",
-    height: "75%",
+    height: "auto",
     padding: "auto",
     textAlign: "center",
     backgroundColor: "#b93b0d",

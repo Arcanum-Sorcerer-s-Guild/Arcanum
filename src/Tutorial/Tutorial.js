@@ -237,40 +237,34 @@ const Tutorial = () => {
             onClick={turnImage}
             className="deckCard"
             src="/blankMonsterCard.svg"
-            alt="Blank Card"
           ></img>
           <img
             onClick={turnImage}
             className="deckCard"
             src="/blankMonsterCard.svg"
-            alt="Blank Card"
           ></img>
           <img
             onClick={turnImage}
             className="deckCard"
             src="/blankMonsterCard.svg"
-            alt="Blank Card"
           ></img>
           <img
             onClick={turnImage}
             className="deckCard"
             src="/blankMonsterCard.svg"
-            alt="Blank Card"
           ></img>
           <img
             onClick={turnImage}
             className="deckCard"
             src="/blankMonsterCard.svg"
-            alt="Blank Card"
           ></img>
           <img
             onClick={turnImage}
             className="deckCard"
             src="/blankMonsterCard.svg"
-            alt="Blank Card"
           ></img>
         </div>
-
+        
         <div className="lands">
           <img
             onClick={turnImage}
@@ -319,6 +313,10 @@ const Tutorial = () => {
           <img className="deckCard" src="/blankGraveyard.svg"></img>
         </div>
         <div className="deckHand">
+
+    
+
+
           {handInPlay.map((card, index) => {
             return Object.keys(card).includes("image_uris") ? (
               <DraggableImage index={index} src={card.image_uris.normal} />
