@@ -136,13 +136,13 @@ const DetailView = () => {
               {console.log(currCard)}
 
               {/*GRID-COL-1 Default card view (Back side for flip cards) */}
-              <div className="img-col p-1 max-w-lg min-w-full">
+              <div className="img-col p-1 max-w-lg max-h-lg min-h-full min-w-full">
                 {Array.isArray(currCard.image) ? (
                   <>
                       Click to see flipside of card:
                       <img
                         onClick={()=>toggleOpen()}
-                        className="rounded-3xl transition-all duration-300 cursor-pointer filter hover:grayscale object-position: center"
+                        className="rounded-3xl transition-all duration-300 cursor-pointer filter hover:grayscale object-position: center "
                         src={open ? currCard.image[1] : currCard.image[0]}
                         alt={currCard.name}
                       />
@@ -365,7 +365,7 @@ const DetailView = () => {
                     <>
                       {Array.isArray(currCard.image) ? <h2 className="text-left">Front Side: </h2> : <></>}
                         <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
-                        <tbody >
+                        <tbody className="max-w-md">
                           <tr>
                             <th className="text-left ">Oracle Text: </th>
                               {currCard.oracleText[0] === undefined ? ( <td>None</td> ) : (
