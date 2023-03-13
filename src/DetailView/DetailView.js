@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./DetailView.css";
 import "../App.css";
@@ -6,8 +6,8 @@ import "../App.css";
 import { mtgContext } from "../App.js";
 import CardIncrementer from "../common/CardIncrementer";
 import { Tabs, Timeline } from "flowbite-react";
-import TextLoading from "./TextLoading.js"
-import CardLoading from "./CardLoading.js"
+import TextLoading from "./TextLoading.js";
+import CardLoading from "./CardLoading.js";
 
 const DetailView = () => {
   const { decks } = React.useContext(mtgContext);
@@ -62,9 +62,13 @@ const DetailView = () => {
           set_name: data.set_name,
           image: Object.keys(data).includes("image_uris")
             ? data.image_uris.normal
-            : data.card_faces.map(card => { return (card.image_uris.normal) }),
+            : data.card_faces.map((card) => {
+                return card.image_uris.normal;
+              }),
           rarity: data.rarity[0].toUpperCase() + data.rarity.slice(1),
-          mana_cost: Object.keys(data).includes("card_faces") ? data.card_faces[0].mana_cost : data.mana_cost,
+          mana_cost: Object.keys(data).includes("card_faces")
+            ? data.card_faces[0].mana_cost
+            : data.mana_cost,
           type_line: data.type_line,
           color_identity: data.color_identity,
           artist: data.artist,
@@ -95,7 +99,7 @@ const DetailView = () => {
         });
       })
       .catch((err) => {
-        console.log(err)
+        console.log(err);
         // alert(
         //   `${err}: Unable to locate card with id:\n${params.id}\n\nReturning to main page...`
         // );
@@ -111,45 +115,49 @@ const DetailView = () => {
       });
   }, [currCard]);
 
+  const toggleOpen = () => {
+    setOpen(!open)
+  }
+
   useEffect(() => {
     document.title = currCard.name;
   }, [currCard]);
 
-
-
-
   return (
     <>
-
-      <h1 class=" text-4xl mt-3 font-extrabold leading-none tracking-tight text-white-900 md:text-5xl lg:text-6xl ">{currCard.name}</h1>
+      <h1 class=" text-4xl mt-3 font-extrabold leading-none tracking-tight text-white-900 md:text-5xl lg:text-6xl ">
+        {currCard.name}
+      </h1>
 
       <div className="flex justify-center mt-10">
-        <div className={Array.isArray(currCard.image) ? "grid grid-cols-3 gap-2" : "grid grid-cols-3 gap-2"}>
+        <div className="grid grid-cols-3 gap-2">
           {currCard.image !== "" ? (
             <>
               {console.log(currCard)}
 
               {/*GRID-COL-1 Default card view (Back side for flip cards) */}
-              <div className="img-col p-1">
-                {Array.isArray(currCard.image)
-                  ? <><div onMouseOver={() => setOpen(true)} onMouseOut={() => setOpen(false)}>
-                    Hover to see backside of card:
-                    <img
-                      className="rounded-3xl transition-all duration-300 cursor-pointer filter hover:grayscale object-position: center"
-                      src={open ? currCard.image[1] : currCard.image[0]}
-                      alt={currCard.name}
-                    />
-                  </div>
+              <div className="img-col p-1 max-w-lg min-w-full">
+                {Array.isArray(currCard.image) ? (
+                  <>
+                      Click to see flipside of card:
+                      <img
+                        onClick={()=>toggleOpen()}
+                        className="rounded-3xl transition-all duration-300 cursor-pointer filter hover:grayscale object-position: center"
+                        src={open ? currCard.image[1] : currCard.image[0]}
+                        alt={currCard.name}
+                      />
                   </>
-                  : <img
+                ) : (
+                  <img
                     className="rounded-3xl transition-all duration-300 cursor-pointer filter hover:grayscale object-position: center"
                     src={currCard.image}
                     alt={currCard.name}
-                  />}
+                  />
+                )}
               </div>
 
               {/* GRID-COL-2 Card Details */}
-              <div className="detail-col px-4 py-2 rounded-md shadow-xl">
+              <div className="detail-col px-4 py-2 rounded-md break-before-auto shadow-xl max-w-lg min-w-full ">
                 <CardIncrementer
                   data={pulledData}
                   deckListDropdownOption={true}
@@ -161,8 +169,7 @@ const DetailView = () => {
                   style="pills"
                   className="border-orange-600"
                 >
-                  <Tabs.Item title="Info" >
-
+                  <Tabs.Item title="Info">
                     <div className="card-details mt-2">
                       <table className="auto">
                         <tbody>
@@ -172,7 +179,21 @@ const DetailView = () => {
                           </tr>
                           <tr>
                             <th>Set:</th>
-                            <td><ul className="list-inside"><li><button onClick={() => navigate(`/AdvResults/1/q=e:${currCard.set}`)}>{currCard.set_name}</button></li></ul></td>
+                            <td>
+                              <ul className="list-inside">
+                                <li>
+                                  <button
+                                    onClick={() =>
+                                      navigate(
+                                        `/AdvResults/1/q=e:${currCard.set}`
+                                      )
+                                    }
+                                  >
+                                    {currCard.set_name}
+                                  </button>
+                                </li>
+                              </ul>
+                            </td>
                           </tr>
                           <tr>
                             <th>Rarity:</th>
@@ -180,7 +201,11 @@ const DetailView = () => {
                           </tr>
                           <tr>
                             <th>CMC:</th>
-                            {currCard.mana_cost === '' ? <td>None</td> : <td>{currCard.mana_cost}</td>}
+                            {currCard.mana_cost === "" ? (
+                              <td>None</td>
+                            ) : (
+                              <td>{currCard.mana_cost}</td>
+                            )}
                           </tr>
                           <tr>
                             <th>Card Type:</th>
@@ -196,7 +221,21 @@ const DetailView = () => {
                           </tr>
                           <tr>
                             <th>Artist:</th>
-                            <td><ul className="list-inside"><li><button onClick={() => navigate(`/AdvResults/1/q=a:"${currCard.artist}"`)}>{currCard.artist}</button></li></ul></td>
+                            <td>
+                              <ul className="list-inside">
+                                <li>
+                                  <button
+                                    onClick={() =>
+                                      navigate(
+                                        `/AdvResults/1/q=a:"${currCard.artist}"`
+                                      )
+                                    }
+                                  >
+                                    {currCard.artist}
+                                  </button>
+                                </li>
+                              </ul>
+                            </td>
                           </tr>
                         </tbody>
                       </table>
@@ -309,63 +348,101 @@ const DetailView = () => {
                           <a href={currCard.edhrecLink}>Read about at EDHREC</a>
                         </li>
                         <li>
-                          <button onClick={() => navigate(`/AdvResults/1/q=!${currCard.name}&unique=art`)}>Alternate Arts</button>
+                          <button
+                            onClick={() =>
+                              navigate(
+                                `/AdvResults/1/q=!${currCard.name}&unique=art`
+                              )
+                            }
+                          >
+                            Alternate Arts
+                          </button>
                         </li>
                       </ul>
                     </div>
                   </Tabs.Item>
                   <Tabs.Item title="Oracle Text">
+                    <tbody>
+                      {Array.isArray(currCard.image) ? <h3>Front Side: </h3> : <></>}
+                      <tr>
+                        <th className="text-left ">Oracle Text: </th>
 
-                    {Array.isArray(currCard.image) ? <><h3>Front: </h3><br /></> : <></>}
+                        {currCard.oracleText[0] === undefined ? (
+                          <td>None</td>
+                        ) : (
+                          <td className="text-justify">{currCard.oracleText[0]}</td>
+                        )}
+                      </tr>
+                      <br/>
+                      <tr>
+                        <th className="text-left ">Flavor Text:</th>
 
-                    <th>Oracle Text: </th>
-                    {currCard.oracleText[0] === undefined ? <><td>None</td><br/></> : <><td>{currCard.oracleText[0]}</td><br /></>}
-                    <th>Flavor Text:</th>
-                    {currCard.flavorText[0] === undefined ? <td>None</td> : <td style={{ fontStyle: "italic" }}>{currCard.flavorText[0]}</td>}
 
-                    {Array.isArray(currCard.image) ?
-                      <>
-                        <br /><h3>Back:</h3><br />
-                        <th>Oracle Text: </th>
-                        {currCard.oracleText[1] === undefined ? <><td>None</td><br/></> : <><td>{currCard.oracleText[1]}</td><br /></>}
-                        <th>Flavor Text:</th>
-                        {currCard.flavorText[1] === undefined ? <td>None</td> : <td style={{ fontStyle: "italic" }}>{currCard.flavorText[1]}</td>}
+                        {currCard.flavorText[0] === undefined ? (
+                          <td>None</td>
+                        ) : (
+                          <td className="text-justify" style={{ fontStyle: "italic" }}>
+                            {currCard.flavorText[0]}
+                          </td>
+                        )}
+                      </tr>
+                      <br/>
 
-                      </>
+                      {Array.isArray(currCard.image) ? (
+                        <>
+                          <h3 className="text-left">Back Side:</h3>
+                          <tr>
+                            <th className="text-left">Oracle Text: </th>
+                            {currCard.oracleText[1] === undefined ? (
+                              <td>None</td>
+                            ) : (
+                              <td className="text-justify" >{currCard.oracleText[1]}</td>
+                            )}
+                          </tr>
+                          <br/>
+                          <tr>
+                            <th className="text-left">Flavor Text:</th>
 
-                      : <></>}
-
+                            {currCard.flavorText[1] === undefined ? (
+                              <td>None</td>
+                            ) : (
+                              <td className="text-justify" style={{ fontStyle: "italic" }}>
+                                {currCard.flavorText[1]}
+                              </td>
+                            )}
+                          </tr>
+                          <br/>
+                        </>
+                      ) : (
+                        <></>
+                      )}
+                    </tbody>
                   </Tabs.Item>
                 </Tabs.Group>
-
-
               </div>
 
-
               {/* COL 3 TIMELINE */}
-              {cardRulings.data ?
+              {cardRulings.data ? (
                 <div>
-                  <div className="timeline">
-
+                  <div className="timeline max-w-lg min-w-full ml-3">
                     <Timeline>
                       <Timeline.Item>
-
                         <Timeline.Content>
                           <Timeline.Point />
-                          <Timeline.Time>
-                            {currCard.releaseDate}
-                          </Timeline.Time>
-                          {currCard.reprint ?
+                          <Timeline.Time>{currCard.releaseDate}</Timeline.Time>
+                          {currCard.reprint ? (
                             <Timeline.Body className="text-white">
-                              {currCard.name} released in {currCard.set_name} ({currCard.set.toUpperCase()}).
+                              {currCard.name} released in {currCard.set_name} (
+                              {currCard.set.toUpperCase()}).
                             </Timeline.Body>
-                            :
+                          ) : (
                             <Timeline.Body className="text-white">
-                              {currCard.name} reprinted in {currCard.set_name} ({currCard.set.toUpperCase()}).
+                              {currCard.name} reprinted in {currCard.set_name} (
+                              {currCard.set.toUpperCase()}).
                             </Timeline.Body>
-                          }
+                          )}
 
-                          {cardRulings.data.map(ruling =>
+                          {cardRulings.data.map((ruling) => (
                             <>
                               <Timeline.Point />
                               <Timeline.Time>
@@ -376,11 +453,15 @@ const DetailView = () => {
                                 {ruling.comment}
                               </Timeline.Body>
                             </>
-                          )}
+                          ))}
                         </Timeline.Content>
                       </Timeline.Item>
-                    </Timeline></div></div> : <TextLoading />
-              }
+                    </Timeline>
+                  </div>
+                </div>
+              ) : (
+                <TextLoading />
+              )}
             </>
           ) : (
             <>
@@ -397,7 +478,6 @@ const DetailView = () => {
           )}
         </div>
       </div>
-
     </>
   );
 };
