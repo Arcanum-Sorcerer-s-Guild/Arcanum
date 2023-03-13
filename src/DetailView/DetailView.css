@@ -7,6 +7,31 @@ body {
   color: white;
 }
 
+.tab-list {
+  background-color: #f8f8f8;
+}
+
+.tab-list .active {
+  background-color: #ffa500;
+  color: white;
+}
+
+/* .cardDetailContainer {
+  display:flex;
+  flex-direction: row;
+  justify-content: left;
+  margin: 20px 15vw;
+  gap: 15px;
+  background-color: #161414;
+  width: 600px;
+  height: 850px;
+} */
+
+.grid {
+  margin-right: 30px;
+  margin-left: 30px;
+}
+
 .card-detail-img {
   height: 400px;
 }
@@ -39,3 +64,13 @@ td {
 th, td {
   padding: 5px;
 }
+
+
+.card-details {
+  width: auto;
+  max-width: 420px;
+}
+
+/* .timeline {
+  overflow-y:auto;
+} */

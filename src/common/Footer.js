@@ -1,39 +1,47 @@
 import React from "react";
-import "./Footer.css";
+import { Footer } from "flowbite-react";
 
-const Footer = () => {
+const FooterBar = () => {
   return (
-    <footer className="fixed bottom-0 left-0 z-20 w-full border-t border-gray-500 shadow md:flex md:items-center md:justify-between dark:bg-gray-800 dark:border-gray-600">
-      <span className="footer-links text-sm text-gray-300 sm:text-center dark:text-gray-400">© 2023 Arcanum AllRights Reserved.
-      </span>
-        <ul className="flex flex-wrap items-center mt-3 text-sm text-gray-300 dark:text-gray-400 sm:mt-0">
-          <li>
-            <a className="mr-4 hover:underline md:mr-6" href="https://magic.wizards.com/en">Official Magic Website</a>
-          </li>
-          <li>
-            <a className="mr-4 hover:underline md:mr-6" href="https://www.mtgo.com/en/mtgo/decklists">Magic Online Decklists</a>
-          </li>
-          <li>
-            <a className="mr-4 hover:underline md:mr-6" href="https://magic.wizards.com/en/how-to-play">How to play</a>
-          </li>
-          <li>
-            <a className="mr-4 hover:underline md:mr-6" href="https://scryfall.com/">Scryfall</a>
-          </li>
-          <li>
-            <a className="mr-4 hover:underline md:mr-6" href="https://scryfall.com/docs/api">Scryfall API</a>
-          </li>
-          <li>
-            <a className="mr-4 hover:underline md:mr-6" href="https://gatherer.wizards.com/Pages/Default.aspx">Gatherer</a>
-          </li>
-          <li>
-            <a className="mr-4 hover:underline md:mr-6" href="https://www.tcgplayer.com/">TCG Player</a>
-          </li>
-          <li>
-            <a className="mr-4 hover:underline md:mr-6" href="https://edhrec.com/">EDHREC</a>
-          </li>
-        </ul>
-    </footer>
+    <div>
+
+    <Footer container={true} className="" style={{backgroundColor: '#393939'}}>
+      <Footer.Copyright href="#" by="Arcanum All Rights Reserved" year={2023} />
+      <Footer.LinkGroup>
+        <Footer.Link href="https://magic.wizards.com/en" target="_blank">
+          Official Magic Website
+        </Footer.Link>
+        <Footer.Link
+          href="https://www.mtgo.com/en/mtgo/decklists"
+          target="_blank"
+          >
+          Magic Online Decklists
+        </Footer.Link>
+        <Footer.Link
+          href="https://magic.wizards.com/en/how-to-play"
+          target="_blank"
+          >
+          How to play
+        </Footer.Link>
+        <Footer.Link href="https://scryfall.com/docs/api" target="_blank">
+          Scryfall API
+        </Footer.Link>
+        <Footer.Link
+          href="https://gatherer.wizards.com/Pages/Default.aspx"
+          target="_blank"
+          >
+          Gatherer
+        </Footer.Link>
+        <Footer.Link href="https://www.tcgplayer.com/" target="_blank">
+          TCG Player
+        </Footer.Link>
+        <Footer.Link href="https://edhrec.com/" target="_blank">
+          EDHREC
+        </Footer.Link>
+      </Footer.LinkGroup>
+    </Footer>
+          </div>
   );
 };
 
-export default Footer;
+export default FooterBar;

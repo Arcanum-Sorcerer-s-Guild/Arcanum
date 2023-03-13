@@ -3,13 +3,4 @@
 @tailwind utilities;
 
 
-a {
-  padding-right: 15px;
-}
 
-footer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  right: 0;
-}

@@ -1,8 +1,10 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import Modal from "react-modal";
 import "./Tutorial.css";
 import DeckDropDownCreator from "../common/DeckDropDownCreator";
 import { mtgContext } from "../App.js";
+import { Tabs } from "flowbite-react";
+import Draggable from "react-draggable";
 
 const customStyles = {
   content: {
@@ -15,6 +17,47 @@ const customStyles = {
   },
 };
 
+function DraggableImage({ src, index }) {
+  const [imagePosition, setImagePosition] = useState({ x: 0, y: 0 });
+
+  return (
+    <Draggable
+      onStop={(event, { x, y }) => {
+        // Update the position of the image after it has been dragged
+        const fixedPosition = { x: 100, y: 100 }; // This is the fixed position of the drop target
+        const snappedPosition = { x: 50, y: 50 }; // This is the snapped position inside the drop target
+        const positionWithinFixedPosition = {
+          x: x - fixedPosition.x,
+          y: y - fixedPosition.y,
+        };
+        const snappedX =
+          Math.round(positionWithinFixedPosition.x / snappedPosition.x) *
+          snappedPosition.x;
+        const snappedY =
+          Math.round(positionWithinFixedPosition.y / snappedPosition.y) *
+          snappedPosition.y;
+        const snappedPositionWithinFixedPosition = {
+          x: snappedX,
+          y: snappedY,
+        };
+        const finalPosition = {
+          x: snappedPositionWithinFixedPosition.x + fixedPosition.x,
+          y: snappedPositionWithinFixedPosition.y + fixedPosition.y,
+        };
+        setImagePosition(finalPosition);
+      }}
+      position={imagePosition}
+    >
+      <img
+        key={index}
+        className="deckCardHand"
+        src={src}
+        alt="Draggable Image"
+      />
+    </Draggable>
+  );
+}
+
 const Tutorial = () => {
   const { decks, setDecks } = React.useContext(mtgContext);
   const [selectedDeck, setSelectedDeck] = useState(decks[0].name);
@@ -25,17 +68,36 @@ const Tutorial = () => {
   const [tutorialStarted, setTutorialStarted] = useState(false);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [error, setError] = useState("");
-  const [step, setStep] = useState("Untap");
+  const [activeStep, setActiveStep] = useState(0);
+  const [activeStepDetails, setActiveStepDetails] = useState(<></>);
+  const tabsRef = useRef(null);
 
   const steps = [
-    "Untap",
-    "Upkeep",
-    "Draw",
-    "Main",
-    "Phase 1",
-    "CombatMain",
-    "Phase 2",
-    "End Step",
+    {
+      id: "untap",
+      name: "Untap",
+      details: `All permanents with phasing controlled by the active player phase out, and all phased-out permanents that were controlled by the active player simultaneously phase in. Note the timing which means tapped permanents phasing in will almost immediately get to untap.
+    If the day and night cycle has started, the number of spells cast in the previous turn is checked, and if the appropriate conditions are met, day turns to night or night turns to day, including the transformation of Daybound and Nightbound permanents.
+    The active player determines which permanents controlled by that player untap, then untaps all those permanents simultaneously. (The player will untap all permanents they control unless a card effect prevents this.)`,
+    },
+    {
+      id: "upkeep",
+      name: "Upkeep",
+      details: `The upkeep step is the second step of the beginning phase. At the beginning of the upkeep step, any abilities that trigger either during the untap step or at the beginning of upkeep go on the stack. Then the active player gains priority the first time during their turn.`,
+    },
+    {
+      id: "draw",
+      name: "Draw",
+      details: `The draw step is the third step of the beginning phase. The following events occur during this phase, in order:
+    The active player draws a card from their library.
+    Any abilities that trigger at the beginning of the draw step go on the stack.
+    The active player gains priority.`,
+    },
+    { id: "main", name: "Main", details: "Main" },
+    { id: "phase1", name: "Phase 1", details: "Phase 1" },
+    { id: "combatPhase", name: "CombatMain", details: "CombatMain" },
+    { id: "phase2", name: "Phase 2", details: "Phase 2" },
+    { id: "endStep", name: "End Step", details: "EndStep" },
   ];
 
   const changeDeck = (e) => {
@@ -70,7 +132,6 @@ const Tutorial = () => {
       setIsOpen(true);
     } else {
       setDeckInPlay(newDeck);
-      console.log(deckInPlay.length);
       if (deckInPlay.length > 61) {
         setError("toohighs...");
         setIsOpen(true);
@@ -81,6 +142,16 @@ const Tutorial = () => {
   useEffect(() => {
     setDeckInPlayLength(deckInPlay.length);
   }, [deckInPlay]);
+
+  // useEffect(() => {
+
+  //   let newdetails = activeStep === 0 ? (<>{steps[0].details}</>) ?
+  //   activeStep === 1 ? (<>{steps[1].details}</>) :
+  //   activeStep === 2 ? (<>{steps[2].details}</>) :
+  //   activeStep === 3 ? (<>{steps[3].details}</>) :
+  //   activeStep === 4 ? (<>{steps[4].details}</>) 
+  //   setActiveStepDetails(newdetails)
+  // }, [activeStep]);
 
   useEffect(() => {
     const newDeckInPlay = [...deckInPlay];
@@ -112,7 +183,7 @@ const Tutorial = () => {
       const newHandInPlay = [...handInPlay];
       const newDeckInPlay = [...deckInPlay];
       for (let index = 0; index < 7; index++) {
-        newHandInPlay.push(deckInPlay[index]);
+        newHandInPlay.unshift(deckInPlay[index]);
         newDeckInPlay.splice(index, 1);
       }
 
@@ -135,21 +206,32 @@ const Tutorial = () => {
     console.log(handInPlay, deckInPlay);
   };
 
+  useEffect(() => {
+    document.title = "Tutorial";
+  }, []);
+
   return (
     <>
-      <div className="playerField wrapper  relative flex w-full h-full flex-wrap">
-        <div className="info">
-          {steps.map((stepItem) => (
-            <a>{stepItem}</a>
+      <div className="flex border-b border-gray-200 dark:border-gray-700">
+        <Tabs.Group
+          className="w-3/4"
+          aria-label="Default tabs"
+          ref={tabsRef}
+          onActiveStepChange={(tab) => setActiveStep(tab)}
+        >
+          {steps.map((stepItem, index) => (
+            <Tabs.Item active title={stepItem.name}>
+              {stepItem.details}
+            </Tabs.Item>
           ))}
-
-          <a className="deckName">
-            <DeckDropDownCreator selectedDeck={changeDeck} />
-          </a>
-          <a className="life">#of Cards Left: {deckInPlayLength} </a>
-          <a className="life">Life Points: {lifePoints} </a>
+        </Tabs.Group>
+        <div className="flex float-right h-16">
+          Cards Left: {deckInPlayLength} || Life: {lifePoints}
+          <DeckDropDownCreator selectedDeck={changeDeck} />
         </div>
+      </div>
 
+      <div className="playerField">
         <div className="battleField">
           <img
             onClick={turnImage}
@@ -182,6 +264,7 @@ const Tutorial = () => {
             src="/blankMonsterCard.svg"
           ></img>
         </div>
+        
         <div className="lands">
           <img
             onClick={turnImage}
@@ -235,9 +318,14 @@ const Tutorial = () => {
 
 
           {handInPlay.map((card, index) => {
-           return Object.keys(card).includes('image_uris') ?
-            <img key={index} className='deckCardHand' src={card.image_uris.normal}/> :
-             <img key={index} className='deckCardHand' src={card.card_faces[0].image_uris.normal}/>
+            return Object.keys(card).includes("image_uris") ? (
+              <DraggableImage index={index} src={card.image_uris.normal} />
+            ) : (
+              <DraggableImage
+                index={index}
+                src={card.card_faces[0].image_uris.normal}
+              />
+            );
           })}
         </div>
       </div>
