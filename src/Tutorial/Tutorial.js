@@ -24,8 +24,8 @@ function DraggableImage({ src, index }) {
     <Draggable
       onStop={(event, { x, y }) => {
         // Update the position of the image after it has been dragged
-        const fixedPosition = { x: 20, y: 20 }; // This is the fixed position of the drop target
-        const snappedPosition = { x: 10, y: 10 }; // This is the snapped position inside the drop target
+        const fixedPosition = { x: 100, y: 100 }; // This is the fixed position of the drop target
+        const snappedPosition = { x: 50, y: 50 }; // This is the snapped position inside the drop target
         const positionWithinFixedPosition = {
           x: x - fixedPosition.x,
           y: y - fixedPosition.y,
