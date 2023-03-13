@@ -12,9 +12,7 @@ import Tutorial from "./Tutorial/Tutorial";
 import Advanced from "./Advanced/Advanced.js"
 import AdvResults from "./Advanced/AdvResults.js"
 
-
 export const mtgContext = React.createContext();
-
 
 function App() {
   const [decks, setDecks] = useState([{
@@ -23,20 +21,24 @@ function App() {
   }]);
 
   return (
-    <mtgContext.Provider value={{ decks, setDecks }}>
-      <NavBar />
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route path="/Search/:value" element={<Search />} />
-        <Route path="/DetailView/:id" element={<DetailView />} />
-        <Route path="/MyDeck" element={<MyDeck />} />
-        <Route path="/Tutorial" element={<Tutorial />} />
-        <Route path="/*" element={<NotFound />} />
-        <Route path="/Advanced" element={<Advanced/>}/>
-        <Route path="/AdvResults/:page/:value" element={<AdvResults/>}/>
-      </Routes>
-      <Footer />
-    </mtgContext.Provider>
+    <div className="page-container">
+      <div className="content-wrap">
+        <mtgContext.Provider value={{ decks, setDecks }}>
+          <NavBar />
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route path="/Search/:value" element={<Search />} />
+            <Route path="/DetailView/:id" element={<DetailView />} />
+            <Route path="/MyDeck" element={<MyDeck />} />
+            <Route path="/Tutorial" element={<Tutorial />} />
+            <Route path="/*" element={<NotFound />} />
+            <Route path="/Advanced" element={<Advanced/>}/>
+            <Route path="/AdvResults/:page/:value" element={<AdvResults/>}/>
+          </Routes>
+        </mtgContext.Provider>
+      </div>
+        <Footer />
+    </div>
   );
 }
 

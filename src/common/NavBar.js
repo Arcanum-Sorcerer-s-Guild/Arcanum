@@ -31,7 +31,7 @@ const NavBar = () => {
       <nav className="nav-bar relative w-full flex items-center justify-around shadow-lg px-2">
           <div className="links relative inline-flex items-center">
             <Link className="relative inline-flex items-center p-3" to="/MyDeck">
-              <i className="deck-icon ss ss-s00 p-1"/><span> My Decklist</span>
+              <i className="deck-icon ss ss-s00 p-1"/><span> My Decklists</span>
               <div className="absolute inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-500 rounded-full top-2 -right-0">{decks.length}</div>
             </Link>
             |
@@ -42,12 +42,12 @@ const NavBar = () => {
             <button className="p-3" onClick={()=>onClick()}>  <i className="deck-icon ss ss-gn3 p-1"/> <span>Random Card</span></button>
             |
             <Link className="link p-3" to="/Advanced">
-              <i className="deck-icon ss ss-v10 p-1"/><span> Advanced</span>
+              <i className="deck-icon ss ss-v10 p-1"/><span> Advanced Search</span>
             </Link>
 
           </div>
 
-          <div className="search-bundle flex-shrink-0">
+          <div className="search-bundle flex">
             <input
               className="search-input text-black italic"
               type="search"
@@ -62,15 +62,6 @@ const NavBar = () => {
       </nav>
     </div>
 
-    //old code
-    // <nav className="navBar">
-    //   <Link className ="link" to="/">Home</Link>
-    //   <Link className ="link" to="/MyDeck">My Deck</Link>
-    //   <Link className ="link" to="/FeaturedDecks">Featured Decks</Link>
-    //   {/* <Link to="/Tutorial">Tutorial</Link> */}
-    //   <Link className="searchBtn" to={`/Search/${searchTerm}`}><button>SEARCH</button></Link>
-    //   <input className="searchBar" type="search" placeholder="Search..." onChange={e=>setSearchTerm(e.target.value)}/>
-    // </nav>
   );
 };
 

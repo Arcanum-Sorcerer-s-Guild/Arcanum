@@ -1,3 +1,4 @@
+import { type } from "@testing-library/user-event/dist/type";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Deck.css";
@@ -27,6 +28,8 @@ const Decklist = ({ deck }) => {
     }
   }
 
+  console.log(cardsByType);
+
 
   return (
     <div className="deck-wrapper mt-10 mx-24">
@@ -34,6 +37,7 @@ const Decklist = ({ deck }) => {
       <div className="grid grid-cols-10">
         <div className="deck-list col-span-6 justify-center">
             <div className="deck-list text-sm p-5"> 
+                {Object.keys(cardsByType).length === 0 ? <p className="italic font-light">Cards that you add to your deck will appear here</p> :
               <div className="grid grid-cols-2"> 
                 {Object.keys(cardsByType).map((type) => (
                   <div className="col-1 p-1">
@@ -68,6 +72,7 @@ const Decklist = ({ deck }) => {
                   </div>
                 ))} 
               </div>
+                }
             </div>
         </div>
         <div className="deck-img col-span-4 relative flex justify-center gap-2">

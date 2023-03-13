@@ -24,7 +24,7 @@ const Home = () => {
   }
 
   return (
-    <div className="home-wrapper mt-10">
+    <div className="mt-10">
       <div className="hero-section flex justify-center items-center shadow-lg">
         <div className="flex flex-col justify-center items-center shadow-lg">
         <div className="animate-pulse"><div className="pulse opacity-100 blur-2xl transition-all"></div></div>
