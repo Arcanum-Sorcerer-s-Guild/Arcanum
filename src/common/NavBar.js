@@ -52,10 +52,10 @@ const NavBar = () => {
               className="search-input text-black italic"
               type="search"
               placeholder="Search..."
-              onKeyPress={(e) => { if (e.key === "Enter") {navigate(`Search/${searchTerm}`)}}}
+              onKeyDown={(e) => { if (e.key === "Enter") {navigate(`Search/${searchTerm}`)}}}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <Link className="text-black p-1" to={`/Search/${searchTerm}`}>
+            <Link className="text-black pl-2" to={`/Search/${searchTerm}`}>
               <button className="search-btn hover:bg-gray-700 transition-color duration-700">SEARCH</button>
             </Link>
           </div>

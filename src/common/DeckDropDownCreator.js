@@ -8,6 +8,7 @@ const cssLargeButton = {
     textAlign: "center",
     backgroundColor: "#b93b0d",
     borderRadius: "5px",
+    border:"none",
   };
 
 

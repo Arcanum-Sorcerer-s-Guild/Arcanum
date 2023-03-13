@@ -70,7 +70,7 @@ const AdvResults = () => {
                 <img className="card-image rounded-2xl transform hover:scale-125 transition-all" key={card.id} src={card.image_uris.small} onClick={()=>onClick(card.id)}/>
                 </div>
                     :
-                <img  className="card-image rounded-2xl transform hover:scale-125 transition-all" key={card.id}src={card.card_faces[0].image_uris.small}/>)})
+                <img  className="card-image rounded-2xl transform hover:scale-125 transition-all" key={card.id}src={card.card_faces[0].image_uris.small} onClick={()=>onClick(card.id)}/>)})
                 : <div className="spinner" />}
     </div>
     <div className="adv-footer flex flex-wrap justify-between items-center text-center mt-4 px-5  bg-amber-600/20">

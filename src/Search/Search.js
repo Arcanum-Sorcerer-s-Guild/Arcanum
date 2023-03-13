@@ -13,12 +13,12 @@ const Search = ({}) => {
     fetch('https://api.scryfall.com/cards/search?q='+ params.value.split(' ').join('+'))
     .then(res=>res.json())
     .then(cardData=>setCards(cardData.data))
-    .catch(error=>console.log("Your search didn’t match any cards. Please try again by adjusting your terms."))
+    .catch(error=>console.log("Your search did not match any cards. Please try again by adjusting your terms."))
   }, [params.value])
 
   return (
     <div className="search-results items-center p-2 mt-5 md:mx-52 bg-zinc-500/20 mb-4">
-    <div className="search-results-imgs flex flex-wrap justify-between items-center p-2">
+    <div className="search-results-imgs flex flex-wrap justify-center items-center p-2">
         {(cards === undefined) ? 
             <div className="container justify-center items-center text-center">
                 <h1 className="text-3xl p-4"> No Cards Found </h1>

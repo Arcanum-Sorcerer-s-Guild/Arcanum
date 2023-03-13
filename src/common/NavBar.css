@@ -43,8 +43,7 @@ i {
   padding-left: 10px;
   cursor: text;
   border-radius: 2px;
-  height: 23px;
-
+  height: 3px;
 }
 
 .search-input:focus {
@@ -58,7 +57,7 @@ i {
 .search-btn {
   font-size: 10pt;
   width: 88px;
-  height: 26px;
+  height: 25px;
   border: 1px solid #191919;
   font-weight: bold;
   color: #ffffff;

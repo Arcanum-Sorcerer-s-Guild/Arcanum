@@ -96,6 +96,9 @@ const DetailView = () => {
             : [data.flavor_text],
           releaseDate: data.released_at,
           reprint: data.reprint,
+          frontSideName: Object.keys(data).includes("card_faces")
+          ? data.card_faces[0].name
+          : ''
         });
       })
       .catch((err) => {
@@ -125,9 +128,9 @@ const DetailView = () => {
 
   return (
     <>
-      <h1 class=" text-4xl mt-3 font-extrabold leading-none tracking-tight text-white-900 md:text-5xl lg:text-6xl ">
-        {currCard.name}
-      </h1>
+      <div className="flex justify-center items-center text-center text-4xl mt-10 font-extrabold leading-none tracking-tight text-white-900 md:text-2xl lg:text-md">
+       <h1 className="pr-2">{currCard.name}</h1> <i>({currCard.set.toUpperCase()})</i>
+      </div>
 
       <div className="flex justify-center mt-10">
         <div className="grid grid-cols-3 gap-2">
@@ -139,7 +142,7 @@ const DetailView = () => {
               <div className="img-col p-1 max-w-lg max-h-lg min-h-full min-w-full">
                 {Array.isArray(currCard.image) ? (
                   <>
-                      Click to see flipside of card:
+                      <div className="italic">Click to see flipside of card:</div>
                       <img
                         onClick={()=>toggleOpen()}
                         className="rounded-3xl transition-all duration-300 cursor-pointer filter hover:grayscale object-position: center "
@@ -327,7 +330,7 @@ const DetailView = () => {
                       <ul className="list-inside">
                         {currCard.tcgplayerLink ? (
                           <li>
-                            <a href={currCard.tcgplayerLink}>
+                            <a href={currCard.tcgplayerLink} target="_blank">
                               Purchase at TCG Player
                             </a>
                           </li>
@@ -336,23 +339,24 @@ const DetailView = () => {
                         )}
                         {currCard.gathererLink ? (
                           <li>
-                            <a href={currCard.gathererLink}>View in Gatherer</a>
+                            <a href={currCard.gathererLink} target="_blank">View in Gatherer</a>
                           </li>
                         ) : (
                           <></>
                         )}
                         <li>
-                          <a href={currCard.scryfallLink}>View in Scryfall</a>
+                          <a href={currCard.scryfallLink} target="_blank">View in Scryfall</a>
                         </li>
                         <li>
-                          <a href={currCard.edhrecLink}>Read about at EDHREC</a>
+                          <a href={currCard.edhrecLink} target="_blank">Read about at EDHREC</a>
                         </li>
                         <li>
                           <button
                             onClick={() =>
-                              navigate(
-                                `/AdvResults/1/q=!"${currCard.name}"&unique=art`
-                              )
+                              { Array.isArray(currCard.image) ?
+                                 navigate(`/AdvResults/1/q=!"${currCard.frontSideName}"&unique=art`)
+                                :
+                              navigate(`/AdvResults/1/q=!"${currCard.name}"&unique=art`)}
                             }
                           >
                             Alternate Arts
