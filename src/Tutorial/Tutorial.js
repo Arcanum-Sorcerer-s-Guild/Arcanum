@@ -69,6 +69,7 @@ const Tutorial = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [error, setError] = useState("");
   const [activeStep, setActiveStep] = useState(0);
+  const [activeStepDetails, setActiveStepDetails] = useState(<></>);
   const tabsRef = useRef(null);
 
   const steps = [
@@ -141,6 +142,16 @@ const Tutorial = () => {
   useEffect(() => {
     setDeckInPlayLength(deckInPlay.length);
   }, [deckInPlay]);
+
+  // useEffect(() => {
+
+  //   let newdetails = activeStep === 0 ? (<>{steps[0].details}</>) ?
+  //   activeStep === 1 ? (<>{steps[1].details}</>) :
+  //   activeStep === 2 ? (<>{steps[2].details}</>) :
+  //   activeStep === 3 ? (<>{steps[3].details}</>) :
+  //   activeStep === 4 ? (<>{steps[4].details}</>) 
+  //   setActiveStepDetails(newdetails)
+  // }, [activeStep]);
 
   useEffect(() => {
     const newDeckInPlay = [...deckInPlay];
