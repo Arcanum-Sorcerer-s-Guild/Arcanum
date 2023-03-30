@@ -1,3 +1,6 @@
+# run with:
+# docker-compose up -d --build
+
 version: '3.8'
 services:
   arcanum:
@@ -6,5 +9,5 @@ services:
     build: .
     ports:
       - "4724:3000"
-    volumes:
-      - ./:/usr/src/app/
+    # volumes:
+      # - ./:/usr/src/app/
